@@ -1,0 +1,221 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  /* Superweld Brand Colors - Warm Orange Mix Theme */
+  --color-superweld-bg: #FFFCFA;
+  --color-superweld-bgAlt: #FFF8F5;
+  --color-superweld-surface: #FFF0E8;
+  --color-superweld-border: #FFE0D4;
+  --color-superweld-orange: #F26522;
+  --color-superweld-orangeHover: #D9541A;
+  --color-superweld-orangeLight: #FF8A50;
+  --color-superweld-orangePale: #FFE8DE;
+  --color-superweld-text: #2D2D2D;
+  --color-superweld-textMuted: #6B6B6B;
+  --color-superweld-accent: #FFB800;
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: 0 0% 100%;
+  --foreground: 0 0% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 10%;
+  --primary: 18 89% 54%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 96%;
+  --secondary-foreground: 0 0% 10%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 45%;
+  --accent: 42 100% 50%;
+  --accent-foreground: 0 0% 10%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  --ring: 18 89% 54%;
+  --chart-1: 18 89% 54%;
+  --chart-2: 42 100% 50%;
+  --chart-3: 0 0% 70%;
+  --chart-4: 18 70% 45%;
+  --chart-5: 210 60% 30%;
+  --sidebar: 0 0% 98%;
+  --sidebar-foreground: 0 0% 10%;
+  --sidebar-primary: 18 89% 54%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 0 0% 96%;
+  --sidebar-accent-foreground: 0 0% 10%;
+  --sidebar-border: 0 0% 90%;
+  --sidebar-ring: 18 89% 54%;
+}
+
+.dark {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 10%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 10%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 10%;
+  --primary: 18 89% 54%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 96%;
+  --secondary-foreground: 0 0% 10%;
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 45%;
+  --accent: 42 100% 50%;
+  --accent-foreground: 0 0% 10%;
+  --destructive: 0 62% 30%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  --ring: 18 89% 54%;
+  --chart-1: 18 89% 54%;
+  --chart-2: 42 100% 50%;
+  --chart-3: 0 0% 70%;
+  --chart-4: 18 70% 45%;
+  --chart-5: 210 60% 30%;
+  --sidebar: 0 0% 98%;
+  --sidebar-foreground: 0 0% 10%;
+  --sidebar-primary: 18 89% 54%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 0 0% 96%;
+  --sidebar-accent-foreground: 0 0% 10%;
+  --sidebar-border: 0 0% 90%;
+  --sidebar-ring: 18 89% 54%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: #FFFCFA;
+    color: #2D2D2D;
+    @apply antialiased;
+  }
+}
+
+/* Warm orange-white theme - no dark mode */
+html, html body {
+  background-color: #FFFCFA !important;
+  color: #2D2D2D !important;
+}
+
+/* Industrial Theme Custom Styles */
+.industrial-gradient {
+  background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(30,58,95,0.3) 100%);
+}
+
+.superweld-gradient {
+  background: linear-gradient(135deg, #F26522 0%, #D9541A 100%);
+}
+
+.superweld-gold-gradient {
+  background: linear-gradient(135deg, #F26522 0%, #FFB800 100%);
+}
+
+.text-shadow-industrial {
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+}
+
+.glass-effect {
+  backdrop-filter: blur(10px);
+  background: rgba(10, 10, 10, 0.8);
+}
+
+/* Animation utilities */
+.animate-in {
+  animation: animateIn 0.6s ease-out forwards;
+}
+
+@keyframes animateIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FFE8DE;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #F26522;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D9541A;
+}
+
+/* Logo slider animation */
+@keyframes scroll-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-x {
+  animation: scroll-x 30s linear infinite;
+}
+
+.animate-scroll-x:hover {
+  animation-play-state: paused;
+}
