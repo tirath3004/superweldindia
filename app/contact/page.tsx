@@ -66,11 +66,8 @@ export default function ContactPage() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="max-w-3xl"
           >
-            <span className="text-superweld-orange text-sm font-medium uppercase tracking-wider mb-4 block">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-superweld-orange mb-6">
               Get in Touch
-            </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-superweld-text mb-6">
-              Get in Touch With Us
             </h1>
             <p className="text-lg text-superweld-textMuted">
               Looking for industrial welding products? Contact us for product inquiries, 
@@ -84,14 +81,14 @@ export default function ContactPage() {
       <section className="py-20 lg:py-32">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
               {/* Contact Form */}
               <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="bg-superweld-bg/5 border border-superweld-border rounded-2xl p-8 lg:p-10"
+                className="bg-superweld-bg/5 border border-superweld-border rounded-2xl p-8 lg:p-10 h-fit"
               >
                 <h2 className="text-2xl font-bold text-superweld-text mb-2">
                   Contact Us
@@ -245,19 +242,34 @@ export default function ContactPage() {
                 </a>
               </div>
 
-              {/* Map Placeholder */}
-              <div className="aspect-video bg-superweld-bg/5 border border-superweld-border rounded-xl overflow-hidden">
-                <div className="w-full h-full flex items-center justify-center text-superweld-text/40">
-                  <div className="text-center">
-                    <MapPin className="w-12 h-12 mx-auto mb-2" />
-                    <p>Interactive Map</p>
-                  </div>
-                </div>
-              </div>
             </motion.div>
           </div>
         </div>
       </div>
+      </section>
+
+      {/* Full Width Google Map */}
+      <section className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 pb-20">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="aspect-[21/9] lg:aspect-[3/1] bg-superweld-bg/5 border border-superweld-border rounded-2xl overflow-hidden"
+          >
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.789!2d73.825!3d18.613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b8d8c5e5e5e5%3A0x5e5e5e5e5e5e5e5e!2sMIDC%20Bhosari%2C%20Pune!5e0!3m2!1sen!2sin!4v1234567890"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="w-full h-full"
+            />
+          </motion.div>
+        </div>
       </section>
 
       {/* FAQ Section - Content LEFT, Image RIGHT */}

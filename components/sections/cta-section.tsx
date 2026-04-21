@@ -108,18 +108,18 @@ export function CTASection({
               className="mt-12 flex flex-wrap justify-center gap-8"
             >
               <a
-                href="tel:+1234567890"
-                className="flex items-center gap-2 text-superweld-text hover:text-superweld-text transition-colors"
+                href="tel:+919890663256"
+                className="flex items-center gap-2 text-superweld-text hover:text-superweld-orange transition-colors"
               >
                 <Phone className="w-5 h-5" />
-                <span>+1 (234) 567-890</span>
+                <span>+91 9890663256</span>
               </a>
               <a
-                href="mailto:info@superweld.com"
-                className="flex items-center gap-2 text-superweld-text hover:text-superweld-text transition-colors"
+                href="mailto:superweldpune@gmail.com"
+                className="flex items-center gap-2 text-superweld-text hover:text-superweld-orange transition-colors"
               >
                 <Mail className="w-5 h-5" />
-                <span>info@superweld.com</span>
+                <span>superweldpune@gmail.com</span>
               </a>
             </motion.div>
           )}
