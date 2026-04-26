@@ -1,9 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Image from "next/image";
-import { Navbar, Footer, CTASection } from "@/components/sections";
-import { ParallaxBackground } from "@/components/ui/parallax-background";
+import { useRef } from "react";
+import { Navbar, Footer } from "@/components/sections";
 import { Button } from "@/components/ui/button";
 import {
   MapPin,
@@ -15,13 +15,91 @@ import {
   HelpCircle,
   MessageCircle,
   Navigation,
+  Star,
+  Package,
+  Zap,
 } from "lucide-react";
+
+// Image Reveal Component
+function ImageReveal({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <div ref={ref} className={`relative overflow-hidden ${className}`}>
+      <motion.div
+        initial={{ x: 0 }}
+        animate={isInView ? { x: "100%" } : { x: 0 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute inset-0 bg-[#8B3A3A] z-10"
+      />
+      <Image src={src} alt={alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+    </div>
+  );
+}
+
+// Parallax Section Component
+function ParallaxSection({ children, className = "", speed = 0.5 }: { children: React.ReactNode; className?: string; speed?: number }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], [`${speed * 50}px`, `${-speed * 50}px`]);
+
+  return (
+    <div ref={ref} className={`relative overflow-hidden ${className}`}>
+      <motion.div style={{ y }} className="relative">{children}</motion.div>
+    </div>
+  );
+}
+
+// Hero Parallax Section Component
+function HeroParallaxSection() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["0px", "150px"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  return (
+    <section ref={ref} className="relative min-h-[500px] flex items-center justify-center overflow-hidden">
+      {/* Parallax Background Image */}
+      <motion.div className="absolute inset-0 z-0" style={{ y }}>
+        <Image
+          src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&q=80"
+          alt="Contact us"
+          fill
+          className="object-cover scale-110"
+          priority
+        />
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/60 to-black/40" />
+      </motion.div>
+
+      <motion.div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12" style={{ opacity }}>
+        <div className="max-w-3xl">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#8B3A3A]/90 rounded-full text-white text-sm font-medium mb-6">
+            <Star className="w-4 h-4" />
+            Contact Us
+          </div>
+          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6">
+            Get in <span className="text-[#8B3A3A]">Touch</span>
+          </h1>
+          <p className="text-lg sm:text-xl text-gray-200 max-w-2xl leading-relaxed">
+            Contact us for bulk requirements, distribution inquiries, and partnerships. 
+            Our team is ready to assist you with product sourcing, technical specifications, pricing, and orders.
+          </p>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
 
 const contactInfo = [
   {
     icon: MapPin,
     title: "Visit Us",
-    details: ["Plot No.S/P-105, S-Block, Midc Bhosari", "Pune - 411026, Maharashtra, India"],
+    details: ["Plot No.S/P-105, S-Block, MIDC Bhosari", "Pune - 411026, Maharashtra, India"],
   },
   {
     icon: Phone,
@@ -31,7 +109,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email Us",
-    details: ["superweld.sources@gmail.com"],
+    details: ["info@superweldsources.com"],
   },
   {
     icon: MessageCircle,
@@ -50,35 +128,11 @@ export default function ContactPage() {
     <main className="min-h-screen bg-superweld-bg">
       <Navbar />
 
-      {/* Hero Section with Parallax */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
-        <ParallaxBackground
-          image="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920&q=80"
-          opacity={0.7}
-          overlayOpacity={0.7}
-          bgColor="bg-superweld-bg"
-        />
-        
-        <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="max-w-3xl"
-          >
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-superweld-orange mb-6">
-              Get in Touch
-            </h1>
-            <p className="text-lg text-superweld-textMuted">
-              Looking for industrial welding products? Contact us for product inquiries, 
-              technical specifications, pricing, and orders. Our team is ready to assist you.
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      {/* Hero Section - WITH Parallax Background */}
+      <HeroParallaxSection />
 
-      {/* Contact Section - 2 Column Layout */}
-      <section className="py-20 lg:py-32">
+      {/* Contact Section - WITH Parallax */}
+      <ParallaxSection className="py-24 lg:py-40 bg-white">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
@@ -88,178 +142,168 @@ export default function ContactPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="bg-superweld-bg/5 border border-superweld-border rounded-2xl p-8 lg:p-10 h-fit"
+                className="bg-white border border-[#EDEDED] rounded-2xl p-8 lg:p-10 h-fit shadow-lg"
               >
-                <h2 className="text-2xl font-bold text-superweld-text mb-2">
-                  Contact Us
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                  Send Us a Message
                 </h2>
-                <p className="text-sm text-superweld-textMuted mb-6">
-                  Sanjeev Agarwal (Director) - Superweld Sources Private Limited
+                <p className="text-sm text-gray-500 mb-6">
+                  SuperWeld Sources Pvt Ltd - Your Trusted Partner
                 </p>
                 <form className="space-y-6">
                   <div className="grid sm:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-superweld-text mb-2">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
                         First Name
                       </label>
                       <input
                         type="text"
-                        className="w-full px-4 py-3 bg-superweld-bg/5 border border-superweld-border rounded-lg text-superweld-text placeholder:text-superweld-text/40 focus:outline-none focus:border-superweld-orange transition-colors"
+                        className="w-full px-4 py-3 bg-white border border-[#EDEDED] rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#8B3A3A] transition-colors"
                         placeholder="John"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-superweld-text mb-2">
+                      <label className="block text-sm font-medium text-gray-700 mb-2">
                         Last Name
                       </label>
                       <input
                         type="text"
-                        className="w-full px-4 py-3 bg-superweld-bg/5 border border-superweld-border rounded-lg text-superweld-text placeholder:text-superweld-text/40 focus:outline-none focus:border-superweld-orange transition-colors"
+                        className="w-full px-4 py-3 bg-white border border-[#EDEDED] rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#8B3A3A] transition-colors"
                         placeholder="Doe"
                       />
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-superweld-text mb-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
                       Email Address
                     </label>
                     <input
                       type="email"
-                      className="w-full px-4 py-3 bg-superweld-bg/5 border border-superweld-border rounded-lg text-superweld-text placeholder:text-superweld-text/40 focus:outline-none focus:border-superweld-orange transition-colors"
+                      className="w-full px-4 py-3 bg-white border border-[#EDEDED] rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#8B3A3A] transition-colors"
                       placeholder="john@example.com"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-superweld-text mb-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
                       Phone Number
                     </label>
                     <input
                       type="tel"
-                      className="w-full px-4 py-3 bg-superweld-bg/5 border border-superweld-border rounded-lg text-superweld-text placeholder:text-superweld-text/40 focus:outline-none focus:border-superweld-orange transition-colors"
+                      className="w-full px-4 py-3 bg-white border border-[#EDEDED] rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#8B3A3A] transition-colors"
                       placeholder="+1 (234) 567-890"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-superweld-text mb-2">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
                       Message
                     </label>
                     <textarea
                       rows={4}
-                      className="w-full px-4 py-3 bg-superweld-bg/5 border border-superweld-border rounded-lg text-superweld-text placeholder:text-superweld-text/40 focus:outline-none focus:border-superweld-orange transition-colors resize-none"
-                      placeholder="Tell us about your project..."
+                      className="w-full px-4 py-3 bg-white border border-[#EDEDED] rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#8B3A3A] transition-colors resize-none"
+                      placeholder="Tell us about your requirements..."
                     />
                   </div>
-                  <Button size="lg" className="w-full group">
+                  <Button size="lg" className="w-full bg-[#8B3A3A] hover:bg-[#7A2D2D] group">
                     <Send className="w-4 h-4 mr-2" />
                     Send Message
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                   </Button>
                 </form>
-            </motion.div>
+              </motion.div>
 
               {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="space-y-8"
-            >
-              <div>
-                <h2 className="text-2xl font-bold text-superweld-text mb-2">
-                  Contact Information
-                </h2>
-                <p className="text-sm text-superweld-textMuted mb-1">
-                  Sanjeev Agarwal (Director)
-                </p>
-                <p className="text-xs text-superweld-textMuted/70 mb-6">
-                  Superweld Sources Private Limited | GST No.: 27AASCS9995D1ZE
-                </p>
-                <p className="text-superweld-textMuted mb-8">
-                  Reach out to us through any of these channels. Our team is ready 
-                  to assist you with your welding and fabrication needs.
-                </p>
-              </div>
+              <motion.div
+                initial={{ opacity: 0, x: 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="space-y-8"
+              >
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                    Contact Information
+                  </h2>
+                  <p className="text-sm text-gray-500 mb-6">
+                    SuperWeld Sources Pvt Ltd
+                  </p>
+                  <p className="text-gray-600 mb-8">
+                    Reach out to us through any of these channels. Our team is ready 
+                    to assist you with your industrial equipment and tooling needs.
+                  </p>
+                </div>
 
-              <div className="grid sm:grid-cols-2 gap-6">
-                {contactInfo.map((item, index) => (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    className="p-6 bg-superweld-bg/5 border border-superweld-border rounded-xl hover:bg-superweld-bg/10 transition-colors"
-                  >
-                    <div className="w-12 h-12 rounded-xl bg-superweld-orange/20 flex items-center justify-center text-superweld-orange mb-4">
-                      <item.icon className="w-6 h-6" />
+                <div className="space-y-6">
+                  {contactInfo.map((item) => (
+                    <div key={item.title} className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-[#8B3A3A]/10 flex items-center justify-center text-[#8B3A3A] shrink-0">
+                        <item.icon className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">{item.title}</h4>
+                        {item.details.map((detail) => (
+                          <p key={detail} className="text-gray-600 text-sm">{detail}</p>
+                        ))}
+                      </div>
                     </div>
-                    <h3 className="text-lg font-semibold text-superweld-text mb-2">
-                      {item.title}
-                    </h3>
-                    {item.details.map((detail, i) => (
-                      <p key={i} className="text-superweld-textMuted text-sm">
-                        {detail}
-                      </p>
-                    ))}
-                  </motion.div>
-                ))}
-              </div>
+                  ))}
+                </div>
 
-              {/* Quick Action Buttons */}
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href="https://maps.google.com/?q=Plot+No.S/P-105,+S-Block,+Midc+Bhosari,+Pune+-+411026"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-superweld-orange/10 text-superweld-orange text-sm rounded-lg hover:bg-superweld-orange hover:text-superweld-text transition-colors"
-                >
-                  <Navigation className="w-4 h-4" />
-                  Get Directions
-                </a>
-                <a
-                  href="mailto:superweld.sources@gmail.com"
-                  className="flex items-center gap-2 px-4 py-2 bg-superweld-orange/10 text-superweld-orange text-sm rounded-lg hover:bg-superweld-orange hover:text-superweld-text transition-colors"
-                >
-                  <Mail className="w-4 h-4" />
-                  Send Email
-                </a>
-                <a
-                  href="tel:07942718067"
-                  className="flex items-center gap-2 px-4 py-2 bg-superweld-orange/10 text-superweld-orange text-sm rounded-lg hover:bg-superweld-orange hover:text-superweld-text transition-colors"
-                >
-                  <Phone className="w-4 h-4" />
-                  Call Now
-                </a>
-                <a
-                  href="https://wa.me/919890663256"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 bg-green-500/10 text-green-500 text-sm rounded-lg hover:bg-green-500 hover:text-white transition-colors"
-                >
-                  <MessageCircle className="w-4 h-4" />
-                  WhatsApp
-                </a>
-              </div>
-
-            </motion.div>
+                {/* Quick Actions */}
+                <div className="pt-6 border-t border-[#EDEDED]">
+                  <h4 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h4>
+                  <div className="flex flex-wrap gap-3">
+                    <a
+                      href="https://maps.google.com/?q=Plot+No.S/P-105,S-Block,MIDC+Bhosari,Pune"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 bg-[#8B3A3A]/10 text-[#8B3A3A] text-sm rounded-lg hover:bg-[#8B3A3A] hover:text-white transition-colors"
+                    >
+                      <Navigation className="w-4 h-4" />
+                      Get Directions
+                    </a>
+                    <a
+                      href="mailto:info@superweldsources.com"
+                      className="flex items-center gap-2 px-4 py-2 bg-[#8B3A3A]/10 text-[#8B3A3A] text-sm rounded-lg hover:bg-[#8B3A3A] hover:text-white transition-colors"
+                    >
+                      <Mail className="w-4 h-4" />
+                      Send Email
+                    </a>
+                    <a
+                      href="tel:07942718067"
+                      className="flex items-center gap-2 px-4 py-2 bg-[#8B3A3A]/10 text-[#8B3A3A] text-sm rounded-lg hover:bg-[#8B3A3A] hover:text-white transition-colors"
+                    >
+                      <Phone className="w-4 h-4" />
+                      Call Now
+                    </a>
+                    <a
+                      href="https://wa.me/919890663256"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 bg-green-500/10 text-green-600 rounded-lg hover:bg-green-500 hover:text-white transition-colors"
+                    >
+                      <MessageCircle className="w-4 h-4" />
+                      WhatsApp
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
           </div>
         </div>
-      </div>
-      </section>
+      </ParallaxSection>
 
       {/* Full Width Google Map */}
-      <section className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 pb-20">
+      <section className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 py-20 bg-[#F5F5F5]">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="aspect-[21/9] lg:aspect-[3/1] bg-superweld-bg/5 border border-superweld-border rounded-2xl overflow-hidden"
+            className="aspect-21/9 lg:aspect-3/1 bg-white border border-[#EDEDED] rounded-2xl overflow-hidden shadow-lg"
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.789!2d73.825!3d18.613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2b8d8c5e5e5e5%3A0x5e5e5e5e5e5e5e5e!2sMIDC%20Bhosari%2C%20Pune!5e0!3m2!1sen!2sin!4v1234567890"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.789!2d73.825!3d18.613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSuperweld+Sources+Bhosari!5e0!3m2!1sen!2sin!4v1234567890"
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -272,45 +316,45 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* FAQ Section - Content LEFT, Image RIGHT */}
-      <section className="py-20 lg:py-32 bg-superweld-light">
+      {/* FAQ Section - WITH Parallax */}
+      <ParallaxSection className="py-24 lg:py-40 bg-white">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-start">
               {/* Content Column - LEFT */}
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
+                transition={{ duration: 0.8 }}
               >
-                <span className="text-superweld-orange text-sm font-medium uppercase tracking-wider mb-4 block">
+                <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                   Support
                 </span>
-                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-superweld-text mb-6">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
                   Frequently Asked Questions
                 </h2>
-                <p className="text-superweld-textMuted text-lg mb-8 leading-relaxed">
+                <p className="text-gray-600 text-lg mb-8 leading-relaxed">
                   Have questions? We have answers. If you don&apos;t find what you&apos;re looking for, feel free to contact us directly.
                 </p>
 
                 <div className="space-y-4">
                   {[
                     {
-                      q: "What is your typical project turnaround time?",
-                      a: "Turnaround time varies based on project complexity. Simple repairs can be completed in 24-48 hours, while custom fabrication projects typically take 2-4 weeks.",
+                      q: "What is your typical delivery time?",
+                      a: "Standard delivery takes 3-5 business days. For urgent requirements, we offer express delivery within 1-2 days depending on location.",
                     },
                     {
-                      q: "Do you provide emergency welding services?",
-                      a: "Yes, we offer 24/7 emergency repair services for critical situations. Contact our emergency line for immediate assistance.",
+                      q: "Do you provide bulk discounts?",
+                      a: "Yes, we offer competitive bulk pricing for large orders. Contact our sales team for custom quotes on volume purchases.",
                     },
                     {
-                      q: "What certifications do your welders hold?",
-                      a: "All our welders are AWS certified, and many hold additional ASME and specialty certifications for specific industries.",
+                      q: "What is your return policy?",
+                      a: "We accept returns within 30 days for unopened products in original condition. Defective items are replaced immediately.",
                     },
                     {
-                      q: "Can you handle large-scale industrial projects?",
-                      a: "Absolutely. Our facility and team are equipped to handle projects of any scale, from small repairs to large industrial fabrications.",
+                      q: "Do you offer product warranties?",
+                      a: "Yes, all our products come with manufacturer warranties ranging from 6 months to 2 years depending on the product category.",
                     },
                   ].map((faq, index) => (
                     <motion.div
@@ -319,15 +363,15 @@ export default function ContactPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1 }}
-                      className="p-5 bg-superweld-bg/5 border border-superweld-border rounded-xl"
+                      className="p-5 bg-white border border-[#EDEDED] rounded-xl hover:shadow-md transition-shadow"
                     >
                       <div className="flex items-start gap-3">
-                        <HelpCircle className="w-5 h-5 text-superweld-orange shrink-0 mt-0.5" />
+                        <HelpCircle className="w-5 h-5 text-[#8B3A3A] shrink-0 mt-0.5" />
                         <div>
-                          <h3 className="text-base font-semibold text-superweld-text mb-1">
+                          <h3 className="text-base font-semibold text-gray-900 mb-1">
                             {faq.q}
                           </h3>
-                          <p className="text-superweld-textMuted text-sm">{faq.a}</p>
+                          <p className="text-gray-600 text-sm">{faq.a}</p>
                         </div>
                       </div>
                     </motion.div>
@@ -340,57 +384,63 @@ export default function ContactPage() {
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-                className="relative"
+                transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <div className="relative aspect-4/3 max-w-lg mx-auto lg:max-w-none group">
-                  <motion.div 
-                    className="absolute inset-0 bg-linear-to-br from-blue-500/10 to-superweld-orange/20 rounded-3xl transform rotate-3 group-hover:rotate-0 transition-transform duration-700"
-                    whileHover={{ scale: 1.02 }}
+                <div className="relative aspect-4/3 rounded-3xl overflow-hidden">
+                  <ImageReveal 
+                    src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=800&q=80" 
+                    alt="Customer Support" 
+                    className="absolute inset-0"
                   />
-                  <motion.div 
-                    className="absolute inset-0 bg-superweld-bg rounded-3xl shadow-2xl overflow-hidden"
-                    whileHover={{ y: -5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <motion.div
-                      className="w-full h-full"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    >
-                      <Image
-                        src="/images/additional_images/Untitled-9.png"
-                        alt="FAQ Support"
-                        fill
-                        className="object-contain p-6 lg:p-8 transition-all duration-500 group-hover:brightness-110"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                    </motion.div>
-                  </motion.div>
-                  <div className="absolute -bottom-4 -right-4 lg:bottom-4 lg:right-4">
-                    <div className="w-20 h-20 rounded-full bg-superweld-orange flex items-center justify-center text-white shadow-lg">
-                      <span className="text-sm font-bold text-center leading-tight">
-                        24/7
-                        <br />
-                        Support
-                      </span>
-                    </div>
-                  </div>
+                </div>
+                <div className="mt-8 p-6 bg-[#8B3A3A] text-white rounded-2xl">
+                  <h3 className="text-xl font-bold mb-2">24/7 Support Available</h3>
+                  <p className="text-white/80 text-sm">
+                    Our dedicated support team is available round the clock to assist with your queries.
+                  </p>
                 </div>
               </motion.div>
             </div>
           </div>
         </div>
-      </section>
+      </ParallaxSection>
 
       {/* CTA Section */}
-      <CTASection
-        title="Ready to Start Your Project?"
-        description="Get in touch today for a free consultation and quote. We're here to help bring your vision to life."
-        primaryCta={{ label: "Get Free Quote", href: "#contact" }}
-        secondaryCta={{ label: "Call Us Now", href: "tel:07942718067" }}
-        showContactInfo={true}
-      />
+      <section className="py-24 lg:py-40 bg-[#8B3A3A] text-white">
+        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+                Ready to Get Started?
+              </h2>
+              <p className="text-lg mb-8 max-w-2xl mx-auto text-white/80">
+                Get in touch today for a free consultation and quote. We're here to help with all your industrial equipment needs.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4">
+                <a
+                  href="#contact"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+                >
+                  Get Free Quote
+                  <ArrowRight className="w-5 h-5" />
+                </a>
+                <a
+                  href="tel:07942718067"
+                  className="inline-flex items-center gap-2 px-8 py-4 border border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
+                >
+                  <Phone className="w-5 h-5" />
+                  Call Us Now
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </main>

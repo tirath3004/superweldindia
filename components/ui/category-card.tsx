@@ -22,7 +22,7 @@ export function CategoryCard({ category, className, variant = "default" }: Categ
         transition={{ duration: 0.5 }}
         className={cn(
           "group relative bg-superweld-bg/5 border border-superweld-border rounded-xl overflow-hidden",
-          "hover:border-superweld-orange/50 hover:bg-superweld-bg/10 transition-all duration-300",
+          "hover:border-superweld-primary/50 hover:bg-superweld-bg/10 transition-all duration-300",
           className
         )}
       >
@@ -31,18 +31,18 @@ export function CategoryCard({ category, className, variant = "default" }: Categ
           className="block p-5 h-full"
         >
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 rounded-xl bg-superweld-orange/20 flex items-center justify-center text-superweld-orange shrink-0">
+            <div className="w-12 h-12 rounded-xl bg-superweld-primary/20 flex items-center justify-center text-superweld-primary shrink-0">
               <Package className="w-6 h-6" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-superweld-text group-hover:text-superweld-orange transition-colors mb-1">
+              <h3 className="text-lg font-bold text-superweld-text group-hover:text-superweld-primary transition-colors mb-1">
                 {category.name}
               </h3>
               <p className="text-superweld-textMuted text-sm line-clamp-2">
                 {category.shortDescription}
               </p>
             </div>
-            <ArrowRight className="w-5 h-5 text-superweld-text/40 group-hover:text-superweld-orange group-hover:translate-x-1 transition-all shrink-0 ml-auto" />
+            <ArrowRight className="w-5 h-5 text-superweld-text/40 group-hover:text-superweld-primary group-hover:translate-x-1 transition-all shrink-0 ml-auto" />
           </div>
         </Link>
       </motion.div>
@@ -57,8 +57,8 @@ export function CategoryCard({ category, className, variant = "default" }: Categ
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
         className={cn(
-          "group relative bg-linear-to-br from-gray-900/10 to-gray-900/5 border border-superweld-orange/30",
-          "rounded-2xl overflow-hidden hover:border-superweld-orange transition-all duration-300",
+          "group relative bg-linear-to-br from-gray-900/10 to-gray-900/5 border border-superweld-primary/30",
+          "rounded-2xl overflow-hidden hover:border-superweld-primary transition-all duration-300",
           className
         )}
       >
@@ -66,11 +66,11 @@ export function CategoryCard({ category, className, variant = "default" }: Categ
           href={`/products/${category.slug}`}
           className="block p-8 h-full"
         >
-          <div className="w-16 h-16 rounded-2xl bg-superweld-orange/20 flex items-center justify-center text-superweld-orange mb-6">
+          <div className="w-16 h-16 rounded-2xl bg-superweld-primary/20 flex items-center justify-center text-superweld-primary mb-6">
             <Package className="w-8 h-8" />
           </div>
           
-          <h3 className="text-2xl font-bold text-superweld-text group-hover:text-superweld-orange transition-colors mb-3">
+          <h3 className="text-2xl font-bold text-superweld-text group-hover:text-superweld-primary transition-colors mb-3">
             {category.name}
           </h3>
           
@@ -82,7 +82,7 @@ export function CategoryCard({ category, className, variant = "default" }: Categ
             <span className="text-sm text-superweld-textMuted">
               {category.products.length} Products
             </span>
-            <div className="flex items-center gap-2 text-superweld-orange font-medium">
+            <div className="flex items-center gap-2 text-superweld-primary font-medium">
               Explore
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </div>
@@ -100,7 +100,7 @@ export function CategoryCard({ category, className, variant = "default" }: Categ
       transition={{ duration: 0.5 }}
       className={cn(
         "group relative bg-superweld-bg/5 border border-superweld-border rounded-2xl overflow-hidden",
-        "hover:border-superweld-orange/50 hover:bg-superweld-bg/10 transition-all duration-300",
+        "hover:border-superweld-primary/50 hover:bg-superweld-bg/10 transition-all duration-300",
         className
       )}
     >
@@ -109,12 +109,12 @@ export function CategoryCard({ category, className, variant = "default" }: Categ
         className="block p-6 lg:p-8 h-full"
       >
         {/* Icon */}
-        <div className="w-14 h-14 rounded-xl bg-superweld-orange/20 flex items-center justify-center text-superweld-orange mb-6 group-hover:scale-110 transition-transform">
+        <div className="w-14 h-14 rounded-xl bg-superweld-primary/20 flex items-center justify-center text-superweld-primary mb-6 group-hover:scale-110 transition-transform">
           <Package className="w-7 h-7" />
         </div>
 
         {/* Content */}
-        <h3 className="text-xl lg:text-2xl font-bold text-superweld-text group-hover:text-superweld-orange transition-colors mb-3">
+        <h3 className="text-xl lg:text-2xl font-bold text-superweld-text group-hover:text-superweld-primary transition-colors mb-3">
           {category.name}
         </h3>
         
@@ -127,7 +127,7 @@ export function CategoryCard({ category, className, variant = "default" }: Categ
           <span className="text-sm text-superweld-textMuted">
             {category.products.length} Products Available
           </span>
-          <div className="flex items-center gap-2 text-superweld-orange font-medium text-sm group-hover:gap-3 transition-all">
+          <div className="flex items-center gap-2 text-superweld-primary font-medium text-sm group-hover:gap-3 transition-all">
             View Products
             <ArrowRight className="w-4 h-4" />
           </div>

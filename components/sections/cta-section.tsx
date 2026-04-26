@@ -46,7 +46,7 @@ export function CTASection({
           <div className="absolute inset-0 bg-superweld-bg/85" />
         </div>
       ) : (
-        <div className="absolute inset-0 bg-superweld-orange z-0" />
+        <div className="absolute inset-0 hero-gradient z-0" />
       )}
 
       <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12 py-20 lg:py-32">
@@ -56,7 +56,7 @@ export function CTASection({
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-superweld-text mb-6 leading-tight"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-6 leading-tight text-shadow-hero"
           >
             {title}
           </motion.h2>
@@ -67,7 +67,7 @@ export function CTASection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-lg sm:text-xl text-superweld-text mb-10 max-w-2xl mx-auto"
+              className="text-lg sm:text-xl text-white/90 mb-10 max-w-2xl mx-auto"
             >
               {description}
             </motion.p>
@@ -81,9 +81,9 @@ export function CTASection({
             className="flex flex-wrap justify-center gap-4"
           >
             <Button
+              variant="default"
               size="lg"
-              variant={backgroundImage ? "default" : "secondary"}
-              className="group text-base px-8"
+              className="font-medium bg-white text-superweld-primary hover:bg-white/90 btn-glow"
             >
               {primaryCta.label}
               <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -91,8 +91,8 @@ export function CTASection({
             {secondaryCta && (
               <Button
                 size="lg"
-                variant={backgroundImage ? "outline" : "ghost"}
-                className="text-base px-8 border-white text-superweld-text hover:bg-superweld-bg/10"
+                variant="outline"
+                className="font-medium border-white text-white hover:bg-white/10"
               >
                 {secondaryCta.label}
               </Button>
@@ -109,14 +109,14 @@ export function CTASection({
             >
               <a
                 href="tel:+919890663256"
-                className="flex items-center gap-2 text-superweld-text hover:text-superweld-orange transition-colors"
+                className="flex items-center gap-2 text-white hover:text-superweld-accent transition-colors"
               >
                 <Phone className="w-5 h-5" />
                 <span>+91 9890663256</span>
               </a>
               <a
                 href="mailto:superweldpune@gmail.com"
-                className="flex items-center gap-2 text-superweld-text hover:text-superweld-orange transition-colors"
+                className="flex items-center gap-2 text-white hover:text-superweld-accent transition-colors"
               >
                 <Mail className="w-5 h-5" />
                 <span>superweldpune@gmail.com</span>

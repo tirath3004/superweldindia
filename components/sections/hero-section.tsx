@@ -53,7 +53,7 @@ export function HeroSection({
           <source src="/videos/videos/1. Customer meet - Hindi.mp4" type="video/mp4" />
         </video>
         {/* Burn/Blur Overlay Effect - reduced for video visibility */}
-        <div className="absolute inset-0 bg-superweld-orange/10 mix-blend-overlay" />
+        <div className="absolute inset-0 bg-superweld-primary/10 mix-blend-overlay" />
         <div className="absolute inset-0 bg-linear-to-r from-superweld-bg/80 via-superweld-bg/60 to-superweld-bg/30" />
         <div className="absolute inset-0 bg-linear-to-t from-superweld-bg/60 via-transparent to-superweld-bg/20" />
       </div>
@@ -68,7 +68,7 @@ export function HeroSection({
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <span className="inline-block px-4 py-2 bg-superweld-orange/20 border border-superweld-orange/30 rounded-full text-superweld-orange text-sm font-medium mb-6">
+              <span className="inline-block px-4 py-2 bg-superweld-primary/20 border border-superweld-primary/30 rounded-full text-superweld-primary text-sm font-medium mb-6">
                 {subtitle}
               </span>
             </motion.div>

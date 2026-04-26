@@ -1,162 +1,105 @@
 "use client";
 
 import Image from "next/image";
-import { Navbar, Footer, StatsSection } from "@/components/sections";
-import { INDUSTRIES, PRODUCT_CATEGORIES } from "@/types/products";
-import { motion } from "framer-motion";
+import { Navbar, Footer } from "@/components/sections";
+import { INDUSTRIES } from "@/types/products";
+import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Link from "next/link";
-import { ParallaxBackground } from "@/components/ui/parallax-background";
-import { Factory, ArrowRight, CheckCircle, Package, Settings, Truck, Award, TrendingUp, Target } from "lucide-react";
+import { useRef } from "react";
+import { Factory, ArrowRight, CheckCircle, Package, Settings, Truck, Zap, Star, Target, Wrench, Shield } from "lucide-react";
 
 const stats = [
-  { value: 5, label: "Industries Served" },
-  { value: 500, suffix: "+", label: "Products Available" },
+  { value: 10, suffix: "+", label: "Industries Served" },
+  { value: 5000, suffix: "+", label: "Products Available" },
   { value: 1000, suffix: "+", label: "Industry Clients" },
-  { value: 100, suffix: "%", label: "Product Quality" },
+  { value: 100, suffix: "%", label: "Quality Assured" },
 ];
+
+// Image Reveal Component
+function ImageReveal({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+  return (
+    <div ref={ref} className={`relative overflow-hidden ${className}`}>
+      <motion.div
+        initial={{ x: 0 }}
+        animate={isInView ? { x: "100%" } : { x: 0 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute inset-0 bg-[#8B3A3A] z-10"
+      />
+      <Image src={src} alt={alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
+    </div>
+  );
+}
+
+// Parallax Section Component
+function ParallaxSection({ children, className = "", speed = 0.5 }: { children: React.ReactNode; className?: string; speed?: number }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const y = useTransform(scrollYProgress, [0, 1], [`${speed * 50}px`, `${-speed * 50}px`]);
+
+  return (
+    <div ref={ref} className={`relative overflow-hidden ${className}`}>
+      <motion.div style={{ y }} className="relative">{children}</motion.div>
+    </div>
+  );
+}
+
+// Hero Parallax Section Component
+function HeroParallaxSection() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["0px", "150px"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  return (
+    <section ref={ref} className="relative min-h-[500px] flex items-center justify-center overflow-hidden">
+      {/* Parallax Background Image */}
+      <motion.div className="absolute inset-0 z-0" style={{ y }}>
+        <Image
+          src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1920&q=80"
+          alt="Industries we serve"
+          fill
+          className="object-cover scale-110"
+          priority
+        />
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/60 to-black/40" />
+      </motion.div>
+
+      <motion.div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12" style={{ opacity }}>
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#8B3A3A]/90 rounded-full text-white text-sm font-medium mb-6">
+            <Factory className="w-4 h-4" />
+            Industries Served
+          </div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+            Industrial Solutions for
+            <span className="text-[#8B3A3A]"> Every Sector</span>
+          </h1>
+          <p className="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
+            From construction to manufacturing, we provide high-quality industrial tools and equipment tailored to meet the specific needs of diverse industries.
+          </p>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
 
 export default function IndustriesPage() {
   return (
-    <main className="min-h-screen bg-superweld-bg">
+    <main className="min-h-screen bg-white">
       <Navbar />
 
-      {/* Hero Section with Parallax */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden">
-        <ParallaxBackground
-          image="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1920&q=80"
-          opacity={0.7}
-          overlayOpacity={0.7}
-          bgColor="bg-superweld-bg"
-        />
-        
-        <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-superweld-orange/20 border border-superweld-orange/30 rounded-full text-superweld-orange text-sm font-medium mb-6">
-                <Factory className="w-4 h-4" />
-                Industries Served
-              </div>
-              
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-superweld-text mb-6 leading-tight">
-                Welding Solutions for
-                <span className="text-superweld-orange"> Every Industry</span>
-              </h1>
-              
-              <p className="text-lg sm:text-xl text-superweld-textMuted max-w-3xl mx-auto leading-relaxed">
-                From construction to manufacturing, we provide high-quality welding products tailored to meet the specific needs of diverse industries.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      {/* Hero Section - WITH Parallax Background */}
+      <HeroParallaxSection />
 
-      {/* Industries Grid - No Parallax */}
-      <section className="py-20 lg:py-32 bg-superweld-light">
-        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              {/* Content Column - LEFT */}
-              <motion.div
-                initial={{ opacity: 0, x: -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="order-1"
-              >
-                <span className="text-superweld-orange text-sm font-medium uppercase tracking-wider mb-4 block">
-                  Industries Served
-                </span>
-                <h2 className="text-3xl sm:text-4xl font-bold text-superweld-text mb-4">
-                  Industries We Serve
-                </h2>
-                <p className="text-superweld-textMuted max-w-xl mb-8">
-                  Delivering quality welding products to meet the demands of various industrial sectors
-                </p>
-
-                {/* Industries List */}
-                <div className="space-y-4">
-                  {INDUSTRIES.slice(0, 4).map((industry, index) => (
-                    <motion.div
-                      key={industry.id}
-                      initial={{ opacity: 0, x: 30 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: 0.1 + index * 0.1 }}
-                      className="flex items-start gap-4 bg-superweld-bg/5 border border-superweld-border rounded-xl p-4 hover:border-superweld-orange/30 transition-all"
-                    >
-                      <div className="w-12 h-12 rounded-xl bg-superweld-orange/20 flex items-center justify-center text-superweld-orange shrink-0">
-                        <Factory className="w-6 h-6" />
-                      </div>
-                      <div>
-                        <h3 className="text-lg font-semibold text-superweld-text">{industry.name}</h3>
-                        <p className="text-superweld-textMuted text-sm line-clamp-1">{industry.description}</p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-
-                <Link
-                  href="/products"
-                  className="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-superweld-orange text-superweld-text font-medium rounded-lg hover:bg-superweld-orangeHover transition-colors"
-                >
-                  View All Products
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </motion.div>
-
-              {/* Image Column - RIGHT */}
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                className="relative order-2"
-              >
-                <div className="relative aspect-4/3 max-w-lg mx-auto lg:max-w-none group">
-                  <motion.div 
-                    className="absolute inset-0 bg-linear-to-br from-superweld-orange/20 to-blue-500/10 rounded-3xl transform rotate-2 group-hover:rotate-0 transition-transform duration-700"
-                    whileHover={{ scale: 1.02 }}
-                  />
-                  <motion.div 
-                    className="absolute inset-0 bg-superweld-light rounded-3xl shadow-2xl overflow-hidden"
-                    whileHover={{ y: -5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <motion.div
-                      className="w-full h-full"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    >
-                      <Image
-                        src="/images/additional_images/Untitled-3.png"
-                        alt="Industries We Serve"
-                        fill
-                        className="object-contain p-6 lg:p-8 transition-all duration-500 group-hover:brightness-110"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                    </motion.div>
-                  </motion.div>
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Stats - With Parallax */}
-      <StatsSection
-        title="Industry Impact"
-        subtitle="By The Numbers"
-        stats={stats}
-        backgroundImage="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1920&q=80"
-      />
-
-      {/* Products for Industries */}
-      <section className="py-20 lg:py-32">
+      {/* Industries Grid - WITH Parallax */}
+      <ParallaxSection className="py-24 lg:py-40 bg-white">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
             <motion.div
@@ -166,42 +109,95 @@ export default function IndustriesPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <span className="text-superweld-orange text-sm font-medium uppercase tracking-wider mb-4 block">
-                Our Products
+              <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+                Industries Served
               </span>
-              <h2 className="text-3xl sm:text-4xl font-bold text-superweld-text mb-4">
-                Products for Every Industry
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+                Industries We Serve
               </h2>
-              <p className="text-superweld-textMuted max-w-2xl mx-auto">
-                Explore our comprehensive product range designed to meet diverse industrial requirements
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                Delivering quality industrial products to meet the demands of various sectors
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
-              {PRODUCT_CATEGORIES.map((category, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                { name: "Construction", desc: "Complete range of tools and equipment for construction projects", icon: Factory, image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" },
+                { name: "Manufacturing", desc: "Industrial machinery and precision tools for manufacturing", icon: Settings, image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80" },
+                { name: "Automotive", desc: "Specialized tools and equipment for automotive production", icon: Zap, image: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&q=80" },
+                { name: "Energy & Power", desc: "Reliable equipment for energy sector operations", icon: Package, image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80" },
+                { name: "Infrastructure", desc: "Heavy-duty tools for infrastructure development", icon: Truck, image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80" },
+                { name: "Engineering", desc: "Precision instruments and tools for engineering applications", icon: Target, image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f095b?w=600&q=80" },
+              ].map((industry, index) => (
                 <motion.div
-                  key={category.id}
-                  initial={{ opacity: 0, y: 20 }}
+                  key={industry.name}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Link
-                    href={`/products/${category.slug}`}
-                    className="flex items-start gap-4 p-6 bg-superweld-bg/5 border border-superweld-border rounded-xl hover:border-superweld-orange/30 hover:bg-superweld-bg/10 transition-all group"
-                  >
-                    <div className="w-12 h-12 rounded-lg bg-superweld-orange/20 flex items-center justify-center text-superweld-orange shrink-0">
-                      <Package className="w-6 h-6" />
+                  <Link href="/products" className="group block bg-white border border-[#EDEDED] rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500">
+                    <div className="relative aspect-video overflow-hidden">
+                      <ImageReveal src={industry.image} alt={industry.name} className="absolute inset-0" />
                     </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-superweld-text group-hover:text-superweld-orange transition-colors mb-1">
-                        {category.name}
-                      </h3>
-                      <p className="text-superweld-textMuted text-sm line-clamp-2">
-                        {category.shortDescription}
-                      </p>
+                    <div className="p-6">
+                      <div className="w-12 h-12 rounded-xl bg-[#8B3A3A]/10 flex items-center justify-center text-[#8B3A3A] mb-4">
+                        <industry.icon className="w-6 h-6" />
+                      </div>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#8B3A3A] transition-colors">{industry.name}</h3>
+                      <p className="text-gray-600 text-sm">{industry.desc}</p>
                     </div>
                   </Link>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Link
+                href="/products"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#8B3A3A] text-white font-semibold rounded-lg hover:bg-[#7A2D2D] transition-colors"
+              >
+                View All Products
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </ParallaxSection>
+
+      {/* Stats Section - WITH Parallax */}
+      <section className="py-24 lg:py-40 bg-[#8B3A3A] text-white">
+        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="max-w-7xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-center mb-12"
+            >
+              <span className="text-white/80 text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+                Industry Impact
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+                By The Numbers
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+              {stats.map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="text-center"
+                >
+                  <div className="text-5xl lg:text-6xl font-bold mb-2">
+                    {stat.value}{stat.suffix}
+                  </div>
+                  <div className="text-white/80">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -209,37 +205,27 @@ export default function IndustriesPage() {
         </div>
       </section>
 
-      {/* Why Industries Choose Us - With Parallax */}
-      <section className="relative py-20 lg:py-32 overflow-hidden">
-        <ParallaxBackground
-          image="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1920&q=80"
-          opacity={0.7}
-          overlayOpacity={0.7}
-          bgColor="bg-superweld-bg"
-        />
-        
-        <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+      {/* Why Industries Choose Us - WITH Parallax */}
+      <ParallaxSection className="py-24 lg:py-40 bg-[#F5F5F5]">
+        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-              {/* Content Column - LEFT */}
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
               <motion.div
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="order-1"
+                transition={{ duration: 0.8 }}
               >
-                <span className="text-superweld-orange text-sm font-medium uppercase tracking-wider mb-4 block">
+                <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                   Our Advantages
                 </span>
-                <h2 className="text-3xl sm:text-4xl font-bold text-superweld-text mb-4">
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
                   Why Industries Choose Us
                 </h2>
-                <p className="text-superweld-textMuted max-w-xl mb-8">
+                <p className="text-gray-600 text-lg mb-8">
                   Trusted by leading companies across multiple sectors for our commitment to quality, reliability, and expert support.
                 </p>
 
-                {/* Features List */}
                 <div className="space-y-4">
                   {[
                     { title: "Industry Certified", desc: "All products meet international quality standards", icon: CheckCircle },
@@ -255,151 +241,40 @@ export default function IndustriesPage() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="flex items-start gap-4"
                     >
-                      <div className="w-12 h-12 rounded-xl bg-superweld-orange/20 flex items-center justify-center text-superweld-orange shrink-0">
+                      <div className="w-12 h-12 rounded-xl bg-[#8B3A3A]/10 flex items-center justify-center text-[#8B3A3A] shrink-0">
                         <item.icon className="w-6 h-6" />
                       </div>
                       <div>
-                        <h3 className="text-lg font-semibold text-superweld-text">{item.title}</h3>
-                        <p className="text-superweld-textMuted text-sm">{item.desc}</p>
+                        <h3 className="text-lg font-semibold text-gray-900">{item.title}</h3>
+                        <p className="text-gray-600 text-sm">{item.desc}</p>
                       </div>
                     </motion.div>
                   ))}
                 </div>
               </motion.div>
 
-              {/* Image Column - RIGHT */}
               <motion.div
                 initial={{ opacity: 0, x: 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                className="relative order-2"
+                transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <div className="relative aspect-4/3 max-w-lg mx-auto lg:max-w-none group">
-                  <motion.div 
-                    className="absolute inset-0 bg-linear-to-br from-superweld-orange/20 to-blue-500/10 rounded-3xl transform rotate-2 group-hover:rotate-0 transition-transform duration-700"
-                    whileHover={{ scale: 1.02 }}
+                <div className="relative aspect-4/3 rounded-3xl overflow-hidden">
+                  <ImageReveal 
+                    src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=80" 
+                    alt="Why Industries Choose Us" 
+                    className="absolute inset-0"
                   />
-                  <motion.div 
-                    className="absolute inset-0 bg-superweld-light rounded-3xl shadow-2xl overflow-hidden"
-                    whileHover={{ y: -5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
-                  >
-                    <motion.div
-                      className="w-full h-full"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    >
-                      <Image
-                        src="/images/additional_images/Untitled-4.png"
-                        alt="Why Industries Choose Us"
-                        fill
-                        className="object-contain p-6 lg:p-8 transition-all duration-500 group-hover:brightness-110"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                      />
-                    </motion.div>
-                  </motion.div>
                 </div>
               </motion.div>
             </div>
           </div>
         </div>
-      </section>
+      </ParallaxSection>
 
-      {/* Brand Partners - Auto Scrolling Logos */}
-      <section className="py-16 lg:py-24 bg-superweld-light overflow-hidden">
-        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
-          >
-            <span className="text-superweld-orange text-sm font-medium uppercase tracking-wider mb-4 block">
-              Our Partners
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-superweld-text mb-4">
-              Trusted by Industry Leaders
-            </h2>
-            <p className="text-superweld-textMuted max-w-2xl mx-auto">
-              We collaborate with world-renowned brands to deliver exceptional welding solutions
-            </p>
-          </motion.div>
-        </div>
-
-        {/* Infinite Scrolling Logos */}
-        <div className="relative">
-          {/* Gradient Masks */}
-          <div className="absolute left-0 top-0 bottom-0 w-32 bg-linear-to-r from-superweld-light to-transparent z-10" />
-          <div className="absolute right-0 top-0 bottom-0 w-32 bg-linear-to-l from-superweld-light to-transparent z-10" />
-          
-          {/* Scrolling Container */}
-          <div className="flex overflow-hidden">
-            <div className="flex animate-scroll-x gap-12 items-center py-8">
-              {/* First set of logos */}
-              {[
-                { src: "/images/additional_images/Abicor_Binzel_Logo.png", name: "Abicor Binzel" },
-                { src: "/images/additional_images/Ador_Logo.png", name: "Ador" },
-                { src: "/images/additional_images/ESAB_Logo.png", name: "ESAB" },
-                { src: "/images/additional_images/Grindwell_norton_logo.png", name: "Grindwell Norton" },
-                { src: "/images/additional_images/Hyundai_Welding_Logo.png", name: "Hyundai Welding" },
-                { src: "/images/additional_images/Kobelco_Logo.png", name: "Kobelco" },
-                { src: "/images/additional_images/Lincoln_Electric_Logo.png", name: "Lincoln Electric" },
-                { src: "/images/additional_images/Tweco_Logo.png", name: "Tweco" },
-              ].map((logo, index) => (
-                <div
-                  key={`logo-1-${index}`}
-                  className="shrink-0 w-40 h-24 relative grayscale hover:grayscale-0 transition-all duration-500 hover:scale-110"
-                >
-                  <Image
-                    src={logo.src}
-                    alt={logo.name}
-                    fill
-                    className="object-contain"
-                    sizes="160px"
-                  />
-                </div>
-              ))}
-              {/* Duplicate set for seamless loop */}
-              {[
-                { src: "/images/additional_images/Abicor_Binzel_Logo.png", name: "Abicor Binzel" },
-                { src: "/images/additional_images/Ador_Logo.png", name: "Ador" },
-                { src: "/images/additional_images/ESAB_Logo.png", name: "ESAB" },
-                { src: "/images/additional_images/Grindwell_norton_logo.png", name: "Grindwell Norton" },
-                { src: "/images/additional_images/Hyundai_Welding_Logo.png", name: "Hyundai Welding" },
-                { src: "/images/additional_images/Kobelco_Logo.png", name: "Kobelco" },
-                { src: "/images/additional_images/Lincoln_Electric_Logo.png", name: "Lincoln Electric" },
-                { src: "/images/additional_images/Tweco_Logo.png", name: "Tweco" },
-              ].map((logo, index) => (
-                <div
-                  key={`logo-2-${index}`}
-                  className="shrink-0 w-40 h-24 relative grayscale hover:grayscale-0 transition-all duration-500 hover:scale-110"
-                >
-                  <Image
-                    src={logo.src}
-                    alt={logo.name}
-                    fill
-                    className="object-contain"
-                    sizes="160px"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section - With Parallax */}
-      <section className="relative py-20 lg:py-32 overflow-hidden">
-        <ParallaxBackground
-          image="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1920&q=80"
-          opacity={0.7}
-          overlayOpacity={0.85}
-          bgColor="bg-superweld-bg"
-        />
-        
-        <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+      {/* CTA Section */}
+      <section className="py-24 lg:py-40 bg-[#8B3A3A] text-white">
+        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -407,23 +282,23 @@ export default function IndustriesPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-superweld-text mb-6">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
                 Need Products for Your Industry?
               </h2>
-              <p className="text-superweld-textMuted text-lg mb-8 max-w-2xl mx-auto">
-                Contact us to discuss your specific product requirements. Our team will help you find the right welding solutions for your industry.
+              <p className="text-lg mb-8 max-w-2xl mx-auto text-white/80">
+                Contact us to discuss your specific requirements. Our team will help you find the right industrial solutions for your sector.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-superweld-orange text-superweld-text font-medium rounded-lg hover:bg-superweld-orangeHover transition-colors"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
                 >
                   Get in Touch
-                  <ArrowRight className="w-4 h-4" />
+                  <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-superweld-bg/10 text-superweld-text font-medium rounded-lg hover:bg-superweld-bg/20 transition-colors border border-superweld-border"
+                  className="inline-flex items-center gap-2 px-8 py-4 border border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
                 >
                   Browse Products
                 </Link>

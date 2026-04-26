@@ -39,8 +39,8 @@ export async function generateMetadata({ params }: ProductPageProps) {
   }
 
   return {
-    title: `${product.name} | ${category?.name} | ${COMPANY_INFO.name}`,
-    description: product.description,
+    title: `${product.name} | ${category?.name} | Distributed by ${COMPANY_INFO.name}`,
+    description: `${product.description} Available through our distribution network.`,
   };
 }
 

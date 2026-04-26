@@ -4,7 +4,52 @@ import { Navbar, Footer } from "@/components/sections";
 import { WHY_CHOOSE_US, COMPANY_INFO, PRODUCT_CATEGORIES } from "@/types/products";
 import { Shield, Award, Factory, Clock, CheckCircle, ArrowRight, Star, ThumbsUp, HeadphonesIcon, Package } from "lucide-react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import Image from "next/image";
+
+// Hero Parallax Section Component
+function HeroParallaxSection() {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["0px", "150px"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  return (
+    <section ref={ref} className="relative min-h-[500px] flex items-center justify-center overflow-hidden">
+      {/* Parallax Background Image */}
+      <motion.div className="absolute inset-0 z-0" style={{ y }}>
+        <Image
+          src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=1920&q=80"
+          alt="Why choose us"
+          fill
+          className="object-cover scale-110"
+          priority
+        />
+        {/* Dark overlay for readability */}
+        <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/60 to-black/40" />
+      </motion.div>
+
+      <motion.div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12" style={{ opacity }}>
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#8B3A3A]/90 rounded-full text-white text-sm font-medium mb-6">
+            <Star className="w-4 h-4" />
+            Our Commitment
+          </div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6">
+            Why Choose <span className="text-[#8B3A3A]">SuperWeld</span>
+          </h1>
+          <p className="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
+            We are committed to delivering excellence in every product we manufacture. Discover what sets us apart as your trusted industrial welding partner.
+          </p>
+        </div>
+      </motion.div>
+    </section>
+  );
+}
 
 export default function WhyChooseUsPage() {
   const allFeatures = [
@@ -80,28 +125,8 @@ export default function WhyChooseUsPage() {
     <main className="min-h-screen bg-superweld-bg">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32">
-        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="max-w-4xl mx-auto text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-            >
-              <span className="text-superweld-orange text-sm font-medium uppercase tracking-wider mb-4 block">
-                Our Commitment
-              </span>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-superweld-text mb-6">
-                Why Choose <span className="text-superweld-orange">SuperWeld</span>
-              </h1>
-              <p className="text-lg sm:text-xl text-superweld-textMuted max-w-3xl mx-auto leading-relaxed">
-                We are committed to delivering excellence in every product we manufacture. Discover what sets us apart as your trusted industrial welding partner.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
+      {/* Hero Section - WITH Parallax Background */}
+      <HeroParallaxSection />
 
       {/* Features Grid */}
       <section className="py-20 lg:py-32 bg-superweld-light">

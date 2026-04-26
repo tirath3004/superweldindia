@@ -95,7 +95,7 @@ export function StatsSection({
             className="text-center mb-16"
           >
             {subtitle && (
-              <span className="text-superweld-orange text-sm font-medium uppercase tracking-wider mb-4 block">
+              <span className="text-superweld-primary text-sm font-medium uppercase tracking-wider mb-4 block">
                 {subtitle}
               </span>
             )}

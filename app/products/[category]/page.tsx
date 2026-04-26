@@ -28,8 +28,8 @@ export async function generateMetadata({ params }: CategoryPageProps) {
   }
 
   return {
-    title: `${category.name} | Products | ${COMPANY_INFO.name}`,
-    description: category.description,
+    title: `${category.name} | Products We Distribute | ${COMPANY_INFO.name}`,
+    description: `${category.description} Available through our distribution network.`,
   };
 }
 
@@ -66,7 +66,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         </div>
       </div>
 
-      <CategoryDetailClient category={category} otherCategories={otherCategories} />
+      <CategoryDetailClient category={category} allCategories={PRODUCT_CATEGORIES} />
 
       <Footer />
     </main>

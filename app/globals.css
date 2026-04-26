@@ -41,89 +41,94 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 
-  /* Superweld Brand Colors - Warm Orange Mix Theme */
-  --color-superweld-bg: #FFFCFA;
-  --color-superweld-bgAlt: #FFF8F5;
-  --color-superweld-surface: #FFF0E8;
-  --color-superweld-border: #FFE0D4;
-  --color-superweld-orange: #F26522;
-  --color-superweld-orangeHover: #D9541A;
-  --color-superweld-orangeLight: #FF8A50;
-  --color-superweld-orangePale: #FFE8DE;
-  --color-superweld-text: #2D2D2D;
+  /* Superweld Brand Colors - Industrial Premium Theme */
+  --color-superweld-bg: #F8F8F8;
+  --color-superweld-bgAlt: #FFFFFF;
+  --color-superweld-dark: #0F0F0F;
+  --color-superweld-darkAlt: #1A1A1A;
+  --color-superweld-surface: #1F1F1F;
+  --color-superweld-border: #2A2A2A;
+  --color-superweld-borderLight: #E5E5E5;
+  --color-superweld-primary: #6F3132;
+  --color-superweld-primaryHover: #8B3D3E;
+  --color-superweld-primaryLight: #8B4B4C;
+  --color-superweld-accent: #3B5BFF;
+  --color-superweld-accentHover: #5A75FF;
+  --color-superweld-text: #1A1A1A;
+  --color-superweld-textLight: #F8F8F8;
   --color-superweld-textMuted: #6B6B6B;
-  --color-superweld-accent: #FFB800;
+  --color-superweld-textMutedLight: #A0A0A0;
 }
 
 :root {
   --radius: 0.5rem;
-  --background: 0 0% 100%;
+  --background: 0 0% 97%;
   --foreground: 0 0% 10%;
   --card: 0 0% 100%;
   --card-foreground: 0 0% 10%;
   --popover: 0 0% 100%;
   --popover-foreground: 0 0% 10%;
-  --primary: 18 89% 54%;
+  --primary: 0 39% 31%;
   --primary-foreground: 0 0% 100%;
   --secondary: 0 0% 96%;
   --secondary-foreground: 0 0% 10%;
-  --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 45%;
-  --accent: 42 100% 50%;
-  --accent-foreground: 0 0% 10%;
+  --muted: 0 0% 10%;
+  --muted-foreground: 0 0% 63%;
+  --accent: 228 100% 62%;
+  --accent-foreground: 0 0% 100%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
   --border: 0 0% 90%;
   --input: 0 0% 90%;
-  --ring: 18 89% 54%;
-  --chart-1: 18 89% 54%;
-  --chart-2: 42 100% 50%;
+  --ring: 0 39% 31%;
+  --chart-1: 0 39% 31%;
+  --chart-2: 228 100% 62%;
   --chart-3: 0 0% 70%;
-  --chart-4: 18 70% 45%;
-  --chart-5: 210 60% 30%;
-  --sidebar: 0 0% 98%;
-  --sidebar-foreground: 0 0% 10%;
-  --sidebar-primary: 18 89% 54%;
+  --chart-4: 0 39% 45%;
+  --chart-5: 228 60% 45%;
+  --sidebar: 0 0% 10%;
+  --sidebar-foreground: 0 0% 100%;
+  --sidebar-primary: 0 39% 31%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 0 0% 96%;
-  --sidebar-accent-foreground: 0 0% 10%;
-  --sidebar-border: 0 0% 90%;
-  --sidebar-ring: 18 89% 54%;
+  --sidebar-accent: 228 100% 62%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 0 0% 20%;
+  --sidebar-ring: 0 39% 31%;
 }
 
 .dark {
-  --background: 0 0% 100%;
-  --foreground: 0 0% 10%;
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 10%;
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 10%;
-  --primary: 18 89% 54%;
+  --background: 0 0% 6%;
+  --foreground: 0 0% 97%;
+  --card: 0 0% 8%;
+  --card-foreground: 0 0% 97%;
+  --popover: 0 0% 8%;
+  --popover-foreground: 0 0% 97%;
+  --primary: 0 39% 31%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 0 0% 96%;
-  --secondary-foreground: 0 0% 10%;
-  --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 45%;
-  --accent: 42 100% 50%;
-  --accent-foreground: 0 0% 10%;
+  --secondary: 0 0% 15%;
+  --secondary-foreground: 0 0% 97%;
+  --muted: 0 0% 15%;
+  --muted-foreground: 0 0% 63%;
+  --accent: 228 100% 62%;
+  --accent-foreground: 0 0% 100%;
   --destructive: 0 62% 30%;
   --destructive-foreground: 0 0% 100%;
-  --border: 0 0% 90%;
-  --input: 0 0% 90%;
-  --ring: 18 89% 54%;
-  --chart-1: 18 89% 54%;
-  --chart-2: 42 100% 50%;
+  --border: 0 0% 20%;
+  --input: 0 0% 20%;
+  --ring: 0 39% 31%;
+  --chart-1: 0 39% 31%;
+  --chart-2: 228 100% 62%;
   --chart-3: 0 0% 70%;
-  --chart-4: 18 70% 45%;
-  --chart-5: 210 60% 30%;
-  --sidebar: 0 0% 98%;
-  --sidebar-foreground: 0 0% 10%;
-  --sidebar-primary: 18 89% 54%;
+  --chart-4: 0 39% 45%;
+  --chart-5: 228 60% 45%;
+  --sidebar: 0 0% 8%;
+  --sidebar-foreground: 0 0% 97%;
+  --sidebar-primary: 0 39% 31%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 0 0% 96%;
-  --sidebar-accent-foreground: 0 0% 10%;
-  --sidebar-border: 0 0% 90%;
-  --sidebar-ring: 18 89% 54%;
+  --sidebar-accent: 228 100% 62%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 0 0% 20%;
+  --sidebar-ring: 0 39% 31%;
 }
 
 @layer base {
@@ -134,38 +139,125 @@
     scroll-behavior: smooth;
   }
   body {
-    background-color: #FFFCFA;
-    color: #2D2D2D;
+    background-color: #F8F8F8;
+    color: #1A1A1A;
     @apply antialiased;
   }
 }
 
-/* Warm orange-white theme - no dark mode */
+/* Industrial Premium Theme Base */
 html, html body {
-  background-color: #FFFCFA !important;
-  color: #2D2D2D !important;
+  background-color: #F8F8F8;
+  color: #1A1A1A;
 }
 
-/* Industrial Theme Custom Styles */
-.industrial-gradient {
-  background: linear-gradient(135deg, rgba(10,10,10,0.95) 0%, rgba(30,58,95,0.3) 100%);
+/* Industrial Premium Theme Custom Styles */
+
+/* Hero Gradient - Maroon to Electric Blue */
+.hero-gradient {
+  background: linear-gradient(90deg, #6F3132 0%, #3B5BFF 100%);
 }
 
-.superweld-gradient {
-  background: linear-gradient(135deg, #F26522 0%, #D9541A 100%);
+.hero-gradient-overlay {
+  background: linear-gradient(90deg, rgba(111, 49, 50, 0.95) 0%, rgba(59, 91, 255, 0.85) 100%);
 }
 
-.superweld-gold-gradient {
-  background: linear-gradient(135deg, #F26522 0%, #FFB800 100%);
+/* Dark Industrial Sections */
+.section-dark {
+  background-color: #0F0F0F;
+  color: #F8F8F8;
 }
 
-.text-shadow-industrial {
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+.section-dark-alt {
+  background-color: #1A1A1A;
+  color: #F8F8F8;
 }
 
-.glass-effect {
-  backdrop-filter: blur(10px);
-  background: rgba(10, 10, 10, 0.8);
+/* Light Sections */
+.section-light {
+  background-color: #F8F8F8;
+  color: #1A1A1A;
+}
+
+.section-white {
+  background-color: #FFFFFF;
+  color: #1A1A1A;
+}
+
+/* Primary Gradient */
+.primary-gradient {
+  background: linear-gradient(135deg, #6F3132 0%, #8B3D3E 100%);
+}
+
+/* Accent Gradient */
+.accent-gradient {
+  background: linear-gradient(135deg, #3B5BFF 0%, #5A75FF 100%);
+}
+
+/* Text Shadows */
+.text-shadow-hero {
+  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+.text-shadow-glow {
+  text-shadow: 0 0 30px rgba(59, 91, 255, 0.5);
+}
+
+/* Glass Effects */
+.glass-dark {
+  backdrop-filter: blur(12px);
+  background: rgba(15, 15, 15, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-light {
+  backdrop-filter: blur(12px);
+  background: rgba(248, 248, 248, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* Glow Effects */
+.glow-primary {
+  box-shadow: 0 0 20px rgba(111, 49, 50, 0.4);
+}
+
+.glow-accent {
+  box-shadow: 0 0 20px rgba(59, 91, 255, 0.4);
+}
+
+.glow-primary-hover:hover {
+  box-shadow: 0 0 30px rgba(111, 49, 50, 0.6);
+}
+
+.glow-accent-hover:hover {
+  box-shadow: 0 0 30px rgba(59, 91, 255, 0.6);
+}
+
+/* Border Gradients */
+.border-gradient {
+  border: 1px solid transparent;
+  background: linear-gradient(#0F0F0F, #0F0F0F) padding-box,
+              linear-gradient(90deg, #6F3132, #3B5BFF) border-box;
+}
+
+/* Button Hover Glow */
+.btn-glow {
+  transition: all 0.3s ease;
+}
+
+.btn-glow:hover {
+  box-shadow: 0 0 20px rgba(59, 91, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Card Hover Effects */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 /* Animation utilities */
@@ -184,22 +276,22 @@ html, html body {
   }
 }
 
-/* Scrollbar styling */
+/* Scrollbar styling - Industrial Theme */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #FFE8DE;
+  background: #1A1A1A;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #F26522;
+  background: #6F3132;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #D9541A;
+  background: #8B3D3E;
 }
 
 /* Logo slider animation */

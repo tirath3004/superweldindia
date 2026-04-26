@@ -9,7 +9,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-superweld-orange text-superweld-text hover:bg-superweld-orangeHover",
+          "bg-superweld-primary text-white hover:bg-superweld-primaryHover",
         destructive:
           "bg-destructive text-superweld-text hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
@@ -18,7 +18,7 @@ const buttonVariants = cva(
           "bg-superweld-bg/10 text-superweld-text hover:bg-superweld-bg/20",
         ghost:
           "hover:bg-superweld-bg/10 hover:text-superweld-text text-superweld-text",
-        link: "text-superweld-orange underline-offset-4 hover:underline",
+        link: "text-superweld-primary underline-offset-4 hover:underline",
       },
       size: {
         default: "h-10 px-5 py-2",

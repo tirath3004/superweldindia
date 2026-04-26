@@ -16,9 +16,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SuperWeld Sources Pvt Ltd | Premium Welding & Metal Fabrication",
-  description: "Industrial excellence in welding and metal fabrication. Serving construction, automotive, and manufacturing industries since 1999.",
-  keywords: ["welding", "metal fabrication", "industrial", "manufacturing", "construction"],
+  title: "SuperWeld Sources Pvt Ltd | Leading Industrial Products Distributor",
+  description: "Leading distributor of industrial welding products and equipment. Serving construction, automotive, and manufacturing industries since 1999.",
+  keywords: ["welding", "industrial products", "distributor", "industrial distribution", "construction", "equipment supplier"],
   icons: {
     icon: [
       { url: "/images/logo/superweld-sources-pvt-ltd-logo.png", type: "image/png" },
@@ -27,8 +27,8 @@ export const metadata: Metadata = {
     apple: "/images/logo/superweld-sources-pvt-ltd-logo.png",
   },
   openGraph: {
-    title: "SuperWeld Sources Pvt Ltd | Premium Welding & Metal Fabrication",
-    description: "Industrial excellence in welding and metal fabrication since 1999.",
+    title: "SuperWeld Sources Pvt Ltd | Leading Industrial Products Distributor",
+    description: "Leading distributor of industrial welding products and equipment since 1999.",
     type: "website",
   },
 };
@@ -41,7 +41,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white text-gray-900`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-superweld-bg text-superweld-text`}
       >
         {children}
       </body>

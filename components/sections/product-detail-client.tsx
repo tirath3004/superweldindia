@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, Check, ChevronRight, FileText, Mail, Phone, Package, Image as ImageIcon, Play, Quote, PhoneCall, ArrowUpRight, Heart, Share2, Shield, Truck, BadgeCheck, Star, ExternalLink, X } from "lucide-react";
 import Link from "next/link";
@@ -21,14 +21,27 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
   const [activeTab, setActiveTab] = useState<"description" | "specifications" | "applications">("description");
   // Track request form modal
   const [showRequestForm, setShowRequestForm] = useState(false);
+  // Track zoom position
+  const [zoomPosition, setZoomPosition] = useState({ x: 50, y: 50 });
+  const [isHovering, setIsHovering] = useState(false);
+  const mediaContainerRef = useRef<HTMLDivElement>(null);
 
-  // Combine images and videos into single media array
+  const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
+    if (!mediaContainerRef.current) return;
+    const rect = mediaContainerRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    setZoomPosition({ x: Math.max(0, Math.min(100, x)), y: Math.max(0, Math.min(100, y)) });
+  };
+
+  // Combine images, videos and posters into single media array
   const allMedia = [
     ...product.images.map((src) => ({ type: "image" as const, src })),
     ...product.videos.map((src) => ({ type: "video" as const, src })),
+    ...product.posters.map((src) => ({ type: "poster" as const, src })),
   ];
 
-  const handleMediaClick = (index: number, type: "image" | "video") => {
+  const handleMediaClick = (index: number, type: "image" | "video" | "poster") => {
     setSelectedMediaIndex(index);
     setIsVideo(type === "video");
   };
@@ -64,7 +77,13 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
           className="space-y-4"
         >
           {/* Main Media Display (Image or Video) */}
-          <div className="relative aspect-square bg-superweld-light border border-superweld-border rounded-2xl overflow-hidden group">
+          <div 
+            ref={mediaContainerRef}
+            onMouseMove={handleMouseMove}
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+            className="relative aspect-square bg-superweld-light border border-superweld-border rounded-2xl overflow-hidden group cursor-crosshair"
+          >
             {currentMedia?.type === "video" ? (
               <video 
                 controls 
@@ -74,11 +93,23 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
                 <source src={currentMedia.src} type="video/mp4" />
               </video>
             ) : currentMedia?.type === "image" ? (
-              <img 
-                src={currentMedia.src} 
-                alt={product.name}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
+              <div className="w-full h-full overflow-hidden">
+                <img 
+                  src={currentMedia.src} 
+                  alt={product.name}
+                  className={`w-full h-full object-contain transition-transform duration-200 ease-out ${isHovering ? 'scale-140' : 'scale-100'}`}
+                  style={isHovering ? { transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%` } : undefined}
+                />
+              </div>
+            ) : currentMedia?.type === "poster" ? (
+              <div className="w-full h-full overflow-hidden">
+                <img 
+                  src={currentMedia.src} 
+                  alt="Product Poster"
+                  className={`w-full h-full object-contain transition-transform duration-200 ease-out ${isHovering ? 'scale-140' : 'scale-100'}`}
+                  style={isHovering ? { transformOrigin: `${zoomPosition.x}% ${zoomPosition.y}%` } : undefined}
+                />
+              </div>
             ) : (
               <div className="w-full h-full flex items-center justify-center">
                 <Package className="w-24 h-24 text-superweld-text/20" />
@@ -154,14 +185,28 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
                     </button>
                   );
                 })}
+                
+                {/* Poster Thumbnails */}
+                {product.posters && product.posters.map((poster, index) => {
+                  const mediaIndex = product.images.length + product.videos.length + index;
+                  return (
+                    <button
+                      key={`poster-${index}`}
+                      onClick={() => handleMediaClick(mediaIndex, "poster")}
+                      className={`shrink-0 w-20 h-20 bg-superweld-light border-2 rounded-xl overflow-hidden transition-all ${
+                        selectedMediaIndex === mediaIndex
+                          ? "border-superweld-orange ring-2 ring-superweld-orange/30"
+                          : "border-superweld-border hover:border-superweld-border"
+                      }`}
+                    >
+                      <img src={poster} alt={`Poster ${index + 1}`} className="w-full h-full object-cover" />
+                    </button>
+                  );
+                })}
               </div>
-              
-              {/* Scroll indicator fade on right */}
-              {allMedia.length > 4 && (
-                <div className="absolute right-0 top-0 bottom-2 w-12 bg-linear-to-l from-superweld-dark to-transparent pointer-events-none" />
-              )}
             </div>
           )}
+
         </motion.div>
 
         {/* Right Column - Product Details (WooCommerce Style) */}
@@ -307,6 +352,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
                     ))}
                   </ul>
                 </div>
+
                 <div className="prose prose-invert max-w-none">
                   <p className="text-superweld-textMuted leading-relaxed">
                     {product.description} Designed for professional use in industrial environments, 
@@ -315,6 +361,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
                     optimized for {product.typicalApplications.join(", ")}.
                   </p>
                 </div>
+
               </>
             )}
 
