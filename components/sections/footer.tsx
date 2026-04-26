@@ -34,10 +34,8 @@ const footerLinks = {
   support: [
     { label: "Product Catalog", href: "/products" },
     { label: "Technical Support", href: "/services" },
-    { label: "Maintenance", href: "/services" },
-    { label: "FAQs", href: "#" },
-    { label: "Delivery Info", href: "#" },
-    { label: "Returns", href: "#" },
+    { label: "Terms & Conditions", href: "/terms" },
+    { label: "Privacy Policy", href: "/privacy" },
   ],
 };
 

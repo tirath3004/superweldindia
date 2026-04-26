@@ -25,6 +25,31 @@ function ImageReveal({ src, alt, className = "" }: { src: string; alt: string; c
   );
 }
 
+// Parallax Background Image Component
+function ParallaxBackgroundImage({ src, alt, opacity = 0.3 }: { src: string; alt: string; opacity?: number }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+
+  return (
+    <div ref={ref} className="absolute inset-0 overflow-hidden">
+      <motion.div style={{ y }} className="absolute inset-0 scale-110">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+      </motion.div>
+      <div className={`absolute inset-0 bg-gray-900/${Math.round(opacity * 100)}`} />
+    </div>
+  );
+}
+
 // Parallax Section Component
 function ParallaxSection({ children, className = "", speed = 0.5 }: { children: React.ReactNode; className?: string; speed?: number }) {
   const ref = useRef(null);
@@ -53,8 +78,8 @@ function HeroParallaxSection() {
       {/* Parallax Background Image */}
       <motion.div className="absolute inset-0 z-0" style={{ y }}>
         <Image
-          src="https://images.unsplash.com/photo-1581092795360-fd1ca04f095b?w=1920&q=80"
-          alt="Our services"
+          src="/images/images/services_plasma_equipment.jpg"
+          alt="Plasma cutting equipment"
           fill
           className="object-cover scale-110"
           priority
@@ -88,48 +113,48 @@ const services = [
     id: "product-consultation",
     title: "Product Consultation",
     description: "Expert guidance to help you select the right tools and equipment for your specific industrial needs.",
-    image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&q=80",
     icon: Users,
   },
   {
     id: "bulk-supply",
     title: "Bulk Supply",
     description: "Large quantity orders with competitive pricing for industrial-scale requirements and projects.",
-    image: "https://images.unsplash.com/photo-1553413077-190dd305871c?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80",
     icon: Package,
   },
   {
     id: "equipment-maintenance",
     title: "Equipment Maintenance",
     description: "Professional maintenance services to maximize equipment lifespan and ensure optimal performance.",
-    image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f095b?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=80",
     icon: Cog,
   },
   {
     id: "logistics-support",
     title: "Logistics & Delivery",
     description: "Comprehensive logistics solutions with timely delivery across all locations nationwide.",
-    image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
     icon: Truck,
   },
   {
     id: "quality-assurance",
     title: "Quality Assurance",
     description: "Rigorous quality checks and certifications to ensure every product meets industry standards.",
-    image: "https://images.unsplash.com/photo-1581093458891-9f302e26d265?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&q=80",
     icon: Shield,
   },
   {
     id: "24-7-support",
     title: "24/7 Support",
     description: "Round-the-clock customer service for urgent requirements and technical queries.",
-    image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?w=800&q=80",
+    image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80",
     icon: Phone,
   },
 ];
 
 const capabilities = [
-  { text: "5000+ Products in Catalog" },
+  { text: "100+ Products in Catalog" },
   { text: "Nationwide Delivery Network" },
   { text: "24/7 Customer Support" },
   { text: "ISO 9001:2015 Certified" },
@@ -176,7 +201,13 @@ export default function ServicesPage() {
                   className="bg-white border border-[#EDEDED] rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
                 >
                   <div className="relative aspect-video overflow-hidden">
-                    <ImageReveal src={service.image} alt={service.title} className="absolute inset-0" />
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
                   </div>
                   <div className="p-6">
                     <div className="w-12 h-12 rounded-xl bg-[#8B3A3A] flex items-center justify-center text-white mb-4">
@@ -230,17 +261,20 @@ export default function ServicesPage() {
                 </Link>
               </motion.div>
 
+              {/* Right - Image */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <div className="relative aspect-4/3 rounded-3xl overflow-hidden">
-                  <ImageReveal 
-                    src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80" 
-                    alt="Our Capabilities" 
-                    className="absolute inset-0"
+                <div className="relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/images/images/Service Right.jpg"
+                    alt="Our Capabilities"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                 </div>
               </motion.div>
@@ -249,9 +283,16 @@ export default function ServicesPage() {
         </div>
       </ParallaxSection>
 
-      {/* Process Section - WITH Parallax */}
-      <ParallaxSection className="py-24 lg:py-40 bg-white">
-        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+      {/* Process Section - with Parallax Background */}
+      <section className="py-24 lg:py-40 relative overflow-hidden">
+        {/* Background Image with Parallax */}
+        <ParallaxBackgroundImage
+          src="/images/images/service last.jpg"
+          alt="Our process background"
+          opacity={0.85}
+        />
+
+        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
           <div className="max-w-7xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -260,13 +301,13 @@ export default function ServicesPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+              <span className="text-white/80 text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                 How It Works
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4">
                 Our Process
               </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              <p className="text-white/80 text-lg max-w-2xl mx-auto">
                 Simple, efficient, and transparent service delivery
               </p>
             </motion.div>
@@ -289,15 +330,15 @@ export default function ServicesPage() {
                   <div className="w-16 h-16 rounded-full bg-[#8B3A3A] flex items-center justify-center text-white mx-auto mb-4">
                     <item.icon className="w-8 h-8" />
                   </div>
-                  <div className="text-4xl font-bold text-[#8B3A3A]/20 mb-2">{item.step}</div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
-                  <p className="text-gray-600 text-sm">{item.desc}</p>
+                  <div className="text-4xl font-bold text-white/20 mb-2">{item.step}</div>
+                  <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                  <p className="text-white/80 text-sm">{item.desc}</p>
                 </motion.div>
               ))}
             </div>
           </div>
         </div>
-      </ParallaxSection>
+      </section>
 
       {/* CTA Section */}
       <section className="py-24 lg:py-40 bg-[#8B3A3A] text-white">

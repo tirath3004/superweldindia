@@ -3338,6 +3338,16 @@ export const INDUSTRIES: Industry[] = [
     id: "engineering",
     name: "Engineering",
     description: "Precision welding products and custom components for engineering and technical applications."
+  },
+  {
+    id: "energy",
+    name: "Energy & Power",
+    description: "Specialized welding solutions for power generation, oil and gas, and renewable energy sectors."
+  },
+  {
+    id: "automotive",
+    name: "Automotive",
+    description: "High-quality welding consumables and equipment for automotive manufacturing and repair."
   }
 ];
 
@@ -3377,10 +3387,10 @@ export const COMPANY_INFO = {
 
 // Featured categories with icons for home page and products page
 export const FEATURED_CATEGORIES = [
-  { id: "abrasive", name: "Abrasive", icon: "Circle", image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&q=80", productCount: 13 },
+  { id: "abrasive", name: "Abrasive", icon: "Circle", image: "/images/images/Abrasive Category.jpeg", productCount: 13 },
   { id: "welding-electrodes", name: "Welding Electrodes", icon: "Zap", image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80", productCount: 8 },
-  { id: "oxy-fuel", name: "Oxy Fuel Products", icon: "Flame", image: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?w=600&q=80", productCount: 6 },
-  { id: "welding-mig-wire", name: "Welding Mig Wire", icon: "Layers", image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80", productCount: 5 },
-  { id: "welding-tig-wire", name: "Welding Tig Wire", icon: "Wrench", image: "https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=600&q=80", productCount: 5 },
-  { id: "welding-consumables", name: "Welding Consumables & PPE", icon: "Shield", image: "https://images.unsplash.com/photo-1581093458891-9f302e26d265?w=600&q=80", productCount: 10 },
+  { id: "oxy-fuel", name: "Oxy Fuel Products", icon: "Flame", image: "/images/images/oxyfuel category.jfif", productCount: 6 },
+  { id: "welding-mig-wire", name: "Welding Mig Wire", icon: "Layers", image: "/images/images/Welding Mig wire.jpg", productCount: 5 },
+  { id: "welding-tig-wire", name: "Welding Tig Wire", icon: "Wrench", image: "/images/images/tig wire.jfif", productCount: 5 },
+  { id: "welding-consumables", name: "Welding Consumables & PPE", icon: "Shield", image: "/images/images/Welding COnsumables.jfif", productCount: 10 },
 ];

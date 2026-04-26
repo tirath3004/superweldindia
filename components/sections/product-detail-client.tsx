@@ -250,14 +250,14 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
             <button
               onClick={() => setShowRequestForm(true)}
-              className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-superweld-orange text-superweld-text font-bold rounded-xl hover:bg-superweld-orangeHover transition-all shadow-lg shadow-superweld-orange/20 cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-[#8B3A3A] text-white font-bold rounded-xl hover:bg-[#7A2D2D] transition-all shadow-lg shadow-[#8B3A3A]/20 cursor-pointer"
             >
               <Quote className="w-5 h-5" />
               Request Quote
             </button>
             <a
               href="tel:07942718067"
-              className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-superweld-bg/10 hover:bg-superweld-bg/20 text-superweld-text font-bold rounded-xl border border-superweld-border transition-all"
+              className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-white hover:bg-gray-50 text-[#8B3A3A] font-bold rounded-xl border border-[#8B3A3A] transition-all"
             >
               <PhoneCall className="w-5 h-5" />
               Request Callback
@@ -297,11 +297,11 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
         transition={{ duration: 0.6, delay: 0.3 }}
         className="mb-16"
       >
-        <div className="border-b border-superweld-border mb-6">
-          <div className="flex gap-8">
+        <div className="border-b border-superweld-border mb-6 overflow-x-auto scrollbar-hide">
+          <div className="flex gap-4 sm:gap-8 min-w-fit">
             <button 
               onClick={() => setActiveTab("description")}
-              className={`pb-4 font-semibold border-b-2 transition-colors ${
+              className={`pb-3 sm:pb-4 px-2 sm:px-0 font-semibold border-b-2 transition-colors whitespace-nowrap text-sm sm:text-base ${
                 activeTab === "description" 
                   ? "text-superweld-orange border-superweld-orange" 
                   : "text-superweld-textMuted hover:text-superweld-text border-transparent"
@@ -311,7 +311,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
             </button>
             <button 
               onClick={() => setActiveTab("specifications")}
-              className={`pb-4 font-semibold border-b-2 transition-colors ${
+              className={`pb-3 sm:pb-4 px-2 sm:px-0 font-semibold border-b-2 transition-colors whitespace-nowrap text-sm sm:text-base ${
                 activeTab === "specifications" 
                   ? "text-superweld-orange border-superweld-orange" 
                   : "text-superweld-textMuted hover:text-superweld-text border-transparent"
@@ -321,7 +321,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
             </button>
             <button 
               onClick={() => setActiveTab("applications")}
-              className={`pb-4 font-semibold border-b-2 transition-colors ${
+              className={`pb-3 sm:pb-4 px-2 sm:px-0 font-semibold border-b-2 transition-colors whitespace-nowrap text-sm sm:text-base ${
                 activeTab === "applications" 
                   ? "text-superweld-orange border-superweld-orange" 
                   : "text-superweld-textMuted hover:text-superweld-text border-transparent"
@@ -366,12 +366,13 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
             )}
 
             {activeTab === "specifications" && (
-              <div className="bg-superweld-light border border-superweld-border rounded-2xl p-6">
-                <h3 className="text-xl font-bold text-superweld-text mb-6 flex items-center gap-2">
+              <div className="bg-superweld-light border border-superweld-border rounded-2xl p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl font-bold text-superweld-text mb-4 sm:mb-6 flex items-center gap-2">
                   <Check className="w-5 h-5 text-superweld-orange" />
                   Product Specifications
                 </h3>
-                <table className="w-full text-sm">
+                <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
+                  <table className="w-full text-sm min-w-[500px]">
                   <tbody>
                     <tr className="border-b border-superweld-border">
                       <td className="py-3 text-superweld-textMuted w-1/3">Product Name</td>
@@ -407,6 +408,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
                     </tr>
                   </tbody>
                 </table>
+                </div>
               </div>
             )}
 
@@ -486,8 +488,8 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
           className="py-12 border-t border-superweld-border"
         >
           <div className="max-w-7xl mx-auto">
-            <h2 className="text-2xl font-bold text-superweld-text mb-8">Related Products</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <h2 className="text-xl sm:text-2xl font-bold text-superweld-text mb-6 sm:mb-8">Related Products</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
               {relatedProducts.map((relatedProduct) => (
                 <Link
                   key={relatedProduct.id}
@@ -512,13 +514,13 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
                     </span>
                   </div>
                   {/* Product Info */}
-                  <div className="p-4">
-                    <p className="text-xs text-superweld-textMuted mb-1">{relatedProduct.subCategory}</p>
-                    <h3 className="font-semibold text-superweld-text group-hover:text-superweld-orange transition-colors text-sm line-clamp-2 mb-2">
+                  <div className="p-3 sm:p-4">
+                    <p className="text-[10px] sm:text-xs text-superweld-textMuted mb-1">{relatedProduct.subCategory}</p>
+                    <h3 className="font-semibold text-superweld-text group-hover:text-superweld-orange transition-colors text-xs sm:text-sm line-clamp-2 mb-1 sm:mb-2">
                       {relatedProduct.name}
                     </h3>
-                    <p className="text-xs text-superweld-textMuted line-clamp-1 mb-3">{relatedProduct.availability}</p>
-                    <span className="inline-flex items-center gap-1 text-superweld-orange text-sm font-medium">
+                    <p className="text-[10px] sm:text-xs text-superweld-textMuted line-clamp-1 mb-2 sm:mb-3">{relatedProduct.availability}</p>
+                    <span className="inline-flex items-center gap-1 text-superweld-orange text-xs sm:text-sm font-medium">
                       View Details <ExternalLink className="w-3 h-3" />
                     </span>
                   </div>

@@ -459,7 +459,7 @@ export function ProductRequestForm({ product, onClose }: ProductRequestFormProps
         {step < 3 ? (
           <Button
             onClick={handleNext}
-            className="flex-1 bg-superweld-orange hover:bg-superweld-orangeHover"
+            className="flex-1 bg-gray-900 hover:bg-gray-800 text-white"
             disabled={
               (step === 1 &&
                 (!formData.name || !formData.email || !formData.phone)) ||
@@ -473,7 +473,7 @@ export function ProductRequestForm({ product, onClose }: ProductRequestFormProps
           <Button
             onClick={handleSubmit}
             disabled={isSubmitting}
-            className="flex-1 bg-green-500 hover:bg-green-600 text-white"
+            className="flex-1 bg-[#8B3A3A] hover:bg-[#7A2D2D] text-white"
           >
             {isSubmitting ? (
               <span className="flex items-center">

@@ -31,6 +31,8 @@ const industries = [
   { name: "Manufacturing", href: "/industries/manufacturing" },
   { name: "Automotive", href: "/industries/automotive" },
   { name: "Energy & Power", href: "/industries/energy" },
+  { name: "Infrastructure", href: "/industries/infrastructure" },
+  { name: "Engineering", href: "/industries/engineering" },
 ];
 
 export function Navbar() {
@@ -154,13 +156,15 @@ export function Navbar() {
                 <Phone className="w-4 h-4" />
                 <span className="hidden xl:inline">07942718067</span>
               </a>
-              <Button
-                variant="default"
-                size="default"
-                className="font-medium bg-[#8B3A3A] hover:bg-[#7A2D2D] text-white"
-              >
-                Get Quote
-              </Button>
+              <Link href="/contact">
+                <Button
+                  variant="default"
+                  size="default"
+                  className="font-medium bg-[#8B3A3A] hover:bg-[#7A2D2D] text-white"
+                >
+                  Get Quote
+                </Button>
+              </Link>
             </div>
 
             {/* Mobile Menu Button */}

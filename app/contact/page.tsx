@@ -385,19 +385,16 @@ export default function ContactPage() {
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
+                className="h-full"
               >
-                <div className="relative aspect-4/3 rounded-3xl overflow-hidden">
-                  <ImageReveal 
-                    src="https://images.unsplash.com/photo-1556157382-97eda2d62296?w=800&q=80" 
-                    alt="Customer Support" 
-                    className="absolute inset-0"
+                <div className="relative h-full min-h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/images/images/FAQ.jpg"
+                    alt="Customer Support"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                   />
-                </div>
-                <div className="mt-8 p-6 bg-[#8B3A3A] text-white rounded-2xl">
-                  <h3 className="text-xl font-bold mb-2">24/7 Support Available</h3>
-                  <p className="text-white/80 text-sm">
-                    Our dedicated support team is available round the clock to assist with your queries.
-                  </p>
                 </div>
               </motion.div>
             </div>

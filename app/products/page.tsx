@@ -39,6 +39,31 @@ function ParallaxSection({ children, className = "", speed = 0.5 }: { children: 
   );
 }
 
+// Parallax Background Image Component
+function ParallaxBackgroundImage({ src, alt, opacity = 0.3 }: { src: string; alt: string; opacity?: number }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+
+  return (
+    <div ref={ref} className="absolute inset-0 overflow-hidden">
+      <motion.div style={{ y }} className="absolute inset-0 scale-110">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+      </motion.div>
+      <div className={`absolute inset-0 bg-gray-900/${Math.round(opacity * 100)}`} />
+    </div>
+  );
+}
+
 // Hero Parallax Section Component
 function HeroParallaxSection() {
   const ref = useRef(null);
@@ -91,11 +116,11 @@ export default function ProductsPage() {
       {/* Hero Section - WITH Parallax Background */}
       <HeroParallaxSection />
 
-      {/* Product Categories Grid - WITH Parallax */}
-      <ParallaxSection className="py-24 lg:py-40 bg-white">
+      {/* Product Categories Grid - WITH Parallax - Same as Home Page */}
+      <ParallaxSection className="py-24 lg:py-40 bg-[#F5F5F5]">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
-            {/* Section Header */}
+            {/* Section Header - Same as Home Page */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -104,17 +129,17 @@ export default function ProductsPage() {
               className="text-center mb-16"
             >
               <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
-                Distribution Categories
+                Our Catalog
               </span>
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-                Browse Product Categories
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
+                Shop by Category
               </h2>
-              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-                From power tools to industrial machinery, find the right products we distribute for your industrial needs.
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                Explore our comprehensive range of distributed industrial tools, equipment, and machinery
               </p>
             </motion.div>
 
-            {/* Categories Grid */}
+            {/* Categories Grid - Same as Home Page */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {FEATURED_CATEGORIES.map((category, index) => {
                 const iconMap: Record<string, React.ElementType> = {
@@ -133,13 +158,16 @@ export default function ProductsPage() {
                       href={`/products/${category.id}`}
                       className="group block bg-white border border-[#EDEDED] rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500"
                     >
+                      {/* Category Image */}
                       <div className="relative aspect-4/3 overflow-hidden">
-                        <ImageReveal src={category.image} alt={category.name} className="absolute inset-0" />
-                        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent" />
-                        {/* Product Count Badge */}
-                        <div className="absolute top-4 right-4 px-3 py-1 bg-white/90 backdrop-blur-sm rounded-full text-sm font-semibold text-[#8B3A3A]">
-                          {category.productCount} Products
-                        </div>
+                        <Image
+                          src={category.image}
+                          alt={category.name}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent" />
                         <div className="absolute bottom-0 left-0 right-0 p-6">
                           <div className="w-12 h-12 rounded-xl bg-[#8B3A3A] flex items-center justify-center text-white mb-3">
                             <Icon className="w-6 h-6" />
@@ -147,10 +175,6 @@ export default function ProductsPage() {
                           <h3 className="text-xl font-bold text-white group-hover:text-superweld-accent transition-colors">
                             {category.name}
                           </h3>
-                          <div className="flex items-center gap-1 mt-2 text-superweld-accent text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity">
-                            <span>Explore</span>
-                            <ArrowRight className="w-4 h-4" />
-                          </div>
                         </div>
                       </div>
                     </Link>
@@ -162,11 +186,12 @@ export default function ProductsPage() {
         </div>
       </ParallaxSection>
 
-      {/* Quality Assurance Section - WITH Parallax */}
-      <ParallaxSection className="py-24 lg:py-40 bg-[#F5F5F5]">
+      {/* Quality Assurance Section - Text Left, Animated Image Right */}
+      <ParallaxSection className="py-24 lg:py-32 bg-[#F5F5F5]">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+              {/* Left Content */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -197,31 +222,82 @@ export default function ProductsPage() {
                 </ul>
               </motion.div>
 
+              {/* Right Animated Image */}
               <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="bg-white border border-[#EDEDED] rounded-2xl p-8 lg:p-10 shadow-lg"
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="relative"
               >
-                <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                  Need Custom Solutions?
-                </h3>
-                <p className="text-gray-600 mb-8">
-                  We offer custom sourcing capabilities for specialized requirements. Contact our team to discuss your specific needs.
-                </p>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#8B3A3A] text-white font-medium rounded-lg hover:bg-[#7A2D2D] transition-all duration-300"
-                >
-                  Get in Touch
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
+                <div className="relative aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="/images/images/Abrasive Category.jpeg"
+                    alt="Quality Products"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  {/* Animated Overlay Badge */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.5 }}
+                    className="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg"
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-full bg-[#8B3A3A] flex items-center justify-center text-white">
+                        <Shield className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <p className="font-semibold text-gray-900">ISO 9001:2015 Certified</p>
+                        <p className="text-sm text-gray-600">International Quality Standards</p>
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+                {/* Decorative Elements */}
+                <div className="absolute -top-4 -right-4 w-24 h-24 bg-[#8B3A3A]/10 rounded-full blur-xl" />
+                <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-[#8B3A3A]/10 rounded-full blur-xl" />
               </motion.div>
             </div>
           </div>
         </div>
       </ParallaxSection>
+
+      {/* Custom Solutions CTA Section - WITH Parallax Background Image */}
+      <section className="py-20 lg:py-28 relative overflow-hidden">
+        {/* Background Image with Parallax */}
+        <ParallaxBackgroundImage 
+          src="/images/images/Welding Mig wire.jpg" 
+          alt="Custom solutions background" 
+          opacity={0.75}
+        />
+        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="max-w-3xl mx-auto text-center"
+          >
+            <h3 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+              Need Custom Solutions?
+            </h3>
+            <p className="text-gray-200 text-lg mb-8 max-w-2xl mx-auto">
+              We offer custom sourcing capabilities for specialized requirements. Contact our team to discuss your specific needs and find the perfect solution for your business.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#8B3A3A] text-white font-semibold rounded-lg hover:bg-[#7A2D2D] transition-all duration-300 shadow-lg"
+            >
+              Get in Touch
+              <ArrowRight className="w-5 h-5" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
 
       <Footer />
     </main>

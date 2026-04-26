@@ -13,20 +13,20 @@ import Link from "next/link";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 
 const stats = [
-  { value: 25, suffix: "+", label: "Years Experience" },
-  { value: 5000, suffix: "+", label: "Products Available" },
-  { value: 100, suffix: "+", label: "Industry Partners" },
-  { value: 100, suffix: "%", label: "Quality Assured" },
+  { value: 25, suffix: "+", label: "Years of Distribution Excellence" },
+  { value: 100, suffix: "+", label: "Products Available" },
+  { value: 1000, suffix: "+", label: "Happy Customers" },
+  { value: 10, suffix: "+", label: "Industry Partners" },
 ];
 
 // Welding Product Categories
 const FEATURED_CATEGORIES = [
   { id: "abrasive", name: "Abrasive", icon: Zap, image: "/images/images/Abrasive Category.jpeg", productCount: 13 },
   { id: "welding-electrodes", name: "Welding Electrodes", icon: Zap, image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80", productCount: 8 },
-  { id: "oxy-fuel", name: "Oxy Fuel Products", icon: Flame, image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&q=80", productCount: 6 },
-  { id: "welding-mig-wire", name: "Welding Mig Wire", icon: Layers, image: "/images/images/ESAB MIG Welding Wire-2.webp", productCount: 5 },
-  { id: "welding-tig-wire", name: "Welding Tig Wire", icon: Wrench, image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80", productCount: 5 },
-  { id: "welding-consumables", name: "Welding Consumables & PPE", icon: Shield, image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80", productCount: 10 },
+  { id: "oxy-fuel", name: "Oxy Fuel Products", icon: Flame, image: "/images/images/oxyfuel category.jfif", productCount: 6 },
+  { id: "welding-mig-wire", name: "Welding Mig Wire", icon: Layers, image: "/images/images/Welding Mig wire.jpg", productCount: 5 },
+  { id: "welding-tig-wire", name: "Welding Tig Wire", icon: Wrench, image: "/images/images/tig wire.jfif", productCount: 5 },
+  { id: "welding-consumables", name: "Welding Consumables & PPE", icon: Shield, image: "/images/images/Welding COnsumables.jfif", productCount: 10 },
 ];
 
 // Featured products from actual catalog
@@ -393,7 +393,7 @@ function HeroParallaxSection() {
         </div>
       </motion.div>
 
-      {/* Curved bottom edge */}
+      {/* Curved bottom edge - matches categories section */}
       <div className="absolute bottom-0 left-0 right-0 z-20">
         <svg
           viewBox="0 0 1440 120"
@@ -404,7 +404,7 @@ function HeroParallaxSection() {
         >
           <path
             d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
-            fill="white"
+            fill="#F5F5F5"
           />
         </svg>
       </div>
@@ -492,7 +492,7 @@ export default function Home() {
       <section className="py-24 lg:py-40 relative overflow-hidden">
         {/* Parallax Background Image */}
         <ParallaxBackgroundImage
-          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80"
+          src="/images/images/home 2 section.webp"
           alt="Industries background"
           opacity={0.3}
         />

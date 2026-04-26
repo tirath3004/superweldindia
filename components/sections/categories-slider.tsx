@@ -122,7 +122,7 @@ export function CategoriesSlider() {
                 return (
                   <motion.div
                     key={category.id}
-                    className="flex-shrink-0 snap-center"
+                    className="shrink-0 snap-center"
                     onMouseEnter={() => setHoveredIndex(index)}
                     onMouseLeave={() => setHoveredIndex(null)}
                     onClick={() => scrollToIndex(index)}

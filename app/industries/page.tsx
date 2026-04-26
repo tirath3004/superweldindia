@@ -5,15 +5,62 @@ import { Navbar, Footer } from "@/components/sections";
 import { INDUSTRIES } from "@/types/products";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import Link from "next/link";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Factory, ArrowRight, CheckCircle, Package, Settings, Truck, Zap, Star, Target, Wrench, Shield } from "lucide-react";
 
 const stats = [
-  { value: 10, suffix: "+", label: "Industries Served" },
-  { value: 5000, suffix: "+", label: "Products Available" },
-  { value: 1000, suffix: "+", label: "Industry Clients" },
-  { value: 100, suffix: "%", label: "Quality Assured" },
+  { value: 25, suffix: "+", label: "Years of Distribution Excellence" },
+  { value: 100, suffix: "+", label: "Products Available" },
+  { value: 1000, suffix: "+", label: "Happy Customers" },
+  { value: 10, suffix: "+", label: "Industry Partners" },
 ];
+
+// Animated Counter Component
+function AnimatedCounter({ value, suffix, label, index }: { value: number; suffix: string; label: string; index: number }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const hasStarted = useRef(false);
+
+  useEffect(() => {
+    if (isInView && !hasStarted.current) {
+      hasStarted.current = true;
+      const duration = 2000;
+      const steps = 60;
+      const increment = value / steps;
+      const stepDuration = duration / steps;
+      let current = 0;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= value) {
+          setCount(value);
+          clearInterval(timer);
+        } else {
+          setCount(Math.floor(current));
+        }
+      }, stepDuration);
+
+      return () => clearInterval(timer);
+    }
+  }, [isInView, value]);
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="text-center"
+    >
+      <div className="text-5xl lg:text-6xl font-bold mb-2">
+        {count}{suffix}
+      </div>
+      <div className="text-white/80">{label}</div>
+    </motion.div>
+  );
+}
 
 // Image Reveal Component
 function ImageReveal({ src, alt, className = "" }: { src: string; alt: string; className?: string }) {
@@ -42,6 +89,31 @@ function ParallaxSection({ children, className = "", speed = 0.5 }: { children: 
   return (
     <div ref={ref} className={`relative overflow-hidden ${className}`}>
       <motion.div style={{ y }} className="relative">{children}</motion.div>
+    </div>
+  );
+}
+
+// Parallax Background Image Component
+function ParallaxBackgroundImage({ src, alt, opacity = 0.3 }: { src: string; alt: string; opacity?: number }) {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+
+  return (
+    <div ref={ref} className="absolute inset-0 overflow-hidden">
+      <motion.div style={{ y }} className="absolute inset-0 scale-110">
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+      </motion.div>
+      <div className={`absolute inset-0 bg-gray-900/${Math.round(opacity * 100)}`} />
     </div>
   );
 }
@@ -122,23 +194,25 @@ export default function IndustriesPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {[
-                { name: "Construction", desc: "Complete range of tools and equipment for construction projects", icon: Factory, image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" },
-                { name: "Manufacturing", desc: "Industrial machinery and precision tools for manufacturing", icon: Settings, image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80" },
-                { name: "Automotive", desc: "Specialized tools and equipment for automotive production", icon: Zap, image: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&q=80" },
-                { name: "Energy & Power", desc: "Reliable equipment for energy sector operations", icon: Package, image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80" },
-                { name: "Infrastructure", desc: "Heavy-duty tools for infrastructure development", icon: Truck, image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80" },
-                { name: "Engineering", desc: "Precision instruments and tools for engineering applications", icon: Target, image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f095b?w=600&q=80" },
+                // 4 industries matching home page
+                { id: "construction", name: "Construction", desc: "Complete range of tools and equipment for construction projects of any scale.", icon: Factory, image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80" },
+                { id: "manufacturing", name: "Manufacturing", desc: "Industrial machinery and precision tools for manufacturing operations.", icon: Settings, image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&q=80" },
+                { id: "automotive", name: "Automotive", desc: "Specialized tools and equipment for automotive repair and production.", icon: Zap, image: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=600&q=80" },
+                { id: "energy", name: "Energy & Power", desc: "Reliable equipment for energy sector operations and maintenance.", icon: Package, image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80" },
+                // 2 additional industries with individual pages
+                { id: "infrastructure", name: "Infrastructure", desc: "Heavy-duty tools for infrastructure development projects.", icon: Truck, image: "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=600&q=80" },
+                { id: "engineering", name: "Engineering", desc: "Precision instruments and tools for engineering applications.", icon: Target, image: "https://images.unsplash.com/photo-1537462715879-360eeb61a0ad?w=600&q=80" },
               ].map((industry, index) => (
                 <motion.div
-                  key={industry.name}
+                  key={industry.id}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
-                  <Link href="/products" className="group block bg-white border border-[#EDEDED] rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500">
+                  <Link href={`/industries/${industry.id}`} className="group block bg-white border border-[#EDEDED] rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500">
                     <div className="relative aspect-video overflow-hidden">
-                      <ImageReveal src={industry.image} alt={industry.name} className="absolute inset-0" />
+                      <Image src={industry.image} alt={industry.name} fill className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="(max-width: 768px) 100vw, 33vw" />
                     </div>
                     <div className="p-6">
                       <div className="w-12 h-12 rounded-xl bg-[#8B3A3A]/10 flex items-center justify-center text-[#8B3A3A] mb-4">
@@ -186,19 +260,13 @@ export default function IndustriesPage() {
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
               {stats.map((stat, index) => (
-                <motion.div
+                <AnimatedCounter
                   key={stat.label}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="text-center"
-                >
-                  <div className="text-5xl lg:text-6xl font-bold mb-2">
-                    {stat.value}{stat.suffix}
-                  </div>
-                  <div className="text-white/80">{stat.label}</div>
-                </motion.div>
+                  value={stat.value}
+                  suffix={stat.suffix}
+                  label={stat.label}
+                  index={index}
+                />
               ))}
             </div>
           </div>
@@ -259,11 +327,13 @@ export default function IndustriesPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <div className="relative aspect-4/3 rounded-3xl overflow-hidden">
-                  <ImageReveal 
-                    src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=80" 
-                    alt="Why Industries Choose Us" 
-                    className="absolute inset-0"
+                <div className="relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl">
+                  <Image
+                    src="https://images.unsplash.com/photo-1565793298595-6a879b1d9492?w=800&q=80"
+                    alt="Industrial facility with welding operations"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                 </div>
               </motion.div>
@@ -272,9 +342,15 @@ export default function IndustriesPage() {
         </div>
       </ParallaxSection>
 
-      {/* CTA Section */}
-      <section className="py-24 lg:py-40 bg-[#8B3A3A] text-white">
-        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
+      {/* CTA Section - WITH Parallax Background Image */}
+      <section className="py-24 lg:py-40 relative overflow-hidden">
+        {/* Background Image with Parallax */}
+        <ParallaxBackgroundImage 
+          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80" 
+          alt="Industrial background" 
+          opacity={0.85}
+        />
+        <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -282,10 +358,10 @@ export default function IndustriesPage() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 text-white">
                 Need Products for Your Industry?
               </h2>
-              <p className="text-lg mb-8 max-w-2xl mx-auto text-white/80">
+              <p className="text-lg mb-8 max-w-2xl mx-auto text-white/90">
                 Contact us to discuss your specific requirements. Our team will help you find the right industrial solutions for your sector.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
