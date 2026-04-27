@@ -1,10 +1,30 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState, useMemo, useRef, SetStateAction, Dispatch } from "react";
-import { ArrowLeft, Package, Grid3X3, List, Search, Filter, ChevronRight, ShoppingCart, Star, X, ChevronDown } from "lucide-react";
+import { useState, useMemo, useRef } from "react";
+import { Package, Search, Filter, ChevronRight, ShoppingCart, X, ChevronDown, Plus, Minus, Building2, Tags, Wrench } from "lucide-react";
 import Link from "next/link";
 import type { ProductCategory } from "@/types/products";
+
+// Industry segments from the actual website INDUSTRIES data (6 industries)
+// Expanded keywords to ensure all 163 products are categorized
+const INDUSTRY_SEGMENTS = [
+  { id: "construction", name: "Construction", keywords: ["Construction", "Building", "Structural", "Projects and construction sites", "TMT bars", "Project sites", "PEB structures", "Channel", "Angle", "Infrastructure work", "Civil works"] },
+  { id: "infrastructure", name: "Infrastructure", keywords: ["Infrastructure", "Bridges", "Dams", "Power plants", "Pressure vessels", "Pipelines", "Railway", "Metro", "Shipbuilding", "Marine", "Offshore"] },
+  { id: "manufacturing", name: "Manufacturing", keywords: ["Manufacturing", "Factory", "Industrial", "Fabrication", "Workshop", "Light fabrication", "Medium fabrication", "Heavy fabrication", "General fabrication", "Sheet metal", "Pipe cutting", "Angle cutting", "Kitchen equipment", "SS furniture", "MS cutting", "Wood sanding", "Surface preparation"] },
+  { id: "engineering", name: "Engineering", keywords: ["Engineering", "Technical", "Weld removal", "Surface finishing", "Chamfering", "Deburring", "Burr removal", "Grinding", "Surface blending", "Precision work"] },
+  { id: "energy", name: "Energy & Power", keywords: ["Energy", "Power", "Oil", "Gas", "Petrochemical", "Pipeline", "Thermal", "Solar", "Renewable energy", "Power generation"] },
+  { id: "automotive", name: "Automotive", keywords: ["Automotive", "Vehicle", "Auto industries", "Car manufacturing", "Transportation", "Vehicle repair", "Sheet metal cutting"] }
+];
+
+// All brands in the catalog (extracted from actual products)
+const ALL_BRANDS = [
+  "Norton",
+  "ESAB",
+  "ADOR Welding",
+  "Messer",
+  "Superon India"
+];
 
 interface CategoryDetailClientProps {
   category: ProductCategory;
@@ -145,6 +165,46 @@ function ProductGridCard({ product, categorySlug }: { product: any; categorySlug
         </div>
       </div>
     </motion.div>
+  );
+}
+
+// Sidebar Section Component with +/- Toggle
+function SidebarSection({ title, icon, count, children, defaultOpen = false }: {
+  title: string;
+  icon: React.ReactNode;
+  count: number;
+  children: React.ReactNode;
+  defaultOpen?: boolean;
+}) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+
+  return (
+    <div className="bg-superweld-light border border-superweld-border rounded-xl overflow-hidden">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between p-4 hover:bg-superweld-bg/5 transition-colors"
+      >
+        <div className="flex items-center gap-2">
+          {icon}
+          <span className="font-semibold text-superweld-text text-sm">{title}</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <span className="text-xs text-superweld-textMuted bg-superweld-bg/10 px-2 py-0.5 rounded">
+            {count}
+          </span>
+          {isOpen ? (
+            <Minus className="w-4 h-4 text-superweld-textMuted" />
+          ) : (
+            <Plus className="w-4 h-4 text-superweld-textMuted" />
+          )}
+        </div>
+      </button>
+      {isOpen && (
+        <div className="px-4 pb-4 border-t border-superweld-border">
+          {children}
+        </div>
+      )}
+    </div>
   );
 }
 
@@ -296,6 +356,60 @@ function CategoryTree({ allCategories, currentCategoryId }: { allCategories: Pro
           </div>
         );
       })}
+    </div>
+  );
+}
+
+// Category with Sub-categories Menu Component
+function CategoryWithSubMenu({ cat, currentCategoryId, subCats }: { cat: any; currentCategoryId: string; subCats: string[] }) {
+  const [isOpen, setIsOpen] = useState(cat.id === currentCategoryId);
+  const isCurrent = cat.id === currentCategoryId;
+
+  return (
+    <div className="border border-superweld-border rounded-lg overflow-hidden">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className={`w-full flex items-center justify-between px-3 py-2 text-sm transition-colors ${
+          isCurrent
+            ? "bg-superweld-orange/10 text-superweld-orange font-medium"
+            : "text-superweld-text hover:bg-superweld-bg/5"
+        }`}
+      >
+        <div className="flex items-center gap-2">
+          {isOpen ? (
+            <Minus className="w-3 h-3" />
+          ) : (
+            <Plus className="w-3 h-3" />
+          )}
+          <span>{cat.name}</span>
+        </div>
+        <span className="text-xs bg-superweld-bg/10 px-2 py-0.5 rounded">
+          {cat.products.length}
+        </span>
+      </button>
+
+      {isOpen && (
+        <div className="border-t border-superweld-border bg-superweld-bg/5">
+          {subCats.map((subCat) => {
+            const subCatProducts = cat.products.filter((p: any) => p.subCategory === subCat);
+            return (
+              <div key={subCat} className="border-b border-superweld-border/50 last:border-b-0">
+                <Link
+                  href={`/products/${cat.slug}`}
+                  className="block px-6 py-2 text-xs text-superweld-textMuted hover:text-superweld-text hover:bg-superweld-bg/10 transition-colors"
+                >
+                  <span className="flex items-center justify-between">
+                    <span>{subCat}</span>
+                    <span className="text-xs bg-superweld-bg/10 px-1.5 py-0.5 rounded">
+                      {subCatProducts.length}
+                    </span>
+                  </span>
+                </Link>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
@@ -468,66 +582,130 @@ export function CategoryDetailClient({ category, allCategories }: CategoryDetail
                   </div>
                 </div>
 
-                {/* Hierarchical Filters - Category > Sub-category > Brand */}
-                <div className="bg-superweld-light border border-superweld-border rounded-xl overflow-hidden">
-                  <div className="flex items-center justify-between p-4 border-b border-superweld-border">
-                    <div className="flex items-center gap-2">
-                      <Filter className="w-4 h-4 text-superweld-orange" />
-                      <span className="font-semibold text-superweld-text">All Categories</span>
-                    </div>
-                    <span className="text-xs text-superweld-textMuted bg-superweld-bg/10 px-2 py-1 rounded">
-                      {allCategories.filter(c => ["abrasive", "welding-electrodes", "oxy-fuel", "welding-mig-wire", "welding-tig-wire", "welding-consumables"].includes(c.slug)).reduce((acc, cat) => acc + cat.products.length, 0)} products
-                    </span>
-                  </div>
-                  <div className="p-2 max-h-[500px] overflow-y-auto">
-                    <CategoryTree allCategories={allCategories.filter(c => ["abrasive", "welding-electrodes", "oxy-fuel", "welding-mig-wire", "welding-tig-wire", "welding-consumables"].includes(c.slug))} currentCategoryId={category.id} />
-                  </div>
-                </div>
+                {/* 1. ALL Categories with +/- Toggle */}
+                <SidebarSection
+                  title="ALL Categories"
+                  icon={<Tags className="w-4 h-4 text-superweld-orange" />}
+                  count={6}
+                  defaultOpen={true}
+                >
+                  <div className="space-y-1">
+                    {allCategories
+                      .filter((cat) =>
+                        [
+                          "abrasive",
+                          "welding-electrodes",
+                          "oxy-fuel",
+                          "welding-mig-wire",
+                          "welding-tig-wire",
+                          "welding-consumables",
+                        ].includes(cat.slug)
+                      )
+                      .map((cat) => {
+                        // Get unique sub-categories for this category
+                        const subCats = [
+                          ...new Set(cat.products.map((p) => p.subCategory)),
+                        ].sort();
 
-                {/* All Products - From 6 Main Categories */}
-                <div className="bg-superweld-light border border-superweld-border rounded-xl overflow-hidden">
-                  <div className="p-4 border-b border-superweld-border">
-                    <span className="font-semibold text-superweld-text">All Products</span>
-                    <p className="text-xs text-superweld-textMuted mt-1">Browse products from 6 main categories</p>
-                  </div>
-                  <div className="p-2 max-h-80 overflow-y-auto">
-                    <div className="space-y-4">
-                      {allCategories.filter(c => ["abrasive", "welding-electrodes", "oxy-fuel", "welding-mig-wire", "welding-tig-wire", "welding-consumables"].includes(c.slug)).map((cat) => (
-                        <div key={cat.id}>
-                          <Link
-                            href={`/products/${cat.slug}`}
-                            className={`block px-2 py-1.5 text-xs font-semibold rounded transition-colors ${
-                              cat.id === category.id
-                                ? "bg-superweld-orange/20 text-superweld-orange"
-                                : "text-superweld-textMuted hover:text-superweld-text"
-                            }`}
-                          >
-                            {cat.name} ({cat.products.length})
-                          </Link>
-                          <div className="mt-1 space-y-1 pl-2">
-                            {cat.products.slice(0, 3).map((product) => (
-                              <ProductListItem
-                                key={product.id}
-                                product={product}
-                                categorySlug={cat.slug}
-                                isActive={activeProductId === product.id && cat.id === category.id}
-                                onClick={() => {}}
-                              />
-                            ))}
-                            {cat.products.length > 3 && (
-                              <Link
-                                href={`/products/${cat.slug}`}
-                                className="block px-2 py-1 text-xs text-superweld-textMuted hover:text-superweld-orange transition-colors"
-                              >
-                                + {cat.products.length - 3} more products →
-                              </Link>
-                            )}
+                        return (
+                          <div key={cat.id} className="mb-2">
+                            <CategoryWithSubMenu
+                              cat={cat}
+                              currentCategoryId={category.id}
+                              subCats={subCats}
+                            />
                           </div>
-                        </div>
-                      ))}
-                    </div>
+                        );
+                      })}
                   </div>
-                </div>
+                </SidebarSection>
+
+                {/* 2. All Brands with +/- Toggle */}
+                <SidebarSection
+                  title="All Brands"
+                  icon={<Wrench className="w-4 h-4 text-superweld-orange" />}
+                  count={ALL_BRANDS.length}
+                  defaultOpen={false}
+                >
+                  <div className="space-y-1 max-h-64 overflow-y-auto">
+                    {ALL_BRANDS.map((brand) => {
+                      const brandProductCount = allCategories.reduce(
+                        (acc, cat) => acc + cat.products.filter(p => p.brand === brand).length,
+                        0
+                      );
+                      if (brandProductCount === 0) return null;
+                      return (
+                        <button
+                          key={brand}
+                          onClick={() => {
+                            // Find first category with this brand and navigate
+                            const categoryWithBrand = allCategories.find(cat =>
+                              cat.products.some(p => p.brand === brand)
+                            );
+                            if (categoryWithBrand) {
+                              window.location.href = `/products/${categoryWithBrand.slug}`;
+                            }
+                          }}
+                          className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm text-superweld-textMuted hover:text-superweld-text hover:bg-superweld-bg/5 transition-colors text-left"
+                        >
+                          <span>{brand}</span>
+                          <span className="text-xs bg-superweld-bg/10 px-2 py-0.5 rounded">
+                            {brandProductCount}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </SidebarSection>
+
+                {/* 3. Industry Segments with +/- Toggle */}
+                <SidebarSection
+                  title="Industry Segments"
+                  icon={<Building2 className="w-4 h-4 text-superweld-orange" />}
+                  count={INDUSTRY_SEGMENTS.length}
+                  defaultOpen={false}
+                >
+                  <div className="space-y-1">
+                    {INDUSTRY_SEGMENTS.map((segment) => {
+                      const segmentProductCount = allCategories.reduce((acc, cat) => {
+                        return acc + cat.products.filter(p =>
+                          p.typicalApplications?.some(app =>
+                            segment.keywords.some(kw =>
+                              app.toLowerCase().includes(kw.toLowerCase())
+                            )
+                          )
+                        ).length;
+                      }, 0);
+                      if (segmentProductCount === 0) return null;
+                      return (
+                        <button
+                          key={segment.id}
+                          onClick={() => {
+                            // Find first category with products for this industry
+                            const categoryWithProducts = allCategories.find(cat =>
+                              cat.products.some(p =>
+                                p.typicalApplications?.some(app =>
+                                  segment.keywords.some(kw =>
+                                    app.toLowerCase().includes(kw.toLowerCase())
+                                  )
+                                )
+                              )
+                            );
+                            if (categoryWithProducts) {
+                              window.location.href = `/products/${categoryWithProducts.slug}`;
+                            }
+                          }}
+                          className="w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm text-superweld-textMuted hover:text-superweld-text hover:bg-superweld-bg/5 transition-colors text-left"
+                        >
+                          <span>{segment.name}</span>
+                          <span className="text-xs bg-superweld-bg/10 px-2 py-0.5 rounded">
+                            {segmentProductCount}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </SidebarSection>
               </aside>
 
               {/* Main Content - Products Grid */}
