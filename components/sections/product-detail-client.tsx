@@ -82,7 +82,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
             onMouseMove={handleMouseMove}
             onMouseEnter={() => setIsHovering(true)}
             onMouseLeave={() => setIsHovering(false)}
-            className="relative aspect-square bg-superweld-light border border-superweld-border rounded-2xl overflow-hidden group cursor-crosshair"
+            className="relative aspect-[4/3] sm:aspect-square bg-superweld-light border border-superweld-border rounded-2xl overflow-hidden group cursor-crosshair"
           >
             {currentMedia?.type === "video" ? (
               <video 
@@ -295,10 +295,10 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.3 }}
-        className="mb-16"
+        className="mb-16 overflow-hidden"
       >
-        <div className="border-b border-superweld-border mb-6 overflow-x-auto scrollbar-hide">
-          <div className="flex gap-4 sm:gap-8 min-w-fit">
+        <div className="border-b border-superweld-border mb-6 overflow-x-auto scrollbar-hide w-full">
+          <div className="flex gap-4 sm:gap-8 min-w-fit px-1">
             <button 
               onClick={() => setActiveTab("description")}
               className={`pb-3 sm:pb-4 px-2 sm:px-0 font-semibold border-b-2 transition-colors whitespace-nowrap text-sm sm:text-base ${
@@ -333,7 +333,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
         </div>
 
         {/* Tab Content */}
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left Column Content */}
           <div className="lg:col-span-2 space-y-6">
             {activeTab === "description" && (
@@ -371,8 +371,8 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
                   <Check className="w-5 h-5 text-superweld-orange" />
                   Product Specifications
                 </h3>
-                <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0">
-                  <table className="w-full text-sm min-w-[500px]">
+                <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 w-full">
+                  <table className="w-full text-sm min-w-[300px] sm:min-w-[500px]">
                   <tbody>
                     <tr className="border-b border-superweld-border">
                       <td className="py-3 text-superweld-textMuted w-1/3">Product Name</td>

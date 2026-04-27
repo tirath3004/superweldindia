@@ -311,3 +311,15 @@ html, html body {
 .animate-scroll-x:hover {
   animation-play-state: paused;
 }
+
+/* Mobile overflow prevention */
+@media (max-width: 640px) {
+  html, body {
+    overflow-x: hidden;
+  }
+  
+  body {
+    position: relative;
+    width: 100%;
+  }
+}
