@@ -25,8 +25,8 @@ const FEATURED_CATEGORIES = [
   { id: "welding-electrodes", name: "Welding Electrodes", icon: Zap, image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&q=80", productCount: 8 },
   { id: "oxy-fuel", name: "Oxy Fuel Products", icon: Flame, image: "/images/images/oxyfuel category.jfif", productCount: 6 },
   { id: "welding-mig-wire", name: "Welding Mig Wire", icon: Layers, image: "/images/images/Welding Mig wire.jpg", productCount: 5 },
-  { id: "welding-tig-wire", name: "Welding Tig Wire", icon: Wrench, image: "/images/images/tig wire.jfif", productCount: 5 },
-  { id: "welding-consumables", name: "Welding Consumables & PPE", icon: Shield, image: "/images/images/Welding COnsumables.jfif", productCount: 10 },
+  { id: "welding-tig-wire", name: "Welding Tig Wire", icon: Wrench, image: "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=600&q=80", productCount: 5 },
+  { id: "welding-consumables", name: "Welding Consumables & PPE", icon: Shield, image: "https://images.unsplash.com/photo-1577083300638-3c4c0e5f7e3d?w=600&q=80", productCount: 10 },
 ];
 
 // Featured products from actual catalog
