@@ -977,6 +977,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
         subCategory: "WOOD CUTTER",
         productLine: "Wood Cutting",
         variant: "CLIPPER RAPID",
+        brand: "Norton",
         keyFeatures: [
           "Vent holes on blade for heat dissipation",
           "Superior quality tip for smooth cut",
