@@ -480,8 +480,8 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
         typicalApplications: ["Weld removal", "Deburring", "Surface blending"],
         availability: "Dia - 4\", 5\", 7\"; Grit - 24 to 120",
         images: [
-          "/images/images/FIBRE DISC ZIRKON+.png",
-          "/images/images/FIBRE DISC ZIRKON+ 2.png"
+          "/images/images/FIBRE DISC ZIRKON PLUS.png",
+          "/images/images/FIBRE DISC ZIRKON PLUS 2.png"
         ],
         videos: ["/videos/videos/1. Customer meet - Hindi.mp4"],
         posters: [],
@@ -2000,7 +2000,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
         keyFeatures: ["70A plasma cutting", "TFT LCD screen", "30mm cutting", "SL60 1Torch", "CE/UKCA certified"],
         typicalApplications: ["Hand plasma cutting", "Up to 30mm cutting"],
         availability: "Package with SL60 torch",
-        images: ["/images/images/Cutmaster 70+.jfif"],
+        images: ["/images/images/Cutmaster 70 PLUS.jfif"],
         videos: [],
         posters: [],
         categoryId: "welding-consumables"
@@ -2034,7 +2034,7 @@ export const PRODUCT_CATEGORIES: ProductCategory[] = [
         keyFeatures: ["50A plasma cutting", "TFT LCD screen", "25mm cutting", "SL60 1Torch", "CE/UKCA certified"],
         typicalApplications: ["Hand plasma cutting", "Up to 25mm cutting"],
         availability: "Package available",
-        images: ["/images/images/Cutmaster 50+.jfif"],
+        images: ["/images/images/Cutmaster 50 PLUS.jfif"],
         videos: [],
         posters: [],
         categoryId: "welding-consumables"
