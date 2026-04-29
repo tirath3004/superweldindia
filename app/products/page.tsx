@@ -19,7 +19,7 @@ function ImageReveal({ src, alt, className = "" }: { src: string; alt: string; c
         initial={{ x: 0 }}
         animate={isInView ? { x: "100%" } : { x: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute inset-0 bg-[#8B3A3A] z-10"
+        className="absolute inset-0 bg-superweld-primary z-10"
       />
       <Image src={src} alt={alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
     </div>
@@ -91,13 +91,13 @@ function HeroParallaxSection() {
 
       <motion.div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12" style={{ opacity }}>
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#8B3A3A]/90 rounded-full text-white text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-superweld-primary/90 rounded-full text-white text-sm font-medium mb-6">
             <Package className="w-4 h-4" />
             Product Catalog
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
             Products We
-            <span className="text-[#8B3A3A]"> Distribute</span>
+            <span className="text-superweld-primary"> Distribute</span>
           </h1>
           <p className="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
             Discover our comprehensive range of high-quality industrial tools, equipment, and machinery sourced from leading manufacturers. We distribute products designed for precision, durability, and performance.

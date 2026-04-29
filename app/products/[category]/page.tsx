@@ -44,23 +44,23 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const otherCategories = PRODUCT_CATEGORIES.filter((c) => c.id !== category.id);
 
   return (
-    <main className="min-h-screen bg-industrial-black">
-      <Navbar />
+    <main className="min-h-screen bg-superweld-bg">
+      <Navbar forceLight />
 
       {/* Breadcrumb */}
-      <div className="pt-24 pb-6 border-b border-white/10">
+      <div className="pt-24 pb-6 border-b border-superweld-border">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
-            <nav className="flex items-center gap-2 text-sm text-white/60">
-              <Link href="/" className="hover:text-white transition-colors">
+            <nav className="flex items-center gap-2 text-sm text-superweld-textMuted">
+              <Link href="/" className="hover:text-superweld-primary transition-colors">
                 Home
               </Link>
               <ChevronRight className="w-4 h-4" />
-              <Link href="/products" className="hover:text-white transition-colors">
+              <Link href="/products" className="hover:text-superweld-primary transition-colors">
                 Products
               </Link>
               <ChevronRight className="w-4 h-4" />
-              <span className="text-industrial-orange">{category.name}</span>
+              <span className="text-superweld-primary font-medium">{category.name}</span>
             </nav>
           </div>
         </div>

@@ -61,11 +61,11 @@ function ProductTableRow({ product, categorySlug }: { product: any; categorySlug
             )}
           </div>
           <div>
-            <h3 className="font-semibold text-superweld-text group-hover:text-superweld-orange transition-colors">
+            <h3 className="font-semibold text-superweld-text group-hover:text-superweld-primary transition-colors">
               {product.name}
             </h3>
             <p className="text-sm text-superweld-textMuted">{product.subCategory}</p>
-            <span className="inline-block mt-1 px-2 py-0.5 bg-superweld-orange/20 text-superweld-orange text-xs rounded">
+            <span className="inline-block mt-1 px-2 py-0.5 bg-superweld-primary/20 text-superweld-primary text-xs rounded">
               {product.variant}
             </span>
           </div>
@@ -80,7 +80,7 @@ function ProductTableRow({ product, categorySlug }: { product: any; categorySlug
       <td className="py-4 px-4">
         <Link
           href={`/products/${categorySlug}/${product.id}`}
-          className="inline-flex items-center gap-2 px-4 py-2 bg-superweld-orange text-superweld-text text-sm font-medium rounded-lg hover:bg-superweld-orangeHover transition-colors"
+          className="inline-flex items-center gap-2 px-4 py-2 bg-superweld-primary text-white text-sm font-medium rounded-lg hover:bg-superweld-primaryHover transition-colors"
         >
           <ShoppingCart className="w-4 h-4" />
           View Details
@@ -96,7 +96,7 @@ function ProductGridCard({ product, categorySlug, categoryName }: { product: any
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="group bg-superweld-light border border-superweld-border rounded-xl overflow-hidden hover:border-superweld-orange/50 transition-all"
+      className="group bg-superweld-light border border-superweld-border rounded-xl overflow-hidden hover:border-superweld-primary/50 transition-all"
     >
       <div className="flex flex-col md:flex-row">
         {/* Product Image - Left Side */}
@@ -108,7 +108,7 @@ function ProductGridCard({ product, categorySlug, categoryName }: { product: any
               <Package className="w-12 h-12 text-superweld-text/20" />
             </div>
           )}
-          <span className="absolute top-3 left-3 px-2 py-1 bg-superweld-orange text-superweld-text text-xs font-semibold rounded">
+          <span className="absolute top-3 left-3 px-2 py-1 bg-superweld-primary text-white text-xs font-semibold rounded">
             {product.variant}
           </span>
         </Link>
@@ -119,11 +119,11 @@ function ProductGridCard({ product, categorySlug, categoryName }: { product: any
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p className="text-xs text-superweld-textMuted mb-1">
-                  {categoryName && <span className="inline-block px-2 py-0.5 bg-superweld-orange/20 text-superweld-orange rounded mr-2">{categoryName}</span>}
+                  {categoryName && <span className="inline-block px-2 py-0.5 bg-superweld-primary/20 text-superweld-primary rounded mr-2">{categoryName}</span>}
                   {product.subCategory} • {product.brand}
                 </p>
                 <Link href={`/products/${categorySlug}/${product.id}`}>
-                  <h3 className="font-semibold text-lg text-superweld-text group-hover:text-superweld-orange transition-colors mb-2">
+                  <h3 className="font-semibold text-lg text-superweld-text group-hover:text-superweld-primary transition-colors mb-2">
                     {product.name}
                   </h3>
                 </Link>
@@ -159,7 +159,7 @@ function ProductGridCard({ product, categorySlug, categoryName }: { product: any
             </div>
             <Link
               href={`/products/${categorySlug}/${product.id}`}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-superweld-orange text-superweld-text text-sm font-medium rounded-lg hover:bg-superweld-orangeHover transition-colors"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-superweld-primary text-white text-sm font-medium rounded-lg hover:bg-superweld-primaryHover transition-colors"
             >
               <ShoppingCart className="w-4 h-4" />
               View Details
@@ -240,7 +240,7 @@ function FilterSection({ title, items, selectedItems, onToggle, isOpen, onToggle
                   type="checkbox"
                   checked={selectedItems.includes(item)}
                   onChange={() => onToggle(item)}
-                  className="w-4 h-4 rounded border-superweld-border bg-superweld-bg/5 text-superweld-orange focus:ring-superweld-orange"
+                  className="w-4 h-4 rounded border-superweld-border bg-superweld-bg/5 text-superweld-primary focus:ring-superweld-primary"
                 />
                 <span className="text-sm text-superweld-textMuted group-hover:text-superweld-text transition-colors line-clamp-1">
                   {item}
@@ -299,12 +299,12 @@ function CategoryTree({ allCategories, currentCategoryId }: { allCategories: Pro
             <button
               onClick={() => toggleCat(cat.id)}
               className={`w-full flex items-center justify-between py-2 px-3 rounded-lg transition-colors ${
-                isCurrentCat ? "bg-superweld-orange/10" : "hover:bg-superweld-bg/5"
+                isCurrentCat ? "bg-superweld-primary/10" : "hover:bg-superweld-bg/5"
               }`}
             >
               <div className="flex items-center gap-2">
                 <ChevronDown className={`w-3 h-3 text-superweld-textMuted transition-transform ${isCatExpanded ? "rotate-180" : ""}`} />
-                <span className={`text-sm font-medium ${isCurrentCat ? "text-superweld-orange" : "text-superweld-text"}`}>
+                <span className={`text-sm font-medium ${isCurrentCat ? "text-superweld-primary" : "text-superweld-text"}`}>
                   {cat.name}
                 </span>
               </div>
@@ -339,7 +339,7 @@ function CategoryTree({ allCategories, currentCategoryId }: { allCategories: Pro
                               <Link
                                 key={`${subKey}-${brand}`}
                                 href={`/products/${cat.slug}`}
-                                className="block py-1 px-2 text-xs text-superweld-textMuted/80 hover:text-superweld-orange transition-colors rounded hover:bg-superweld-bg/5"
+                                className="block py-1 px-2 text-xs text-superweld-textMuted/80 hover:text-superweld-primary transition-colors rounded hover:bg-superweld-bg/5"
                               >
                                 {brand}
                               </Link>
@@ -374,7 +374,7 @@ function CategoryWithSubMenu({ cat, currentCategoryId, subCats, selectedSubCateg
         href={`/products/${cat.slug}`}
         className={`w-full flex items-center justify-between px-3 py-2 text-sm transition-colors ${
           isCurrent
-            ? "bg-superweld-orange/10 text-superweld-orange font-medium"
+            ? "bg-superweld-primary/10 text-superweld-primary font-medium"
             : "text-superweld-text hover:bg-superweld-bg/5"
         }`}
       >
@@ -404,13 +404,13 @@ function CategoryWithSubMenu({ cat, currentCategoryId, subCats, selectedSubCateg
                   onClick={() => onSubCategoryClick(subCat)}
                   className={`w-full block px-6 py-2 text-xs transition-colors text-left ${
                     isSelected
-                      ? "text-superweld-orange bg-superweld-orange/10 font-medium"
+                      ? "text-superweld-primary bg-superweld-primary/10 font-medium"
                       : "text-superweld-textMuted hover:text-superweld-text hover:bg-superweld-bg/10"
                   }`}
                 >
                   <span className="flex items-center justify-between">
                     <span>{subCat}</span>
-                    <span className={`text-xs px-1.5 py-0.5 rounded ${isSelected ? "bg-superweld-orange/20" : "bg-superweld-bg/10"}`}>
+                    <span className={`text-xs px-1.5 py-0.5 rounded ${isSelected ? "bg-superweld-primary/20" : "bg-superweld-bg/10"}`}>
                       {subCatProducts.length}
                     </span>
                   </span>
@@ -432,7 +432,7 @@ function ProductListItem({ product, categorySlug, isActive, onClick }: { product
       onClick={onClick}
       className={`w-full flex items-center gap-3 p-2 rounded-lg transition-all text-left ${
         isActive
-          ? "bg-superweld-orange/20 border border-superweld-orange/50"
+          ? "bg-superweld-primary/20 border border-superweld-primary/50"
           : "hover:bg-superweld-bg/5 border border-transparent"
       }`}
     >
@@ -444,7 +444,7 @@ function ProductListItem({ product, categorySlug, isActive, onClick }: { product
         )}
       </div>
       <div className="flex-1 min-w-0">
-        <p className={`text-xs font-medium truncate ${isActive ? "text-superweld-orange" : "text-superweld-text"}`}>
+        <p className={`text-xs font-medium truncate ${isActive ? "text-superweld-primary" : "text-superweld-text"}`}>
           {product.name}
         </p>
         <p className="text-xs text-superweld-textMuted truncate">{product.subCategory}</p>
@@ -542,23 +542,6 @@ export function CategoryDetailClient({ category, allCategories }: CategoryDetail
       <section className="py-6 lg:py-8 bg-superweld-light border-b border-superweld-border">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
-            {/* Breadcrumb */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex items-center gap-2 text-sm text-superweld-textMuted mb-4"
-            >
-              <Link href="/products" className="hover:text-superweld-text transition-colors">Products</Link>
-              <ChevronRight className="w-4 h-4" />
-              {selectedBrands.length > 0 ? (
-                <span className="text-superweld-orange">Brand: {selectedBrands[0]}</span>
-              ) : selectedIndustry ? (
-                <span className="text-superweld-orange">Industry: {INDUSTRY_SEGMENTS.find(i => i.id === selectedIndustry)?.name}</span>
-              ) : (
-                <span className="text-superweld-text">{category.name}</span>
-              )}
-            </motion.div>
-
             <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
@@ -589,7 +572,7 @@ export function CategoryDetailClient({ category, allCategories }: CategoryDetail
                 className="flex items-center gap-6"
               >
                 <div className="text-center">
-                  <p className="text-xl font-bold text-superweld-orange">{filteredProducts.length}</p>
+                  <p className="text-xl font-bold text-superweld-primary">{filteredProducts.length}</p>
                   <p className="text-xs text-superweld-textMuted">
                     {isCrossCategoryMode ? "Products Found" : `of ${category.products.length} Products`}
                   </p>
@@ -622,7 +605,7 @@ export function CategoryDetailClient({ category, allCategories }: CategoryDetail
                       placeholder="Search products..."
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      className="w-full pl-10 pr-8 py-2 bg-superweld-bg/5 border border-superweld-border rounded-lg text-superweld-text text-sm placeholder:text-superweld-text/40 focus:outline-none focus:border-superweld-orange"
+                      className="w-full pl-10 pr-8 py-2 bg-superweld-bg/5 border border-superweld-border rounded-lg text-superweld-text text-sm placeholder:text-superweld-text/40 focus:outline-none focus:border-superweld-primary"
                     />
                     {searchQuery && (
                       <button
@@ -638,7 +621,7 @@ export function CategoryDetailClient({ category, allCategories }: CategoryDetail
                 {/* 1. ALL Categories with +/- Toggle */}
                 <SidebarSection
                   title="ALL Categories"
-                  icon={<Tags className="w-4 h-4 text-superweld-orange" />}
+                  icon={<Tags className="w-4 h-4 text-superweld-primary" />}
                   count={6}
                   defaultOpen={true}
                 >
@@ -688,7 +671,7 @@ export function CategoryDetailClient({ category, allCategories }: CategoryDetail
                 {/* 2. All Brands with +/- Toggle */}
                 <SidebarSection
                   title="All Brands"
-                  icon={<Wrench className="w-4 h-4 text-superweld-orange" />}
+                  icon={<Wrench className="w-4 h-4 text-superweld-primary" />}
                   count={ALL_BRANDS.length}
                   defaultOpen={false}
                 >
@@ -716,7 +699,7 @@ export function CategoryDetailClient({ category, allCategories }: CategoryDetail
                           }}
                           className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors text-left ${
                             selectedBrands.includes(brand)
-                              ? "bg-superweld-orange/20 text-superweld-orange font-medium"
+                              ? "bg-superweld-primary/20 text-superweld-primary font-medium"
                               : "text-superweld-textMuted hover:text-superweld-text hover:bg-superweld-bg/5"
                           }`}
                         >
@@ -733,7 +716,7 @@ export function CategoryDetailClient({ category, allCategories }: CategoryDetail
                 {/* 3. Industry Segments with +/- Toggle */}
                 <SidebarSection
                   title="Industry Segments"
-                  icon={<Building2 className="w-4 h-4 text-superweld-orange" />}
+                  icon={<Building2 className="w-4 h-4 text-superweld-primary" />}
                   count={INDUSTRY_SEGMENTS.length}
                   defaultOpen={false}
                 >
@@ -772,7 +755,7 @@ export function CategoryDetailClient({ category, allCategories }: CategoryDetail
                           }}
                           className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-sm transition-colors text-left ${
                             selectedIndustry === segment.id
-                              ? "bg-superweld-orange/20 text-superweld-orange font-medium"
+                              ? "bg-superweld-primary/20 text-superweld-primary font-medium"
                               : "text-superweld-textMuted hover:text-superweld-text hover:bg-superweld-bg/5"
                           }`}
                         >
@@ -811,7 +794,7 @@ export function CategoryDetailClient({ category, allCategories }: CategoryDetail
                     <p className="text-superweld-textMuted text-lg mb-2">No products match your filters.</p>
                     <button
                       onClick={clearFilters}
-                      className="text-superweld-orange hover:text-superweld-orangeHover transition-colors"
+                      className="text-superweld-primary hover:text-superweld-primaryHover transition-colors"
                     >
                       Clear all filters
                     </button>
@@ -827,7 +810,7 @@ export function CategoryDetailClient({ category, allCategories }: CategoryDetail
       <section className="py-12 lg:py-16 bg-superweld-light border-t border-superweld-border">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
-            <div className="bg-linear-to-r from-superweld-orange/20 to-transparent border border-superweld-orange/30 rounded-2xl p-8 lg:p-12">
+            <div className="bg-linear-to-r from-superweld-primary/20 to-transparent border border-superweld-primary/30 rounded-2xl p-8 lg:p-12">
               <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
                 <div>
                   <h2 className="text-2xl lg:text-3xl font-bold text-superweld-text mb-2">Need Bulk Orders?</h2>
@@ -835,7 +818,7 @@ export function CategoryDetailClient({ category, allCategories }: CategoryDetail
                 </div>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-superweld-orange text-superweld-text font-semibold rounded-xl hover:bg-superweld-orangeHover transition-colors shrink-0"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-superweld-primary text-white font-semibold rounded-xl hover:bg-superweld-primaryHover transition-colors shrink-0"
                 >
                   <ShoppingCart className="w-5 h-5" />
                   Request Quote

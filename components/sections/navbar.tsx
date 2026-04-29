@@ -35,9 +35,12 @@ const industries = [
   { name: "Engineering", href: "/industries/engineering" },
 ];
 
-export function Navbar() {
+export function Navbar({ forceLight = false }: { forceLight?: boolean }) {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  
+  // Force light appearance if prop is set (for pages with light backgrounds)
+  const showLight = isScrolled || forceLight;
 
   React.useEffect(() => {
     const handleScroll = () => {
@@ -55,8 +58,8 @@ export function Navbar() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-          isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-[#EDEDED]"
+          showLight
+            ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-superweld-border"
             : "bg-transparent"
         )}
       >
@@ -70,7 +73,7 @@ export function Navbar() {
                   alt="SuperWeld Sources Pvt Ltd"
                   className={cn(
                     "w-full h-full object-contain transition-all duration-300",
-                    isScrolled ? "" : "brightness-0 invert"
+                    showLight ? "" : "brightness-0 invert"
                   )}
                 />
               </div>
@@ -84,18 +87,18 @@ export function Navbar() {
                     href={link.href}
                     className={cn(
                       "px-4 py-2 text-sm font-medium transition-colors relative flex items-center gap-1",
-                      isScrolled ? "text-gray-700 hover:text-[#8B3A3A]" : "text-white hover:text-white/80"
+                      showLight ? "text-gray-700 hover:text-superweld-primary" : "text-white hover:text-white/80"
                     )}
                   >
                     {link.label}
                     {link.hasDropdown && <ChevronDown className="w-4 h-4" />}
-                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-[#8B3A3A] scale-x-0 group-hover:scale-x-100 transition-transform" />
+                    <span className="absolute bottom-0 left-4 right-4 h-0.5 bg-superweld-primary scale-x-0 group-hover:scale-x-100 transition-transform" />
                   </Link>
                   
                   {/* Mega Menu Dropdown */}
                   {link.hasDropdown && (
                     <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                      <div className="bg-white rounded-xl shadow-xl border border-[#EDEDED] p-6 min-w-[600px]">
+                      <div className="bg-white rounded-xl shadow-xl border border-superweld-border p-6 min-w-[600px]">
                         {link.label === "Products" ? (
                           <div className="grid grid-cols-3 gap-4">
                             <div className="col-span-2">
@@ -107,7 +110,7 @@ export function Navbar() {
                                     href={cat.href}
                                     className="flex items-start gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
                                   >
-                                    <div className="w-10 h-10 rounded-lg bg-[#8B3A3A]/10 flex items-center justify-center text-[#8B3A3A] shrink-0">
+                                    <div className="w-10 h-10 rounded-lg bg-superweld-primary/10 flex items-center justify-center text-superweld-primary shrink-0">
                                       <cat.icon className="w-5 h-5" />
                                     </div>
                                     <div>
@@ -118,11 +121,11 @@ export function Navbar() {
                                 ))}
                               </div>
                             </div>
-                            <div className="border-l border-[#EDEDED] pl-4">
+                            <div className="border-l border-superweld-border pl-4">
                               <h4 className="text-sm font-semibold text-gray-900 mb-4 uppercase tracking-wider">Featured</h4>
-                              <Link href="/products" className="block p-3 rounded-lg bg-[#8B3A3A]/5 hover:bg-[#8B3A3A]/10 transition-colors">
-                                <div className="font-medium text-[#8B3A3A]">View All Products</div>
-                                <div className="text-xs text-gray-600 mt-1">5000+ items in catalog</div>
+                              <Link href="/products" className="block p-3 rounded-lg bg-superweld-primary/5 hover:bg-superweld-primary/10 transition-colors">
+                                <div className="font-medium text-superweld-primary">View All Products</div>
+                                <div className="text-xs text-gray-600 mt-1">100+ items in catalog</div>
                               </Link>
                             </div>
                           </div>
@@ -134,7 +137,7 @@ export function Navbar() {
                                 href={ind.href}
                                 className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
                               >
-                                <Factory className="w-5 h-5 text-[#8B3A3A]" />
+                                <Factory className="w-5 h-5 text-superweld-primary" />
                                 <span className="font-medium text-gray-900">{ind.name}</span>
                               </Link>
                             ))}
@@ -151,7 +154,7 @@ export function Navbar() {
             <div className="hidden lg:flex items-center gap-4">
               <a href="tel:07942718067" className={cn(
                 "flex items-center gap-2 text-sm font-medium",
-                isScrolled ? "text-gray-700" : "text-white"
+                showLight ? "text-gray-700" : "text-white"
               )}>
                 <Phone className="w-4 h-4" />
                 <span className="hidden xl:inline">07942718067</span>
@@ -160,7 +163,7 @@ export function Navbar() {
                 <Button
                   variant="default"
                   size="default"
-                  className="font-medium bg-[#8B3A3A] hover:bg-[#7A2D2D] text-white"
+                  className="font-medium bg-superweld-primary hover:bg-superweld-primaryHover text-white"
                 >
                   Get Quote
                 </Button>
@@ -172,7 +175,7 @@ export function Navbar() {
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className={cn(
                 "lg:hidden w-10 h-10 flex items-center justify-center",
-                isScrolled ? "text-gray-900" : "text-white"
+                showLight ? "text-gray-900" : "text-white"
               )}
             >
               {isMobileMenuOpen ? (
@@ -206,7 +209,7 @@ export function Navbar() {
                   <Link
                     href={link.href}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="text-2xl font-bold text-gray-900 hover:text-[#8B3A3A] transition-colors"
+                    className="text-2xl font-bold text-gray-900 hover:text-superweld-primary transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -216,9 +219,9 @@ export function Navbar() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: navLinks.length * 0.1 }}
-                className="w-full pt-6 border-t border-[#EDEDED]"
+                className="w-full pt-6 border-t border-superweld-border"
               >
-                <Button variant="default" size="lg" className="w-full bg-[#8B3A3A] hover:bg-[#7A2D2D] text-white">
+                <Button variant="default" size="lg" className="w-full bg-superweld-primary hover:bg-superweld-primaryHover text-white">
                   Get Quote
                 </Button>
               </motion.div>

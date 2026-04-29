@@ -18,7 +18,7 @@ function ImageReveal({ src, alt, className = "" }: { src: string; alt: string; c
         initial={{ x: 0 }}
         animate={isInView ? { x: "100%" } : { x: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute inset-0 bg-[#8B3A3A] z-10"
+        className="absolute inset-0 bg-superweld-primary z-10"
       />
       <Image src={src} alt={alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
     </div>
@@ -90,13 +90,13 @@ function HeroParallaxSection() {
 
       <motion.div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12" style={{ opacity }}>
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#8B3A3A]/90 rounded-full text-white text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-superweld-primary/90 rounded-full text-white text-sm font-medium mb-6">
             <Star className="w-4 h-4" />
             Our Services
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
             Comprehensive
-            <span className="text-[#8B3A3A]"> Industrial</span>
+            <span className="text-superweld-primary"> Industrial</span>
             <br />Support Services
           </h1>
           <p className="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
@@ -179,7 +179,7 @@ export default function ServicesPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+              <span className="text-superweld-primary text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                 What We Offer
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
@@ -198,19 +198,19 @@ export default function ServicesPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white border border-[#EDEDED] rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
+                  className="bg-white border border-superweld-border rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
                 >
-                  <div className="relative aspect-video overflow-hidden">
+                  <div className="relative aspect-video overflow-hidden group">
                     <Image
                       src={service.image}
                       alt={service.title}
                       fill
-                      className="object-cover"
+                      className="object-cover transition-transform duration-500 group-hover:scale-110"
                       sizes="(max-width: 768px) 100vw, 33vw"
                     />
                   </div>
                   <div className="p-6">
-                    <div className="w-12 h-12 rounded-xl bg-[#8B3A3A] flex items-center justify-center text-white mb-4">
+                    <div className="w-12 h-12 rounded-xl bg-superweld-primary flex items-center justify-center text-white mb-4">
                       <service.icon className="w-6 h-6" />
                     </div>
                     <h3 className="text-xl font-bold text-gray-900 mb-2">{service.title}</h3>
@@ -224,7 +224,7 @@ export default function ServicesPage() {
       </ParallaxSection>
 
       {/* Capabilities Section - WITH Parallax */}
-      <ParallaxSection className="py-24 lg:py-40 bg-[#F5F5F5]">
+      <ParallaxSection className="py-24 lg:py-40 bg-superweld-bgAlt">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -234,7 +234,7 @@ export default function ServicesPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+                <span className="text-superweld-primary text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                   Our Capabilities
                 </span>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -247,14 +247,14 @@ export default function ServicesPage() {
                 <ul className="space-y-4 mb-8">
                   {capabilities.map((cap, index) => (
                     <li key={index} className="flex items-center gap-3 text-gray-700">
-                      <span className="w-2 h-2 rounded-full bg-[#8B3A3A]" />
+                      <span className="w-2 h-2 rounded-full bg-superweld-primary" />
                       {cap.text}
                     </li>
                   ))}
                 </ul>
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-[#8B3A3A] text-white font-medium rounded-lg hover:bg-[#7A2D2D] transition-colors group"
+                  className="inline-flex items-center gap-2 px-6 py-3 bg-superweld-primary text-white font-medium rounded-lg hover:bg-superweld-primaryHover transition-colors group"
                 >
                   Request Quote
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -268,12 +268,12 @@ export default function ServicesPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: 0.2 }}
               >
-                <div className="relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl">
+                <div className="relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl group">
                   <Image
                     src="/images/images/Service Right.jpg"
                     alt="Our Capabilities"
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                 </div>
@@ -291,6 +291,8 @@ export default function ServicesPage() {
           alt="Our process background"
           opacity={0.85}
         />
+        {/* Dark Blue Overlay for better text readability */}
+        <div className="absolute inset-0 bg-superweld-primary/80 z-5" />
 
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
           <div className="max-w-7xl mx-auto">
@@ -327,7 +329,7 @@ export default function ServicesPage() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="text-center"
                 >
-                  <div className="w-16 h-16 rounded-full bg-[#8B3A3A] flex items-center justify-center text-white mx-auto mb-4">
+                  <div className="w-16 h-16 rounded-full bg-superweld-primary flex items-center justify-center text-white mx-auto mb-4">
                     <item.icon className="w-8 h-8" />
                   </div>
                   <div className="text-4xl font-bold text-white/20 mb-2">{item.step}</div>
@@ -341,7 +343,7 @@ export default function ServicesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 lg:py-40 bg-[#8B3A3A] text-white">
+      <section className="py-24 lg:py-40 bg-superweld-primary text-white">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div

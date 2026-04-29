@@ -51,21 +51,6 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
 
   return (
     <>
-      {/* WooCommerce Style Breadcrumb */}
-      <motion.nav
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="flex items-center gap-2 text-sm text-superweld-textMuted mb-6"
-      >
-        <Link href="/" className="hover:text-superweld-text transition-colors">Home</Link>
-        <ChevronRight className="w-4 h-4" />
-        <Link href="/products" className="hover:text-superweld-text transition-colors">Products</Link>
-        <ChevronRight className="w-4 h-4" />
-        <Link href={`/products/${category.slug}`} className="hover:text-superweld-text transition-colors">{category.name}</Link>
-        <ChevronRight className="w-4 h-4" />
-        <span className="text-superweld-text">{product.name}</span>
-      </motion.nav>
-
       {/* WooCommerce Style Product Layout - Two Column */}
       <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 mb-16">
         
@@ -116,7 +101,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
               </div>
             )}
             {/* Variant Badge */}
-            <span className="absolute top-4 left-4 px-3 py-1.5 bg-superweld-orange text-superweld-text text-sm font-bold rounded-lg z-10">
+            <span className="absolute top-4 left-4 px-3 py-1.5 bg-superweld-primary text-white text-sm font-bold rounded-lg z-10">
               {product.variant}
             </span>
             {/* Wishlist & Share */}
@@ -131,7 +116,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
             {/* Play indicator for video */}
             {currentMedia?.type === "video" && (
               <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-20 h-20 bg-superweld-orange/90 rounded-full flex items-center justify-center">
+                <div className="w-20 h-20 bg-superweld-primary/90 rounded-full flex items-center justify-center">
                   <Play className="w-10 h-10 text-superweld-text fill-white ml-1" />
                 </div>
               </div>
@@ -152,7 +137,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
                     onClick={() => handleMediaClick(index, "image")}
                     className={`shrink-0 w-20 h-20 bg-superweld-light border-2 rounded-xl overflow-hidden transition-all ${
                       !isVideo && selectedMediaIndex === index 
-                        ? "border-superweld-orange ring-2 ring-superweld-orange/30" 
+                        ? "border-superweld-primary ring-2 ring-superweld-primary/30" 
                         : "border-superweld-border hover:border-superweld-border"
                     }`}
                   >
@@ -169,7 +154,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
                       onClick={() => handleMediaClick(mediaIndex, "video")}
                       className={`shrink-0 w-20 h-20 bg-superweld-light border-2 rounded-xl overflow-hidden relative transition-all ${
                         isVideo && selectedMediaIndex === mediaIndex 
-                          ? "border-superweld-orange ring-2 ring-superweld-orange/30" 
+                          ? "border-superweld-primary ring-2 ring-superweld-primary/30" 
                           : "border-superweld-border hover:border-superweld-border"
                       }`}
                     >
@@ -178,7 +163,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
                       </video>
                       {/* Play icon overlay */}
                       <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-8 h-8 bg-superweld-orange/90 rounded-full flex items-center justify-center">
+                        <div className="w-8 h-8 bg-superweld-primary/90 rounded-full flex items-center justify-center">
                           <Play className="w-4 h-4 text-superweld-text fill-white ml-0.5" />
                         </div>
                       </div>
@@ -195,7 +180,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
                       onClick={() => handleMediaClick(mediaIndex, "poster")}
                       className={`shrink-0 w-20 h-20 bg-superweld-light border-2 rounded-xl overflow-hidden transition-all ${
                         selectedMediaIndex === mediaIndex
-                          ? "border-superweld-orange ring-2 ring-superweld-orange/30"
+                          ? "border-superweld-primary ring-2 ring-superweld-primary/30"
                           : "border-superweld-border hover:border-superweld-border"
                       }`}
                     >
@@ -222,7 +207,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
               <span className="px-3 py-1 bg-superweld-bg/10 text-superweld-textMuted text-xs rounded-full">
                 {product.subCategory}
               </span>
-              <span className="px-3 py-1 bg-superweld-orange/20 text-superweld-orange text-xs rounded-full">
+              <span className="px-3 py-1 bg-superweld-primary/20 text-superweld-primary text-xs rounded-full">
                 {product.productLine}
               </span>
             </div>
@@ -250,14 +235,14 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
           <div className="flex flex-col sm:flex-row gap-4 pt-4">
             <button
               onClick={() => setShowRequestForm(true)}
-              className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-[#8B3A3A] text-white font-bold rounded-xl hover:bg-[#7A2D2D] transition-all shadow-lg shadow-[#8B3A3A]/20 cursor-pointer"
+              className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-superweld-primary text-white font-bold rounded-xl hover:bg-superweld-primaryHover transition-all shadow-lg shadow-superweld-primary/20 cursor-pointer"
             >
               <Quote className="w-5 h-5" />
               Request Quote
             </button>
             <a
               href="tel:07942718067"
-              className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-white hover:bg-gray-50 text-[#8B3A3A] font-bold rounded-xl border border-[#8B3A3A] transition-all"
+              className="flex-1 flex items-center justify-center gap-2 px-6 py-4 bg-white hover:bg-gray-50 text-superweld-primary font-bold rounded-xl border border-superweld-primary transition-all"
             >
               <PhoneCall className="w-5 h-5" />
               Request Callback
@@ -275,7 +260,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
               <span className="text-xs text-superweld-textMuted">Fast<br/>Delivery</span>
             </div>
             <div className="flex flex-col items-center text-center p-3 bg-superweld-bg/5 rounded-xl">
-              <BadgeCheck className="w-6 h-6 text-superweld-orange mb-2" />
+              <BadgeCheck className="w-6 h-6 text-superweld-primary mb-2" />
               <span className="text-xs text-superweld-textMuted">Certified<br/>Products</span>
             </div>
           </div>
@@ -283,7 +268,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
           {/* Meta Info */}
           <div className="flex items-center gap-4 pt-4 border-t border-superweld-border text-sm">
             <span className="text-superweld-textMuted">Category:</span>
-            <Link href={`/products/${category.slug}`} className="text-superweld-orange hover:underline">
+            <Link href={`/products/${category.slug}`} className="text-superweld-primary hover:underline">
               {category.name}
             </Link>
           </div>
@@ -303,7 +288,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
               onClick={() => setActiveTab("description")}
               className={`pb-3 sm:pb-4 px-2 sm:px-0 font-semibold border-b-2 transition-colors whitespace-nowrap text-sm sm:text-base ${
                 activeTab === "description" 
-                  ? "text-superweld-orange border-superweld-orange" 
+                  ? "text-superweld-primary border-superweld-primary" 
                   : "text-superweld-textMuted hover:text-superweld-text border-transparent"
               }`}
             >
@@ -313,7 +298,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
               onClick={() => setActiveTab("specifications")}
               className={`pb-3 sm:pb-4 px-2 sm:px-0 font-semibold border-b-2 transition-colors whitespace-nowrap text-sm sm:text-base ${
                 activeTab === "specifications" 
-                  ? "text-superweld-orange border-superweld-orange" 
+                  ? "text-superweld-primary border-superweld-primary" 
                   : "text-superweld-textMuted hover:text-superweld-text border-transparent"
               }`}
             >
@@ -323,7 +308,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
               onClick={() => setActiveTab("applications")}
               className={`pb-3 sm:pb-4 px-2 sm:px-0 font-semibold border-b-2 transition-colors whitespace-nowrap text-sm sm:text-base ${
                 activeTab === "applications" 
-                  ? "text-superweld-orange border-superweld-orange" 
+                  ? "text-superweld-primary border-superweld-primary" 
                   : "text-superweld-textMuted hover:text-superweld-text border-transparent"
               }`}
             >
@@ -340,13 +325,13 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
               <>
                 <div>
                   <h3 className="text-xl font-bold text-superweld-text mb-4 flex items-center gap-2">
-                    <Check className="w-5 h-5 text-superweld-orange" />
+                    <Check className="w-5 h-5 text-superweld-primary" />
                     Key Features
                   </h3>
                   <ul className="grid sm:grid-cols-2 gap-3">
                     {product.keyFeatures.map((feature, index) => (
                       <li key={index} className="flex items-start gap-3 p-3 bg-superweld-light border border-superweld-border rounded-xl">
-                        <Star className="w-4 h-4 text-superweld-orange mt-0.5 shrink-0" />
+                        <Star className="w-4 h-4 text-superweld-primary mt-0.5 shrink-0" />
                         <span className="text-superweld-text text-sm">{feature}</span>
                       </li>
                     ))}
@@ -368,7 +353,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
             {activeTab === "specifications" && (
               <div className="bg-superweld-light border border-superweld-border rounded-2xl p-4 sm:p-6">
                 <h3 className="text-lg sm:text-xl font-bold text-superweld-text mb-4 sm:mb-6 flex items-center gap-2">
-                  <Check className="w-5 h-5 text-superweld-orange" />
+                  <Check className="w-5 h-5 text-superweld-primary" />
                   Product Specifications
                 </h3>
                 <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 w-full">
@@ -396,7 +381,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
                     </tr>
                     <tr className="border-b border-superweld-border">
                       <td className="py-3 text-superweld-textMuted">Variant</td>
-                      <td className="py-3 text-superweld-orange font-medium">{product.variant}</td>
+                      <td className="py-3 text-superweld-primary font-medium">{product.variant}</td>
                     </tr>
                     <tr className="border-b border-superweld-border">
                       <td className="py-3 text-superweld-textMuted">Availability</td>
@@ -415,13 +400,13 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
             {activeTab === "applications" && (
               <div className="bg-superweld-light border border-superweld-border rounded-2xl p-6">
                 <h3 className="text-xl font-bold text-superweld-text mb-4 flex items-center gap-2">
-                  <FileText className="w-5 h-5 text-superweld-orange" />
+                  <FileText className="w-5 h-5 text-superweld-primary" />
                   Typical Applications
                 </h3>
                 <div className="grid sm:grid-cols-2 gap-4">
                   {product.typicalApplications.map((app, index) => (
                     <div key={index} className="flex items-center gap-3 p-4 bg-superweld-bg/5 rounded-xl border border-superweld-border">
-                      <Star className="w-4 h-4 text-superweld-orange shrink-0" />
+                      <Star className="w-4 h-4 text-superweld-primary shrink-0" />
                       <span className="text-superweld-text">{app}</span>
                     </div>
                   ))}
@@ -447,7 +432,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
                 {product.typicalApplications.map((app, index) => (
                   <span 
                     key={index}
-                    className="px-3 py-1.5 bg-superweld-bg/10 hover:bg-superweld-orange/20 border border-superweld-border hover:border-superweld-orange/30 rounded-lg text-superweld-text text-sm transition-all"
+                    className="px-3 py-1.5 bg-superweld-bg/10 hover:bg-superweld-primary/20 border border-superweld-border hover:border-superweld-primary/30 rounded-lg text-superweld-text text-sm transition-all"
                   >
                     {app}
                   </span>
@@ -469,7 +454,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
                     </tr>
                     <tr className="flex justify-between py-2">
                       <td className="text-superweld-textMuted">Variant</td>
-                      <td className="text-superweld-orange">{product.variant}</td>
+                      <td className="text-superweld-primary">{product.variant}</td>
                     </tr>
                   </tbody>
                 </table>
@@ -494,7 +479,7 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
                 <Link
                   key={relatedProduct.id}
                   href={`/products/${category.slug}/${relatedProduct.id}`}
-                  className="group bg-superweld-light border border-superweld-border rounded-xl overflow-hidden hover:border-superweld-orange/50 transition-all"
+                  className="group bg-superweld-light border border-superweld-border rounded-xl overflow-hidden hover:border-superweld-primary/50 transition-all"
                 >
                   {/* Product Image */}
                   <div className="aspect-square bg-superweld-bg/5 relative overflow-hidden">
@@ -509,18 +494,18 @@ export function ProductDetailClient({ product, category, relatedProducts }: Prod
                         <Package className="w-10 h-10 text-superweld-text/20" />
                       </div>
                     )}
-                    <span className="absolute top-2 left-2 px-2 py-1 bg-superweld-orange text-superweld-text text-xs font-bold rounded">
+                    <span className="absolute top-2 left-2 px-2 py-1 bg-superweld-primary text-white text-xs font-bold rounded">
                       {relatedProduct.variant}
                     </span>
                   </div>
                   {/* Product Info */}
                   <div className="p-3 sm:p-4">
                     <p className="text-[10px] sm:text-xs text-superweld-textMuted mb-1">{relatedProduct.subCategory}</p>
-                    <h3 className="font-semibold text-superweld-text group-hover:text-superweld-orange transition-colors text-xs sm:text-sm line-clamp-2 mb-1 sm:mb-2">
+                    <h3 className="font-semibold text-superweld-text group-hover:text-superweld-primary transition-colors text-xs sm:text-sm line-clamp-2 mb-1 sm:mb-2">
                       {relatedProduct.name}
                     </h3>
                     <p className="text-[10px] sm:text-xs text-superweld-textMuted line-clamp-1 mb-2 sm:mb-3">{relatedProduct.availability}</p>
-                    <span className="inline-flex items-center gap-1 text-superweld-orange text-xs sm:text-sm font-medium">
+                    <span className="inline-flex items-center gap-1 text-superweld-primary text-xs sm:text-sm font-medium">
                       View Details <ExternalLink className="w-3 h-3" />
                     </span>
                   </div>

@@ -31,7 +31,7 @@ function ImageReveal({ src, alt, className = "" }: { src: string; alt: string; c
         initial={{ x: 0 }}
         animate={isInView ? { x: "100%" } : { x: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute inset-0 bg-[#8B3A3A] z-10"
+        className="absolute inset-0 bg-superweld-primary z-10"
       />
       <Image src={src} alt={alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
     </div>
@@ -78,12 +78,12 @@ function HeroParallaxSection() {
 
       <motion.div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12" style={{ opacity }}>
         <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#8B3A3A]/90 rounded-full text-white text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-superweld-primary/90 rounded-full text-white text-sm font-medium mb-6">
             <Star className="w-4 h-4" />
             Contact Us
           </div>
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold text-white mb-6">
-            Get in <span className="text-[#8B3A3A]">Touch</span>
+            Get in <span className="text-superweld-primary">Touch</span>
           </h1>
           <p className="text-lg sm:text-xl text-gray-200 max-w-2xl leading-relaxed">
             Contact us for bulk requirements, distribution inquiries, and partnerships. 
@@ -142,7 +142,7 @@ export default function ContactPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
-                className="bg-white border border-[#EDEDED] rounded-2xl p-8 lg:p-10 h-fit shadow-lg"
+                className="bg-white border border-superweld-border rounded-2xl p-8 lg:p-10 h-fit shadow-lg"
               >
                 <h2 className="text-2xl font-bold text-gray-900 mb-2">
                   Send Us a Message
@@ -158,7 +158,7 @@ export default function ContactPage() {
                       </label>
                       <input
                         type="text"
-                        className="w-full px-4 py-3 bg-white border border-[#EDEDED] rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#8B3A3A] transition-colors"
+                        className="w-full px-4 py-3 bg-white border border-superweld-border rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-superweld-primary transition-colors"
                         placeholder="John"
                       />
                     </div>
@@ -168,7 +168,7 @@ export default function ContactPage() {
                       </label>
                       <input
                         type="text"
-                        className="w-full px-4 py-3 bg-white border border-[#EDEDED] rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#8B3A3A] transition-colors"
+                        className="w-full px-4 py-3 bg-white border border-superweld-border rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-superweld-primary transition-colors"
                         placeholder="Doe"
                       />
                     </div>
@@ -179,7 +179,7 @@ export default function ContactPage() {
                     </label>
                     <input
                       type="email"
-                      className="w-full px-4 py-3 bg-white border border-[#EDEDED] rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#8B3A3A] transition-colors"
+                      className="w-full px-4 py-3 bg-white border border-superweld-border rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-superweld-primary transition-colors"
                       placeholder="john@example.com"
                     />
                   </div>
@@ -189,7 +189,7 @@ export default function ContactPage() {
                     </label>
                     <input
                       type="tel"
-                      className="w-full px-4 py-3 bg-white border border-[#EDEDED] rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#8B3A3A] transition-colors"
+                      className="w-full px-4 py-3 bg-white border border-superweld-border rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-superweld-primary transition-colors"
                       placeholder="+1 (234) 567-890"
                     />
                   </div>
@@ -199,11 +199,11 @@ export default function ContactPage() {
                     </label>
                     <textarea
                       rows={4}
-                      className="w-full px-4 py-3 bg-white border border-[#EDEDED] rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-[#8B3A3A] transition-colors resize-none"
+                      className="w-full px-4 py-3 bg-white border border-superweld-border rounded-lg text-gray-900 placeholder:text-gray-400 focus:outline-none focus:border-superweld-primary transition-colors resize-none"
                       placeholder="Tell us about your requirements..."
                     />
                   </div>
-                  <Button size="lg" className="w-full bg-[#8B3A3A] hover:bg-[#7A2D2D] group">
+                  <Button size="lg" className="w-full bg-superweld-primary hover:bg-superweld-primaryHover group">
                     <Send className="w-4 h-4 mr-2" />
                     Send Message
                     <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -235,7 +235,7 @@ export default function ContactPage() {
                 <div className="space-y-6">
                   {contactInfo.map((item) => (
                     <div key={item.title} className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-[#8B3A3A]/10 flex items-center justify-center text-[#8B3A3A] shrink-0">
+                      <div className="w-12 h-12 rounded-xl bg-superweld-primary/10 flex items-center justify-center text-superweld-primary shrink-0">
                         <item.icon className="w-6 h-6" />
                       </div>
                       <div>
@@ -249,28 +249,28 @@ export default function ContactPage() {
                 </div>
 
                 {/* Quick Actions */}
-                <div className="pt-6 border-t border-[#EDEDED]">
+                <div className="pt-6 border-t border-superweld-border">
                   <h4 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h4>
                   <div className="flex flex-wrap gap-3">
                     <a
                       href="https://maps.google.com/?q=Plot+No.S/P-105,S-Block,MIDC+Bhosari,Pune"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 px-4 py-2 bg-[#8B3A3A]/10 text-[#8B3A3A] text-sm rounded-lg hover:bg-[#8B3A3A] hover:text-white transition-colors"
+                      className="flex items-center gap-2 px-4 py-2 bg-superweld-primary/10 text-superweld-primary text-sm rounded-lg hover:bg-superweld-primary hover:text-white transition-colors"
                     >
                       <Navigation className="w-4 h-4" />
                       Get Directions
                     </a>
                     <a
                       href="mailto:info@superweldsources.com"
-                      className="flex items-center gap-2 px-4 py-2 bg-[#8B3A3A]/10 text-[#8B3A3A] text-sm rounded-lg hover:bg-[#8B3A3A] hover:text-white transition-colors"
+                      className="flex items-center gap-2 px-4 py-2 bg-superweld-primary/10 text-superweld-primary text-sm rounded-lg hover:bg-superweld-primary hover:text-white transition-colors"
                     >
                       <Mail className="w-4 h-4" />
                       Send Email
                     </a>
                     <a
                       href="tel:07942718067"
-                      className="flex items-center gap-2 px-4 py-2 bg-[#8B3A3A]/10 text-[#8B3A3A] text-sm rounded-lg hover:bg-[#8B3A3A] hover:text-white transition-colors"
+                      className="flex items-center gap-2 px-4 py-2 bg-superweld-primary/10 text-superweld-primary text-sm rounded-lg hover:bg-superweld-primary hover:text-white transition-colors"
                     >
                       <Phone className="w-4 h-4" />
                       Call Now
@@ -293,14 +293,14 @@ export default function ContactPage() {
       </ParallaxSection>
 
       {/* Full Width Google Map */}
-      <section className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 py-20 bg-[#F5F5F5]">
+      <section className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 py-20 bg-superweld-bgAlt">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="aspect-21/9 lg:aspect-3/1 bg-white border border-[#EDEDED] rounded-2xl overflow-hidden shadow-lg"
+            className="aspect-21/9 lg:aspect-3/1 bg-white border border-superweld-border rounded-2xl overflow-hidden shadow-lg"
           >
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3781.789!2d73.825!3d18.613!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2sSuperweld+Sources+Bhosari!5e0!3m2!1sen!2sin!4v1234567890"
@@ -328,7 +328,7 @@ export default function ContactPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+                <span className="text-superweld-primary text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                   Support
                 </span>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -363,10 +363,10 @@ export default function ContactPage() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1 }}
-                      className="p-5 bg-white border border-[#EDEDED] rounded-xl hover:shadow-md transition-shadow"
+                      className="p-5 bg-white border border-superweld-border rounded-xl hover:shadow-md transition-shadow"
                     >
                       <div className="flex items-start gap-3">
-                        <HelpCircle className="w-5 h-5 text-[#8B3A3A] shrink-0 mt-0.5" />
+                        <HelpCircle className="w-5 h-5 text-superweld-primary shrink-0 mt-0.5" />
                         <div>
                           <h3 className="text-base font-semibold text-gray-900 mb-1">
                             {faq.q}
@@ -403,7 +403,7 @@ export default function ContactPage() {
       </ParallaxSection>
 
       {/* CTA Section */}
-      <section className="py-24 lg:py-40 bg-[#8B3A3A] text-white">
+      <section className="py-24 lg:py-40 bg-superweld-primary text-white">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div

@@ -59,7 +59,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return (
     <main className="min-h-screen bg-superweld-bg">
-      <Navbar />
+      <Navbar forceLight />
 
       {/* Breadcrumb */}
       <div className="pt-24 pb-6 border-b border-superweld-border">

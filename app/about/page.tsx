@@ -26,7 +26,7 @@ function ImageReveal({ src, alt, className = "" }: { src: string; alt: string; c
         initial={{ x: 0 }}
         animate={isInView ? { x: "100%" } : { x: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute inset-0 bg-[#8B3A3A] z-10"
+        className="absolute inset-0 bg-superweld-primary z-10"
       />
       <Image src={src} alt={alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
     </div>
@@ -128,7 +128,7 @@ function AnimatedCounter({ value, suffix, label, index, variant = "card" }: { va
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className="bg-white rounded-2xl p-6 shadow-xl text-center"
     >
-      <div className="text-3xl lg:text-4xl font-bold text-[#8B3A3A] mb-1">
+      <div className="text-3xl lg:text-4xl font-bold text-superweld-primary mb-1">
         {count}{suffix}
       </div>
       <div className="text-sm text-gray-600">{label}</div>
@@ -170,12 +170,12 @@ function HeroParallaxSection() {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+              <span className="text-superweld-primary text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                 About Us
               </span>
               <h1 className="text-5xl sm:text-6xl lg:text-8xl font-bold leading-tight mb-6">
                 <span className="text-white">SUPER</span>
-                <span className="text-[#8B3A3A]">WELD</span>
+                <span className="text-superweld-primary">WELD</span>
               </h1>
               <p className="text-gray-200 text-lg leading-relaxed mb-6">
                 {COMPANY_INFO.description}
@@ -223,7 +223,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6 }}
               >
-                <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+                <span className="text-superweld-primary text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                   Who We Are
                 </span>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -238,14 +238,14 @@ export default function AboutPage() {
                 <div className="flex flex-wrap gap-4">
                   <Link
                     href="/products"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-[#8B3A3A] text-white font-medium rounded-lg hover:bg-[#7A2D2D] transition-all duration-300"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-superweld-primary text-white font-medium rounded-lg hover:bg-superweld-primaryHover transition-all duration-300"
                   >
                     <Package className="w-5 h-5" />
                     Our Products
                   </Link>
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 font-medium rounded-lg hover:bg-gray-50 transition-colors border border-[#EDEDED]"
+                    className="inline-flex items-center gap-2 px-6 py-3 bg-white text-gray-900 font-medium rounded-lg hover:bg-gray-50 transition-colors border border-superweld-border"
                   >
                     Contact Us
                   </Link>
@@ -260,12 +260,12 @@ export default function AboutPage() {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="relative"
               >
-                <div className="relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl">
+                <div className="relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl group">
                   <Image
                     src="https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&q=80"
                     alt="Welding workshop with professional equipment"
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                 </div>
@@ -278,8 +278,8 @@ export default function AboutPage() {
                   className="absolute -bottom-6 -left-6 bg-white rounded-2xl p-4 shadow-xl"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-xl bg-[#8B3A3A]/10 flex items-center justify-center">
-                      <Award className="w-6 h-6 text-[#8B3A3A]" />
+                    <div className="w-12 h-12 rounded-xl bg-superweld-primary/10 flex items-center justify-center">
+                      <Award className="w-6 h-6 text-superweld-primary" />
                     </div>
                     <div>
                       <div className="font-bold text-gray-900">25+ Years</div>
@@ -294,7 +294,7 @@ export default function AboutPage() {
       </ParallaxSection>
 
       {/* Vision & Mission - Image LEFT, Content RIGHT */}
-      <ParallaxSection className="py-24 lg:py-40 bg-[#F5F5F5]">
+      <ParallaxSection className="py-24 lg:py-40 bg-superweld-bgAlt">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -306,12 +306,12 @@ export default function AboutPage() {
                 transition={{ duration: 0.8 }}
                 className="relative order-2 lg:order-1"
               >
-                <div className="relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl">
+                <div className="relative aspect-4/3 rounded-3xl overflow-hidden shadow-2xl group">
                   <Image
                     src="/images/images/Welding about 1.jpg"
                     alt="Heavy industrial workers welding"
                     fill
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
                     sizes="(max-width: 1024px) 100vw, 50vw"
                   />
                 </div>
@@ -325,7 +325,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="order-1 lg:order-2"
               >
-                <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+                <span className="text-superweld-primary text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                   Our Direction
                 </span>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -338,10 +338,10 @@ export default function AboutPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                    className="bg-white border border-[#EDEDED] rounded-xl p-6"
+                    className="bg-white border border-superweld-border rounded-xl p-6"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-[#8B3A3A] flex items-center justify-center text-white shrink-0">
+                      <div className="w-12 h-12 rounded-xl bg-superweld-primary flex items-center justify-center text-white shrink-0">
                         <TrendingUp className="w-6 h-6" />
                       </div>
                       <div>
@@ -356,10 +356,10 @@ export default function AboutPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.2 }}
-                    className="bg-white border border-[#EDEDED] rounded-xl p-6"
+                    className="bg-white border border-superweld-border rounded-xl p-6"
                   >
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 rounded-xl bg-[#8B3A3A] flex items-center justify-center text-white shrink-0">
+                      <div className="w-12 h-12 rounded-xl bg-superweld-primary flex items-center justify-center text-white shrink-0">
                         <Factory className="w-6 h-6" />
                       </div>
                       <div>
@@ -421,7 +421,7 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="bg-white/95 backdrop-blur-sm rounded-xl p-6 hover:shadow-xl transition-shadow"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-[#8B3A3A] flex items-center justify-center text-white mb-4">
+                  <div className="w-12 h-12 rounded-xl bg-superweld-primary flex items-center justify-center text-white mb-4">
                     <item.icon className="w-6 h-6" />
                   </div>
                   <h3 className="text-lg font-bold text-gray-900 mb-2">{item.title}</h3>
@@ -434,7 +434,7 @@ export default function AboutPage() {
       </section>
 
       {/* Innovation Section */}
-      <ParallaxSection className="py-24 lg:py-40 bg-[#F5F5F5]">
+      <ParallaxSection className="py-24 lg:py-40 bg-superweld-bgAlt">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -463,7 +463,7 @@ export default function AboutPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+                <span className="text-superweld-primary text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                   Innovation
                 </span>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -475,12 +475,12 @@ export default function AboutPage() {
                   applications, we deliver solutions that enhance productivity through reliable distribution.
                 </p>
                 <div className="grid grid-cols-2 gap-4">
-                  <div className="p-4 bg-white rounded-xl border border-[#EDEDED]">
-                    <Factory className="w-8 h-8 text-[#8B3A3A] mb-2" />
+                  <div className="p-4 bg-white rounded-xl border border-superweld-border">
+                    <Factory className="w-8 h-8 text-superweld-primary mb-2" />
                     <h4 className="font-semibold text-gray-900">Industrial Grade</h4>
                   </div>
-                  <div className="p-4 bg-white rounded-xl border border-[#EDEDED]">
-                    <Zap className="w-8 h-8 text-[#8B3A3A] mb-2" />
+                  <div className="p-4 bg-white rounded-xl border border-superweld-border">
+                    <Zap className="w-8 h-8 text-superweld-primary mb-2" />
                     <h4 className="font-semibold text-gray-900">High Performance</h4>
                   </div>
                 </div>
@@ -534,12 +534,12 @@ export default function AboutPage() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="flex flex-col items-center text-center p-6 bg-white/95 backdrop-blur-sm border border-white/20 rounded-xl hover:border-[#8B3A3A]/50 hover:shadow-lg transition-all group cursor-pointer"
+                  className="flex flex-col items-center text-center p-6 bg-white/95 backdrop-blur-sm border border-white/20 rounded-xl hover:border-superweld-primary/50 hover:shadow-lg transition-all group cursor-pointer"
                 >
-                  <div className="w-16 h-16 rounded-full bg-[#8B3A3A]/10 flex items-center justify-center text-[#8B3A3A] mb-4 group-hover:bg-[#8B3A3A] group-hover:text-white transition-all duration-300">
+                  <div className="w-16 h-16 rounded-full bg-superweld-primary/10 flex items-center justify-center text-superweld-primary mb-4 group-hover:bg-superweld-primary group-hover:text-white transition-all duration-300">
                     <industry.icon className="w-8 h-8" />
                   </div>
-                  <h3 className="text-sm font-semibold text-gray-900 group-hover:text-[#8B3A3A] transition-colors">
+                  <h3 className="text-sm font-semibold text-gray-900 group-hover:text-superweld-primary transition-colors">
                     {industry.name}
                   </h3>
                 </motion.div>
@@ -550,7 +550,7 @@ export default function AboutPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-24 lg:py-40 bg-[#8B3A3A] text-white">
+      <section className="py-24 lg:py-40 bg-superweld-primary text-white">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
             <motion.div
@@ -585,7 +585,7 @@ export default function AboutPage() {
       </section>
 
       {/* Brands We Work With Section */}
-      <section className="py-16 lg:py-24 bg-[#F5F5F5] overflow-hidden">
+      <section className="py-16 lg:py-24 bg-superweld-bgAlt overflow-hidden">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
             <motion.div
@@ -595,7 +595,7 @@ export default function AboutPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+              <span className="text-superweld-primary text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                 Trusted Partners
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -609,8 +609,8 @@ export default function AboutPage() {
             {/* Auto-looping Marquee Carousel */}
             <div className="relative">
               {/* Gradient Masks */}
-              <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#F5F5F5] to-transparent z-10" />
-              <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#F5F5F5] to-transparent z-10" />
+              <div className="absolute left-0 top-0 bottom-0 w-20 bg-linear-to-r from-superweld-bgAlt to-transparent z-10" />
+              <div className="absolute right-0 top-0 bottom-0 w-20 bg-linear-to-l from-superweld-bgAlt to-transparent z-10" />
               
               {/* Scrolling Container */}
               <div className="flex overflow-hidden">
@@ -707,14 +707,14 @@ export default function AboutPage() {
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-[#8B3A3A] text-white font-semibold rounded-lg hover:bg-[#7A2D2D] transition-all duration-300"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-superweld-primary text-white font-semibold rounded-lg hover:bg-superweld-primaryHover transition-all duration-300"
                 >
                   <ArrowRight className="w-5 h-5" />
                   Start a Partnership
                 </Link>
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-50 transition-colors border border-[#EDEDED]"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-50 transition-colors border border-superweld-border"
                 >
                   Browse Products
                 </Link>

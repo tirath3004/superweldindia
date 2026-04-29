@@ -162,7 +162,7 @@ function ImageReveal({ src, alt, className = "" }: { src: string; alt: string; c
         initial={{ x: 0 }}
         animate={isInView ? { x: "100%" } : { x: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute inset-0 bg-[#8B3A3A] z-10"
+        className="absolute inset-0 bg-superweld-primary z-10"
       />
       <Image
         src={src}
@@ -314,7 +314,7 @@ function IndustryCard({ industry }: { industry: { id: string; name: string; desc
           </div>
           {/* Content always visible - flex grow to fill space */}
           <div className="p-6 bg-white flex-1 flex flex-col">
-            <div className="w-10 h-10 rounded-lg bg-[#8B3A3A]/10 flex items-center justify-center text-[#8B3A3A] mb-3">
+            <div className="w-10 h-10 rounded-lg bg-superweld-primary/10 flex items-center justify-center text-superweld-primary mb-3">
               <Factory className="w-5 h-5" />
             </div>
             <h3 className="text-lg font-bold text-gray-900 mb-2">{industry.name}</h3>
@@ -358,7 +358,7 @@ function HeroParallaxSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#8B3A3A]/90 rounded-full text-white text-sm font-medium mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-superweld-primary/90 rounded-full text-white text-sm font-medium mb-6">
               <Star className="w-4 h-4" />
               SuperWeld Sources Pvt Ltd
             </div>
@@ -376,7 +376,7 @@ function HeroParallaxSection() {
             <div className="flex flex-wrap gap-4 justify-center">
               <Link
                 href="/products"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#8B3A3A] text-white font-semibold rounded-lg hover:bg-[#7A2D2D] transition-all duration-300 shadow-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-superweld-primary text-white font-semibold rounded-lg hover:bg-superweld-primaryHover transition-all duration-300 shadow-lg"
               >
                 <Package className="w-5 h-5" />
                 Browse Products
@@ -404,7 +404,7 @@ function HeroParallaxSection() {
         >
           <path
             d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 85C1200 90 1320 90 1380 90L1440 90V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z"
-            fill="#F5F5F5"
+            fill="#F5F7FA"
           />
         </svg>
       </div>
@@ -423,7 +423,7 @@ export default function Home() {
       <HeroParallaxSection />
 
       {/* Product Categories Section - WITH Parallax */}
-      <ParallaxSection className="py-24 lg:py-40 bg-[#F5F5F5]">
+      <ParallaxSection className="py-24 lg:py-40 bg-superweld-bgAlt">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
             <motion.div
@@ -433,7 +433,7 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+              <span className="text-superweld-primary text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                 Our Catalog
               </span>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
@@ -458,7 +458,7 @@ export default function Home() {
                   >
                     <Link
                       href={`/products/${category.id}`}
-                      className="group block bg-white border border-[#EDEDED] rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500"
+                      className="group block bg-white border border-superweld-border rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500"
                     >
                       {/* Category Image */}
                       <div className="relative aspect-4/3 overflow-hidden">
@@ -471,10 +471,10 @@ export default function Home() {
                         />
                         <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/30 to-transparent" />
                         <div className="absolute bottom-0 left-0 right-0 p-6">
-                          <div className="w-12 h-12 rounded-xl bg-[#8B3A3A] flex items-center justify-center text-white mb-3">
+                          <div className="w-12 h-12 rounded-xl bg-superweld-primary flex items-center justify-center text-white mb-3">
                             <Icon className="w-6 h-6" />
                           </div>
-                          <h3 className="text-xl font-bold text-white group-hover:text-superweld-accent transition-colors">
+                          <h3 className="text-xl font-bold text-white group-hover:text-superweld-secondary transition-colors">
                             {category.name}
                           </h3>
                         </div>
@@ -499,7 +499,7 @@ export default function Home() {
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+              <span className="text-superweld-primary text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                 Industries Served
               </span>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
@@ -520,7 +520,7 @@ export default function Home() {
       </section>
 
       {/* Featured Products Section */}
-      <ParallaxSection className="py-24 lg:py-40 bg-[#F5F5F5]">
+      <ParallaxSection className="py-24 lg:py-40 bg-superweld-bgAlt">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
             <motion.div
@@ -530,7 +530,7 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="text-center mb-12"
             >
-              <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+              <span className="text-superweld-primary text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                 Featured Collection
               </span>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
@@ -546,8 +546,8 @@ export default function Home() {
                   onClick={() => setActiveTab(tab.id)}
                   className={`px-6 py-3 rounded-full text-sm font-medium transition-all ${
                     activeTab === tab.id
-                      ? "bg-[#8B3A3A] text-white"
-                      : "bg-white text-gray-600 hover:text-[#8B3A3A] hover:bg-gray-50 border border-[#EDEDED]"
+                      ? "bg-superweld-primary text-white"
+                      : "bg-white text-gray-600 hover:text-superweld-primary hover:bg-gray-50 border border-superweld-border"
                   }`}
                 >
                   {tab.name}
@@ -577,7 +577,7 @@ export default function Home() {
                 >
                   <Link href={`/products/${product.categoryId}/${product.id}`} className="block">
                     {/* Product Card - White background, border, shadow */}
-                    <div className="bg-white border border-[#EDEDED] rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
+                    <div className="bg-white border border-superweld-border rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500 hover:-translate-y-2">
                       <div className="relative aspect-4/3 overflow-hidden bg-gray-50 p-4">
                         <div className="relative w-full h-full">
                           <Image
@@ -588,16 +588,16 @@ export default function Home() {
                           />
                         </div>
                         <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <div className="w-10 h-10 rounded-full bg-[#8B3A3A] flex items-center justify-center">
+                          <div className="w-10 h-10 rounded-full bg-superweld-primary flex items-center justify-center">
                             <ArrowUpRight className="w-5 h-5 text-white" />
                           </div>
                         </div>
                       </div>
                       <div className="p-6">
-                        <p className="text-sm text-[#8B3A3A] font-medium mb-1">
+                        <p className="text-sm text-superweld-primary font-medium mb-1">
                           {product.category}
                         </p>
-                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-[#8B3A3A] transition-colors mb-2">
+                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-superweld-primary transition-colors mb-2">
                           {product.name}
                         </h3>
                         <p className="text-sm text-gray-600 line-clamp-2">
@@ -650,7 +650,7 @@ export default function Home() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.6, delay: 0.8, type: "spring" }}
                     whileHover={{ scale: 1.1 }}
-                    className="absolute bottom-6 right-6 bg-[#8B3A3A] text-white p-6 rounded-2xl shadow-xl z-10"
+                    className="absolute bottom-6 right-6 bg-superweld-primary text-white p-6 rounded-2xl shadow-xl z-10"
                   >
                     <span className="text-4xl font-bold">25+</span>
                     <p className="text-sm">Years Experience</p>
@@ -672,7 +672,7 @@ export default function Home() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.3 }}
-                    className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block"
+                    className="text-superweld-primary text-sm font-semibold uppercase tracking-[0.2em] mb-4 block"
                   >
                     About Us
                   </motion.span>
@@ -728,7 +728,7 @@ export default function Home() {
                         whileHover={{ scale: 1.05, x: 5 }}
                         className="flex items-center gap-3 cursor-default"
                       >
-                        <div className="w-10 h-10 rounded-full bg-[#8B3A3A]/10 flex items-center justify-center text-[#8B3A3A]">
+                        <div className="w-10 h-10 rounded-full bg-superweld-primary/10 flex items-center justify-center text-superweld-primary">
                           <item.icon className="w-5 h-5" />
                         </div>
                         <span className="font-medium text-gray-900">{item.text}</span>
@@ -745,7 +745,7 @@ export default function Home() {
                   >
                     <Link
                       href="/about"
-                      className="inline-flex items-center gap-2 px-8 py-4 bg-[#8B3A3A] text-white font-semibold rounded-lg hover:bg-[#7A2D2D] transition-all duration-300 shadow-lg hover:shadow-xl"
+                      className="inline-flex items-center gap-2 px-8 py-4 bg-superweld-primary text-white font-semibold rounded-lg hover:bg-superweld-primaryHover transition-all duration-300 shadow-lg hover:shadow-xl"
                     >
                       Learn More About Us
                       <ArrowRight className="w-5 h-5" />
@@ -759,7 +759,7 @@ export default function Home() {
       </ParallaxSection>
 
       {/* Why Choose Us Section - WITH Parallax */}
-      <ParallaxSection className="py-24 lg:py-40 bg-[#F5F5F5]">
+      <ParallaxSection className="py-24 lg:py-40 bg-superweld-bgAlt">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
             <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-stretch">
@@ -771,7 +771,7 @@ export default function Home() {
                 transition={{ duration: 0.8 }}
                 className="flex flex-col justify-center"
               >
-                <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+                <span className="text-superweld-primary text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                   Our Strengths
                 </span>
                 <h2 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
@@ -796,7 +796,7 @@ export default function Home() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="flex items-start gap-4"
                     >
-                      <div className="w-12 h-12 rounded-xl bg-[#8B3A3A] flex items-center justify-center text-white shrink-0">
+                      <div className="w-12 h-12 rounded-xl bg-superweld-primary flex items-center justify-center text-white shrink-0">
                         <item.icon className="w-6 h-6" />
                       </div>
                       <div>
@@ -854,7 +854,7 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+              <span className="text-superweld-primary text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                 What We Offer
               </span>
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
@@ -880,9 +880,9 @@ export default function Home() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="bg-white/95 backdrop-blur-sm border border-[#EDEDED] rounded-2xl p-8 hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
+                  className="bg-white/95 backdrop-blur-sm border border-superweld-border rounded-2xl p-8 hover:shadow-xl transition-all duration-500 hover:-translate-y-2"
                 >
-                  <div className="w-14 h-14 rounded-xl bg-[#8B3A3A] flex items-center justify-center text-white mb-6">
+                  <div className="w-14 h-14 rounded-xl bg-superweld-primary flex items-center justify-center text-white mb-6">
                     <service.icon className="w-7 h-7" />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-3">{service.title}</h3>
@@ -895,7 +895,7 @@ export default function Home() {
       </section>
 
       {/* Stats Section - WITH Parallax */}
-      <ParallaxSection className="py-24 lg:py-40 bg-[#8B3A3A] text-white">
+      <ParallaxSection className="py-24 lg:py-40 bg-superweld-primary text-white">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -914,7 +914,7 @@ export default function Home() {
       </ParallaxSection>
 
       {/* CTA Banner Section - WITH Parallax */}
-      <ParallaxSection className="py-24 lg:py-40 bg-[#F5F5F5]">
+      <ParallaxSection className="py-24 lg:py-40 bg-superweld-bgAlt">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
             <motion.div
@@ -943,7 +943,7 @@ export default function Home() {
                 <div className="flex flex-wrap gap-4 justify-center">
                   <Link
                     href="/contact"
-                    className="inline-flex items-center gap-2 px-8 py-4 bg-[#8B3A3A] text-white font-semibold rounded-lg hover:bg-[#7A2D2D] transition-all duration-300"
+                    className="inline-flex items-center gap-2 px-8 py-4 bg-superweld-primary text-white font-semibold rounded-lg hover:bg-superweld-primaryHover transition-all duration-300"
                   >
                     <Phone className="w-5 h-5" />
                     Contact Us Today

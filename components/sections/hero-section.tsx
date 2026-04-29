@@ -131,7 +131,7 @@ export function HeroSection({
               { value: "100%", label: "Quality Assurance" },
             ].map((stat) => (
               <div key={stat.label} className="py-6 px-4 text-center">
-                <div className="text-2xl sm:text-3xl font-bold text-superweld-orange">
+                <div className="text-2xl sm:text-3xl font-bold text-superweld-primary">
                   {stat.value}
                 </div>
                 <div className="text-xs sm:text-sm text-superweld-textMuted mt-1">

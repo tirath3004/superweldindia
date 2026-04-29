@@ -51,17 +51,35 @@ const config: Config = {
           "5": "hsl(var(--chart-5))",
         },
         superweld: {
-          bg: "#FFFCFA",
-          bgAlt: "#FFF8F5",
-          surface: "#FFF0E8",
-          border: "#FFE0D4",
-          orange: "#F26522",
-          orangeHover: "#D9541A",
-          orangeLight: "#FF8A50",
-          orangePale: "#FFE8DE",
-          text: "#2D2D2D",
-          textMuted: "#6B6B6B",
-          accent: "#FFB800",
+          // Primary Corporate Blue
+          primary: "#1E3A8A",
+          primaryHover: "#1E4A9E",
+          primaryLight: "#3B5F9E",
+          primaryPale: "#E8EEF5",
+          // Secondary Blue
+          secondary: "#2C5F9E",
+          secondaryHover: "#3B6FAE",
+          secondaryLight: "#4B7FBE",
+          secondaryPale: "#EDF2F7",
+          // Background Colors
+          bg: "#FFFFFF",
+          bgAlt: "#F5F7FA",
+          surface: "#FFFFFF",
+          section: "#F5F7FA",
+          blueSection: "#1E3A8A",
+          blueLight: "#E8F0FB",
+          // Border Colors
+          border: "#E5E9EF",
+          borderLight: "#EDF1F5",
+          // Text Colors
+          text: "#1A1A1A",
+          textSecondary: "#555555",
+          textMuted: "#6B7280",
+          textLight: "#9CA3AF",
+          textOnBlue: "#FFFFFF",
+          // Accent
+          accent: "#4A7FC1",
+          accentHover: "#3B6FAE",
         },
       },
       fontFamily: {

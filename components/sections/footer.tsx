@@ -46,7 +46,7 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="w-full bg-[#1A1A1A] text-white">
+    <footer className="w-full bg-superweld-text text-white">
       {/* Main Footer */}
       <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 py-16 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8">
@@ -72,21 +72,21 @@ export function Footer() {
                 rel="noopener noreferrer"
                 className="flex items-start gap-3 text-gray-400 hover:text-white transition-colors"
               >
-                <MapPin className="w-5 h-5 text-[#8B3A3A] shrink-0 mt-0.5" />
+                <MapPin className="w-5 h-5 text-superweld-primary shrink-0 mt-0.5" />
                 <span className="text-sm">Plot No.S/P-105, S-Block, MIDC Bhosari, Pune - 411026, Maharashtra, India</span>
               </a>
               <a
                 href="tel:07942718067"
                 className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors"
               >
-                <Phone className="w-5 h-5 text-[#8B3A3A]" />
+                <Phone className="w-5 h-5 text-superweld-primary" />
                 <span>07942718067</span>
               </a>
               <a
                 href="mailto:info@superweldsources.com"
                 className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors"
               >
-                <Mail className="w-5 h-5 text-[#8B3A3A]" />
+                <Mail className="w-5 h-5 text-superweld-primary" />
                 <span>info@superweldsources.com</span>
               </a>
               <a
@@ -109,7 +109,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-[#8B3A3A] transition-colors text-sm flex items-center gap-2"
+                    className="text-gray-400 hover:text-superweld-primary transition-colors text-sm flex items-center gap-2"
                   >
                     <link.icon className="w-4 h-4" />
                     {link.label}
@@ -127,7 +127,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-[#8B3A3A] transition-colors text-sm flex items-center gap-2"
+                    className="text-gray-400 hover:text-superweld-primary transition-colors text-sm flex items-center gap-2"
                   >
                     <link.icon className="w-4 h-4" />
                     {link.label}
@@ -145,7 +145,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-[#8B3A3A] transition-colors text-sm"
+                    className="text-gray-400 hover:text-superweld-primary transition-colors text-sm"
                   >
                     {link.label}
                   </Link>
@@ -162,7 +162,7 @@ export function Footer() {
                 <li key={link.label}>
                   <Link
                     href={link.href}
-                    className="text-gray-400 hover:text-[#8B3A3A] transition-colors text-sm"
+                    className="text-gray-400 hover:text-superweld-primary transition-colors text-sm"
                   >
                     {link.label}
                   </Link>
@@ -185,11 +185,11 @@ export function Footer() {
               <input
                 type="email"
                 placeholder="Enter your email"
-                className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder:text-gray-500 focus:outline-none focus:border-[#8B3A3A] transition-colors"
+                className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder:text-gray-500 focus:outline-none focus:border-superweld-primary transition-colors"
               />
               <button
                 type="submit"
-                className="px-6 py-3 bg-[#8B3A3A] text-white font-medium rounded-lg hover:bg-[#7A2D2D] transition-colors whitespace-nowrap"
+                className="px-6 py-3 bg-superweld-primary text-white font-medium rounded-lg hover:bg-superweld-primaryHover transition-colors whitespace-nowrap"
               >
                 Subscribe
               </button>
@@ -209,7 +209,7 @@ export function Footer() {
               <a
                 key={social.label}
                 href={social.href}
-                className="text-gray-500 hover:text-[#8B3A3A] transition-colors"
+                className="text-gray-500 hover:text-superweld-primary transition-colors"
                 aria-label={social.label}
               >
                 <social.icon className="w-5 h-5" />
