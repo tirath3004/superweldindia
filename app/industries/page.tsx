@@ -345,11 +345,13 @@ export default function IndustriesPage() {
       {/* CTA Section - WITH Parallax Background Image */}
       <section className="py-24 lg:py-40 relative overflow-hidden">
         {/* Background Image with Parallax */}
-        <ParallaxBackgroundImage 
-          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80" 
-          alt="Industrial background" 
-          opacity={0.85}
+        <ParallaxBackgroundImage
+          src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1920&q=80"
+          alt="Industrial background"
+          opacity={0.90}
         />
+        {/* Additional dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/50 z-5" />
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
           <div className="max-w-4xl mx-auto text-center">
             <motion.div
@@ -367,14 +369,14 @@ export default function IndustriesPage() {
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 px-8 py-4 bg-white text-gray-900 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-superweld-primary text-white font-semibold rounded-lg hover:bg-superweld-primaryHover transition-colors"
                 >
                   Get in Touch
                   <ArrowRight className="w-5 h-5" />
                 </Link>
                 <Link
                   href="/products"
-                  className="inline-flex items-center gap-2 px-8 py-4 border border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
+                  className="inline-flex items-center gap-2 px-8 py-4 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-superweld-primary transition-colors"
                 >
                   Browse Products
                 </Link>

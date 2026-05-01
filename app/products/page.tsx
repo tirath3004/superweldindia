@@ -230,7 +230,7 @@ export default function ProductsPage() {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="relative"
               >
-                <div className="relative aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+                <div className="relative aspect-square lg:aspect-4/3 rounded-2xl overflow-hidden shadow-2xl">
                   <Image
                     src="/images/images/Abrasive Category.jpeg"
                     alt="Quality Products"
@@ -269,11 +269,13 @@ export default function ProductsPage() {
       {/* Custom Solutions CTA Section - WITH Parallax Background Image */}
       <section className="py-20 lg:py-28 relative overflow-hidden">
         {/* Background Image with Parallax */}
-        <ParallaxBackgroundImage 
-          src="/images/images/Welding Mig wire.jpg" 
-          alt="Custom solutions background" 
-          opacity={0.75}
+        <ParallaxBackgroundImage
+          src="/images/images/Welding Mig wire.jpg"
+          alt="Custom solutions background"
+          opacity={0.85}
         />
+        {/* Additional dark overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40 z-5" />
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -290,7 +292,7 @@ export default function ProductsPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#8B3A3A] text-white font-semibold rounded-lg hover:bg-[#7A2D2D] transition-all duration-300 shadow-lg"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-superweld-primary text-white font-semibold rounded-lg hover:bg-superweld-primaryHover transition-all duration-300 shadow-lg"
             >
               Get in Touch
               <ArrowRight className="w-5 h-5" />

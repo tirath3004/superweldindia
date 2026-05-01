@@ -76,7 +76,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ indus
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95" />
+          <div className="absolute inset-0 bg-linear-to-br from-gray-900/95 via-gray-800/90 to-gray-900/95" />
         </div>
 
         <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12">
