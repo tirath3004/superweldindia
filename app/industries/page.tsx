@@ -73,7 +73,7 @@ function ImageReveal({ src, alt, className = "" }: { src: string; alt: string; c
         initial={{ x: 0 }}
         animate={isInView ? { x: "100%" } : { x: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute inset-0 bg-[#8B3A3A] z-10"
+        className="absolute inset-0 bg-superweld-primary z-10"
       />
       <Image src={src} alt={alt} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
     </div>
@@ -145,13 +145,13 @@ function HeroParallaxSection() {
 
       <motion.div className="relative z-10 w-full px-4 sm:px-6 lg:px-8 xl:px-12" style={{ opacity }}>
         <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#8B3A3A]/90 rounded-full text-white text-sm font-medium mb-6">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-superweld-primary/90 rounded-full text-white text-sm font-medium mb-6">
             <Factory className="w-4 h-4" />
             Industries Served
           </div>
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
             Industrial Solutions for
-            <span className="text-[#8B3A3A]"> Every Sector</span>
+            <span className="text-superweld-primary"> Every Sector</span>
           </h1>
           <p className="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto leading-relaxed">
             From construction to manufacturing, we provide high-quality industrial tools and equipment tailored to meet the specific needs of diverse industries.
@@ -181,7 +181,7 @@ export default function IndustriesPage() {
               transition={{ duration: 0.6 }}
               className="text-center mb-16"
             >
-              <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+              <span className="text-superweld-primary text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                 Industries Served
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
@@ -215,10 +215,10 @@ export default function IndustriesPage() {
                       <Image src={industry.image} alt={industry.name} fill className="object-cover transition-transform duration-500 group-hover:scale-110" sizes="(max-width: 768px) 100vw, 33vw" />
                     </div>
                     <div className="p-6">
-                      <div className="w-12 h-12 rounded-xl bg-[#8B3A3A]/10 flex items-center justify-center text-[#8B3A3A] mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-superweld-primary/10 flex items-center justify-center text-superweld-primary mb-4">
                         <industry.icon className="w-6 h-6" />
                       </div>
-                      <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-[#8B3A3A] transition-colors">{industry.name}</h3>
+                      <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-superweld-primary transition-colors">{industry.name}</h3>
                       <p className="text-gray-600 text-sm">{industry.desc}</p>
                     </div>
                   </Link>
@@ -229,7 +229,7 @@ export default function IndustriesPage() {
             <div className="text-center mt-12">
               <Link
                 href="/products"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#8B3A3A] text-white font-semibold rounded-lg hover:bg-[#7A2D2D] transition-colors"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-superweld-primary text-white font-semibold rounded-lg hover:bg-superweld-primaryHover transition-colors"
               >
                 View All Products
                 <ArrowRight className="w-5 h-5" />
@@ -240,7 +240,7 @@ export default function IndustriesPage() {
       </ParallaxSection>
 
       {/* Stats Section - WITH Parallax */}
-      <section className="py-24 lg:py-40 bg-[#8B3A3A] text-white">
+      <section className="py-24 lg:py-40 bg-superweld-primary text-white">
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
             <motion.div
@@ -284,7 +284,7 @@ export default function IndustriesPage() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+                <span className="text-superweld-primary text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                   Our Advantages
                 </span>
                 <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -309,7 +309,7 @@ export default function IndustriesPage() {
                       transition={{ duration: 0.5, delay: index * 0.1 }}
                       className="flex items-start gap-4"
                     >
-                      <div className="w-12 h-12 rounded-xl bg-[#8B3A3A]/10 flex items-center justify-center text-[#8B3A3A] shrink-0">
+                      <div className="w-12 h-12 rounded-xl bg-superweld-primary/10 flex items-center justify-center text-superweld-primary shrink-0">
                         <item.icon className="w-6 h-6" />
                       </div>
                       <div>

@@ -93,7 +93,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ indus
             </div>
 
             <div>
-              <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+              <span className="text-superweld-primary text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                 Industry Solutions
               </span>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
@@ -128,7 +128,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ indus
         <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-              <span className="text-[#8B3A3A] text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
+              <span className="text-superweld-primary text-sm font-semibold uppercase tracking-[0.2em] mb-4 block">
                 Recommended Products
               </span>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
@@ -161,10 +161,10 @@ export default async function IndustryPage({ params }: { params: Promise<{ indus
                         </div>
                       </div>
                       <div className="p-6">
-                        <p className="text-sm text-[#8B3A3A] font-medium mb-1">
+                        <p className="text-sm text-superweld-primary font-medium mb-1">
                           {product.subCategory || product.categoryId}
                         </p>
-                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-[#8B3A3A] transition-colors mb-2">
+                        <h3 className="text-lg font-bold text-gray-900 group-hover:text-superweld-primary transition-colors mb-2">
                           {product.name}
                         </h3>
                         <p className="text-sm text-gray-600 line-clamp-2">
@@ -186,7 +186,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ indus
             <div className="text-center mt-16">
               <Link
                 href="/products"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#8B3A3A] text-white font-semibold rounded-lg hover:bg-[#7A2D2D] transition-all duration-300 shadow-lg"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-superweld-primary text-white font-semibold rounded-lg hover:bg-superweld-primaryHover transition-all duration-300 shadow-lg"
               >
                 View All Products
                 <ArrowRight className="w-5 h-5" />
@@ -215,7 +215,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ indus
                     href={`/industries/${otherIndustry.id}`}
                     className="block bg-white border border-[#EDEDED] rounded-2xl p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
                   >
-                    <h3 className="text-lg font-bold text-gray-900 mb-2 hover:text-[#8B3A3A] transition-colors">
+                    <h3 className="text-lg font-bold text-gray-900 mb-2 hover:text-superweld-primary transition-colors">
                       {otherIndustry.name}
                     </h3>
                     <p className="text-sm text-gray-600 line-clamp-2">
